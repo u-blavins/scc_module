@@ -15,7 +15,7 @@ public class SharesThread extends Thread
             Shares.shareprice = rn.nextInt(50); //set shareValue in main class
             try {
                 this.sleep(frequency);
-            } catch(java.lang.InterruptedException ie){}; //delay fluctuation*/
+            } catch(java.lang.InterruptedException ie){} //delay fluctuation*/
         }
     }
     

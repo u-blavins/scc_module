@@ -9,15 +9,17 @@ public class Shares {
         final int delay = 2; //seconds between consecutive readings
         final int maxValue = 100; //maximum share value in the exchange
     
+        BuyingSharesThread bsth = new BuyingSharesThread();
+        bsth.start();
         SharesThread sth = new SharesThread(maxValue); //thread randomising share price
-        sth.start();;
+        sth.start();
         for (int i = 0; i< checks; i++)
         {
             try {
                 System.out.println("price = " + shareprice);
                 Thread.sleep(1000*delay);
             }
-            catch(java.lang.InterruptedException ie){};
+            catch(java.lang.InterruptedException ie){}
         }
         
     }
