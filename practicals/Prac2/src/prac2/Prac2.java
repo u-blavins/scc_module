@@ -15,7 +15,7 @@ public class Prac2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Long[] salaries = {24000L, 34000L, 40000L, 21000L, 18000L};
+        long[] salaries = {24000L, 34000L, 40000L, 21000L, 18000L};
         String[] profession = {"nurse", "teacher", "Architect",
             "Bus Driver", "Postman"};
         
@@ -23,11 +23,11 @@ public class Prac2 {
 //                Integer.toString(countLowTaxSalary(salaries)));
 //        System.out.println("Profession with highest Sal: " + 
 //                printHighSalProfession(salaries, profession));
-        Long[] test = {2345L, 23455L, 54L, 7654L};
+        long[] test = {2345L, 23455L, 54L, 7654L};
         System.out.println("Highest Amount: " + findHighestAmount(test));
     }
 
-    private static int countLowTaxSalary(Long[] salaries) {
+    private static int countLowTaxSalary(long[] salaries) {
         int count = 0;
         for (int i = 0; i < salaries.length; i++) {
             if (salaries[i] < 20000L) {
@@ -38,7 +38,7 @@ public class Prac2 {
     }
     
     private static String printHighSalProfession(
-            Long[] salaries, String[] profession) {
+            long[] salaries, String[] profession) {
         int highestSalIndex = 0;
         long highestSal = 0;
         for (int i = 0; i < salaries.length; i++) {
@@ -50,7 +50,7 @@ public class Prac2 {
         return profession[highestSalIndex];
     }
     
-    private static Long findHighestAmount(Long[] anArray) {
+    private static long findHighestAmount(long[] anArray) {
         long highestValue = 0;
         for (Long value: anArray) {
             if (value > highestValue) {
