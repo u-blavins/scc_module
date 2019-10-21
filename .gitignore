@@ -10,3 +10,5 @@ nbdist/
 
 # Generic files
 *.DS_Store
+/practicals/Prac6/nbproject/private/
+/practicals/Prac7/nbproject/private/
