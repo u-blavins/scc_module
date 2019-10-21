@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<book xmlns="http://xml.netbeans.org/schema/books" ISBN="62129985">
+    <Title>War and Peace</Title>
+    <Author>Lev Tolstoi</Author>
+    <Publisher>Progress</Publisher>
+    <Description>Russion fixction about 1st world war</Description>
+    <Price>12.6</Price>
+    <PublicationYear>0</PublicationYear>
+</book>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/Users/UBlavins/ntu_year3/scc_module/practicals/Prac7/../../../../Downloads/src%202/books.xsd" uri="xml-resources/jaxb/BookRequest/books.xsd"/>
+</catalog>
