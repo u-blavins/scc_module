@@ -172,6 +172,19 @@ public class Main {
         latest_shares.add(share);
         
         share = new shareOrder.ShareType();
+        share.setCompanyName("SSE PLC");
+        share.setCompanySymbol("SSE");
+        share.setCompanyFTSESector("Electricity");
+        share.setCompanyLogo("https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/079/0790873.gif");
+        share.setAvailableShares(3015864);
+        sharePrice = new shareOrder.ShareType.SharePrice();
+        sharePrice.setCurrency("GBX");
+        sharePrice.setValue((float)1310.00);
+        sharePrice.setLastUpdated(now);
+        share.setSharePrice(sharePrice);
+        latest_shares.add(share);
+        
+        share = new shareOrder.ShareType();
         share.setCompanyName("Dixons Carphone PLC");
         share.setCompanySymbol("CD.");
         share.setCompanyFTSESector("");
