@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Company_Shares xmlns="http://xml.netbeans.org/schema/Shares">
+    <shares CompanySymbol="LLOY">
+        <CompanyName>LLOYDS GRP.</CompanyName>
+        <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/087/0870612.gif</CompanyLogo>
+        <AvailableShares>214869640</AvailableShares>
+        <CompanyFTSESector>Banks</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>61.48</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="VOD">
+        <CompanyName>VODAFONE GRP.</CompanyName>
+        <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/bh4/bh4hks3.gif</CompanyLogo>
+        <AvailableShares>60712110</AvailableShares>
+        <CompanyFTSESector>Telecommunications Service Providers</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>142.74</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="EXPN">
+        <CompanyName>EXPERIAN PLC</CompanyName>
+        <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/b19/b19nlv4.gif</CompanyLogo>
+        <AvailableShares>1529816</AvailableShares>
+        <CompanyFTSESector>Industrial Support Services</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>2454.0</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="BP">
+        <CompanyName>BP PLC</CompanyName>
+        <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/079/0798059.gif</CompanyLogo>
+        <AvailableShares>28922431</AvailableShares>
+        <CompanyFTSESector>Oil, Gas and Coal</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>469.3</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="BT.A">
+        <CompanyName>BT GRP.</CompanyName>
+        <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/309/3091357.gif</CompanyLogo>
+        <AvailableShares>24348195</AvailableShares>
+        <CompanyFTSESector>Telecommunications Service Providers</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>188.7</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="TALK">
+        <CompanyName>TALK TALK</CompanyName>
+        <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/309/3091357.gifhttps://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/b4y/b4ycdf5.gif</CompanyLogo>
+        <AvailableShares>918477</AvailableShares>
+        <CompanyFTSESector>Telecommunications Service Providers</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>104.7</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="ASC">
+        <CompanyName>ASOS PLC</CompanyName>
+        <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/309/3092725.gif</CompanyLogo>
+        <AvailableShares>253747</AvailableShares>
+        <CompanyFTSESector>Retailers</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>2956.0</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="BOO">
+        <CompanyName>BOOHOO</CompanyName>
+        <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/bg6/bg6l729.gif</CompanyLogo>
+        <AvailableShares>6350925</AvailableShares>
+        <CompanyFTSESector>Retailers</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>266.7</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="RBS">
+        <CompanyName>ROYAL BANK OF SCOTLAND PLC</CompanyName>
+        <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/b7t/b7t7721.gif</CompanyLogo>
+        <AvailableShares>17496969</AvailableShares>
+        <CompanyFTSESector>Banks</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>229.3</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="BARC">
+        <CompanyName>BARCLAYS PLC</CompanyName>
+        <CompanyLogo></CompanyLogo>
+        <AvailableShares>49665292</AvailableShares>
+        <CompanyFTSESector>Banks</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>170.14</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="GFS">
+        <CompanyName>G4S</CompanyName>
+        <CompanyLogo></CompanyLogo>
+        <AvailableShares>2581928</AvailableShares>
+        <CompanyFTSESector>Industrial Support Services</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>206.9</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="SSE">
+        <CompanyName>SSE PLC</CompanyName>
+        <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/079/0790873.gif</CompanyLogo>
+        <AvailableShares>3015864</AvailableShares>
+        <CompanyFTSESector>Electricity</CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>1310.0</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+    <shares CompanySymbol="CD.">
+        <CompanyName>Dixons Carphone PLC</CompanyName>
+        <CompanyLogo></CompanyLogo>
+        <AvailableShares>1</AvailableShares>
+        <CompanyFTSESector></CompanyFTSESector>
+        <share_price>
+            <Currency>GBX</Currency>
+            <Value>0.0</Value>
+            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+        </share_price>
+    </shares>
+</Company_Shares>

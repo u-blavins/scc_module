@@ -5,6 +5,7 @@
  */
 package sharesbroker;
 
+import java.io.File;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -204,7 +205,9 @@ public class Main {
             marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
             marshaller.setProperty(
                     javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            marshaller.marshal(companyShares, System.out);
+//            marshaller.marshal(companyShares, System.out);
+            File file = new File("shares.xml");
+            marshaller.marshal(companyShares, file);
         } catch (javax.xml.bind.JAXBException ex) {
             java.util.logging.Logger.getLogger("global").log(java.util.logging.Level.SEVERE, null, ex);
         }
