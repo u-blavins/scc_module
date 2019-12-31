@@ -6,6 +6,8 @@
 package sharesbroker;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.jws.WebService;
@@ -69,7 +71,8 @@ public class SharesBrokerWS {
     @WebMethod(operationName = "updateCompanyShare")
     public CompanyShares updateCompanyShare(
             @WebParam(name = "symbol") String symbol,
-            @WebParam(name = "shares")int shares) throws JAXBException {
+            @WebParam(name = "shares")int shares) throws JAXBException, 
+            FileNotFoundException {
         CompanyShares updatedCompanyShares = listShares();
         List<ShareType> companyShares = updatedCompanyShares.getShares();
         for (ShareType share : companyShares) {
@@ -77,16 +80,19 @@ public class SharesBrokerWS {
                 share.setAvailableShares(shares);
             }
         }
+        String filePath = 
+                "/Users/UBlavins/Desktop/output.xml";
+        FileOutputStream outFile = new FileOutputStream(filePath);
         try {
             javax.xml.bind.JAXBContext jaxbCtx = 
-                    javax.xml.bind.JAXBContext.newInstance(
-                            companyShares.getClass().getPackage().getName());
+                    javax.xml.bind.JAXBContext.newInstance(updatedCompanyShares.getClass().getPackage().getName());
             javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
             marshaller.setProperty(
                     javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
             marshaller.setProperty(
                     javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, 
                     Boolean.TRUE);
+            marshaller.marshal(updatedCompanyShares, outFile);
             System.out.println(
                     "Test - " + symbol + ": has  " + shares + " shares");
         } catch (javax.xml.bind.JAXBException ex) {
