@@ -34,8 +34,14 @@ public class SharesBrokerWS {
     }
     
     /**
-     * This is a sample web service operation
-     * @return currentCompanyShares
+     * Web service operation that lists share information on all companies
+     * that are recorded on an external XML file
+     *
+     * Create a new object 'CompanyShares' and populate object with data 
+     * from 'shares.xml' utilising JAXB Bind. Return CompanyShares object
+     * containing current companies and share information.
+     * 
+     * @return currentCompanyShares (CompanyShares) updated company shares
      * @throws javax.xml.bind.JAXBException
      */
     @WebMethod(operationName="listShares")
@@ -56,18 +62,21 @@ public class SharesBrokerWS {
         return companyShares;
     }
     
-    @WebMethod(operationName = "listAvailableShares")
-    public int listAvailableShares(@WebParam(name = "companyName")String companyName) throws JAXBException {
-        int availableShares = 0;
-        List<ShareType> companyShares = listShares().getShares();
-        for (ShareType share : companyShares) {
-            if (share.getCompanyName().equals(companyName)){
-                availableShares = share.getAvailableShares();
-            }
-        }
-        return availableShares;
-    }
-    
+    /**
+     * Web service operation that updates the available shares of a company for
+     * operations such as purchases, returns, or updates.
+     * 
+     * Traverse through a list of companies and update the available shares for
+     * a company based on the company symbol (UID) provided as a parameter and
+     * the amount of shares provided as another parameter. JAXB bind used to
+     * marshal the update company shares into 'shares.xml' and also returned.
+     * 
+     * @param symbol (String) the symbol for a company
+     * @param shares (int) the new number of shares for the company
+     * @return updatedCompanyShares (CompanyShares) updated company shares
+     * @throws JAXBException
+     * @throws FileNotFoundException 
+     */
     @WebMethod(operationName = "updateCompanyShare")
     public CompanyShares updateCompanyShare(
             @WebParam(name = "symbol") String symbol,
@@ -99,6 +108,32 @@ public class SharesBrokerWS {
             java.util.logging.Logger.getLogger("global").log(java.util.logging.Level.SEVERE, null, ex); //NOI18N
         }
         return updatedCompanyShares;
+    }
+    
+    /**
+     * Web service operation that returns the number of available shares for a
+     * company
+     * 
+     * Create a list of shares that is currently recorded within 'shares.xml'
+     * and filter through each company to find the correct company based on 
+     * the company symbol (UID) provided as a parameter. Return the number of
+     * available shares for said company.
+     * 
+     * @param symbol (String) the symbol for a company
+     * @return availableShares (int) number of shares that a company has
+     * @throws JAXBException 
+     */
+    @WebMethod(operationName = "getAvailableShares")
+    public int getAvailableShares(@WebParam(name = "symbol")String symbol) 
+            throws JAXBException {
+        int availableShares = 0;
+        List<ShareType> companyShares = listShares().getShares();
+        for (ShareType share : companyShares) {
+            if (share.getCompanySymbol().equals(symbol)){
+                availableShares = share.getAvailableShares();
+            }
+        }
+        return availableShares;
     }
    
 }
