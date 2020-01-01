@@ -269,7 +269,7 @@ public class SharesBrokerWS {
      * Web service operation that returns a list of all the FTSE sectors that
      * are stored within the web service.
      * 
-     * @return sectors (List<String>) list of FTSE sectors
+     * @return sectors (List<>) list of FTSE sectors
      * @throws JAXBException 
      */
     @WebMethod(operationName = "getFTSESectors")
@@ -287,14 +287,71 @@ public class SharesBrokerWS {
      * Web service operation that adds a new company to an XML file containing
      * a list of company share information
      * 
+     * @param symbol
+     * @param company
+     * @param ftseSector
+     * @param logo
+     * @param availableShares
+     * @param currency
+     * @param shareValue
+     * @return currentCompanyShares (CompanyShares)
+     * @throws javax.xml.bind.JAXBException 
+     * @throws javax.xml.datatype.DatatypeConfigurationException 
+     * @throws java.io.FileNotFoundException 
      */
     @WebMethod(operationName = "addNewCompany")
     public CompanyShares addNewCompany(
             @WebParam(name = "symbol") String symbol,
-            @WebParam(name = "name") String company,
-            @WebParam(name = "ftseSector") String ftseSector) {
-        CompanyShares updatedCompanyShares = new CompanyShares();
-        return updatedCompanyShares;
+            @WebParam(name = "company") String company,
+            @WebParam(name = "ftseSector") String ftseSector,
+            @WebParam(name = "logo") String logo,
+            @WebParam(name = "availableShares") int availableShares,
+            @WebParam(name = "currency") String currency,
+            @WebParam(name = "shareValue") float shareValue
+            ) throws JAXBException, DatatypeConfigurationException, 
+                FileNotFoundException {
+        
+        ShareType newCompanyShare;
+        CompanyShares currentCompanyShares = listShares();
+        List<ShareType> companyShares = currentCompanyShares.getShares();
+        
+        for (ShareType share : companyShares) {
+            if (symbol.equals(share.getCompanySymbol()))
+                return currentCompanyShares;
+        }
+        
+        newCompanyShare = new ShareType();
+        newCompanyShare.setCompanySymbol(symbol);
+        newCompanyShare.setCompanyName(company);
+        newCompanyShare.setCompanyFTSESector(ftseSector);
+        newCompanyShare.setCompanyLogo(logo);
+        newCompanyShare.setAvailableShares(availableShares);
+        ShareType.SharePrice sharePrice = new ShareType.SharePrice();
+        sharePrice.setCurrency(currency);
+        sharePrice.setValue(shareValue);
+        sharePrice.setLastUpdated(getCurrentGregorianTime());
+        newCompanyShare.setSharePrice(sharePrice);
+        companyShares.add(newCompanyShare);
+        
+        String filePath = 
+                "/Users/UBlavins/Desktop/output.xml";
+        FileOutputStream outFile = new FileOutputStream(filePath);
+        
+        try {
+            javax.xml.bind.JAXBContext jaxbCtx = 
+                    javax.xml.bind.JAXBContext.newInstance(currentCompanyShares.getClass().getPackage().getName());
+            javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
+            marshaller.setProperty(
+                    javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
+            marshaller.setProperty(
+                    javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, 
+                    Boolean.TRUE);
+            marshaller.marshal(currentCompanyShares, outFile);
+        } catch (javax.xml.bind.JAXBException ex) {
+            java.util.logging.Logger.getLogger("global").log(java.util.logging.Level.SEVERE, null, ex); //NOI18N
+        }
+        
+        return currentCompanyShares;
     }
     
     // Search Filter Web Methods
