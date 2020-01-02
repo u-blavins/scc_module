@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.jws.WebService;
@@ -62,10 +63,12 @@ public class SharesBrokerWS {
                             companyShares.getClass().getPackage().getName());
             javax.xml.bind.Unmarshaller unmarshaller = 
                     jaxbContext.createUnmarshaller();
-            File file = new File("/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/shares.xml");
+            File file = new File(
+                    "/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/shares.xml");
             companyShares = (CompanyShares) unmarshaller.unmarshal(file);
         } catch (javax.xml.bind.JAXBException ex) {
-            java.util.logging.Logger.getLogger("global").log(java.util.logging.Level.SEVERE, null, ex); //NOI18N
+            java.util.logging.Logger.getLogger("global").log(
+                    java.util.logging.Level.SEVERE, null, ex); //NOI18N
         }
         return companyShares;
     }
@@ -101,7 +104,8 @@ public class SharesBrokerWS {
         FileOutputStream outFile = new FileOutputStream(filePath);
         try {
             javax.xml.bind.JAXBContext jaxbCtx = 
-                    javax.xml.bind.JAXBContext.newInstance(updatedCompanyShares.getClass().getPackage().getName());
+                    javax.xml.bind.JAXBContext.newInstance(
+                        updatedCompanyShares.getClass().getPackage().getName());
             javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
             marshaller.setProperty(
                     javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
@@ -112,7 +116,8 @@ public class SharesBrokerWS {
             System.out.println(
                     "Test - " + symbol + ": has  " + shares + " shares");
         } catch (javax.xml.bind.JAXBException ex) {
-            java.util.logging.Logger.getLogger("global").log(java.util.logging.Level.SEVERE, null, ex); //NOI18N
+            java.util.logging.Logger.getLogger("global").log(
+                    java.util.logging.Level.SEVERE, null, ex); //NOI18N
         }
         return updatedCompanyShares;
     }
@@ -339,7 +344,8 @@ public class SharesBrokerWS {
         
         try {
             javax.xml.bind.JAXBContext jaxbCtx = 
-                    javax.xml.bind.JAXBContext.newInstance(currentCompanyShares.getClass().getPackage().getName());
+                    javax.xml.bind.JAXBContext.newInstance(
+                        currentCompanyShares.getClass().getPackage().getName());
             javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
             marshaller.setProperty(
                     javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
@@ -348,13 +354,96 @@ public class SharesBrokerWS {
                     Boolean.TRUE);
             marshaller.marshal(currentCompanyShares, outFile);
         } catch (javax.xml.bind.JAXBException ex) {
-            java.util.logging.Logger.getLogger("global").log(java.util.logging.Level.SEVERE, null, ex); //NOI18N
+            java.util.logging.Logger.getLogger("global").log(
+                    java.util.logging.Level.SEVERE, null, ex); //NOI18N
         }
         
         return currentCompanyShares;
     }
     
-    // Search Filter Web Methods
+    // Searching Web Methods
     
+    @WebMethod(operationName = "searchBySymbol")
+    public List<ShareType> searchBySymbol(
+            @WebParam(name = "symbol") String symbol) throws JAXBException {
+        List<ShareType> symbols = new ArrayList<>();
+        for (ShareType share : listShares().getShares()) {
+            if (share.getCompanySymbol().contains(symbol)) symbols.add(share);
+        }
+        return symbols;
+    }
+    
+    @WebMethod(operationName = "searchByName")
+    public List<ShareType> searchByName(
+            @WebParam(name = "name") String name) throws JAXBException {
+        List<ShareType> names = new ArrayList<>();
+        for (ShareType share : listShares().getShares()) {
+            if (share.getCompanyName().contains(name)) names.add(share);
+        }
+        return names;
+    }
+    
+    @WebMethod(operationName = "searchByFTSESector")
+    public List<ShareType> searchByFTSESector(@WebParam(name = "ftseSector") 
+            String ftseSector) throws JAXBException {
+        List<ShareType> sectors = new ArrayList<>();
+        for (ShareType share : listShares().getShares()) {
+            if (ftseSector.equals(share.getCompanyFTSESector()))
+                sectors.add(share);
+        }
+        return sectors;
+    }
+    
+    @WebMethod(operationName = "searchByLowestSharePrice")
+    public List<ShareType> searchByLowestSharePrice() throws JAXBException {
+        ShareType share;
+        List<ShareType> sharesLower = listShares().getShares();
+        int shares = sharesLower.size();
+        // Bubble sort
+        for (int i = 0; i < shares; i++) {
+            for (int j = 1; j < (shares - i); j++) {
+                if (sharesLower.get(j-1).getSharePrice().getValue() > 
+                    sharesLower.get(j).getSharePrice().getValue()) {
+                    share = sharesLower.get(j-1);
+                    sharesLower.set(j-1, sharesLower.get(j));
+                    sharesLower.set(j, share);
+                }
+            }
+        }
+        return sharesLower;
+    }
+    
+    @WebMethod(operationName = "searchByHighestSharePrice")
+    public List<ShareType> searchByHighestSharePrice() throws JAXBException {
+        ShareType share;
+        List<ShareType> sharesLower = listShares().getShares();
+        int shares = sharesLower.size();
+        // Bubble sort
+        for (int i = 0; i < shares; i++) {
+            for (int j = 1; j < (shares - i); j++) {
+                if (sharesLower.get(j-1).getSharePrice().getValue() < 
+                    sharesLower.get(j).getSharePrice().getValue()) {
+                    share = sharesLower.get(j-1);
+                    sharesLower.set(j-1, sharesLower.get(j));
+                    sharesLower.set(j, share);
+                }
+            }
+        }
+        return sharesLower;
+    }
+    
+    @WebMethod(operationName = "searchBySharePriceRange")
+    public List<ShareType> searchBySharePriceRange(
+            @WebParam(name = "lowerBound") float lowerBound,
+            @WebParam(name = "higherBound") float higherBound) 
+            throws JAXBException {
+        List<ShareType> shares = new ArrayList<>();
+        for (ShareType share : listShares().getShares()) {
+            if (share.getSharePrice().getValue() > lowerBound &&
+                    share.getSharePrice().getValue() < higherBound)
+                shares.add(share);
+        }
+        return shares;
+    }
     
 }
