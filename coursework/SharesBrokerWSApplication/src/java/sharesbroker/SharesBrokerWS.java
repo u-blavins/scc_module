@@ -9,9 +9,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -25,6 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * @author UBlavins
  */
 @WebService(serviceName = "SharesBrokerWS")
+@Stateless()
 public class SharesBrokerWS {
     
     
@@ -263,6 +264,7 @@ public class SharesBrokerWS {
      * @return companySymbols (List<>) list of company symbols
      * @throws JAXBException 
      */
+    @WebMethod(operationName = "getCompanySymbols")
     public List<String> getCompanySymbols() throws JAXBException {
         List<String> companySymbols = new ArrayList<>();
         for (ShareType share : listShares().getShares())
@@ -289,8 +291,19 @@ public class SharesBrokerWS {
     }
     
     /**
+     * Web service operation that returns a list of all the company shares
+     * 
+     * @return listShares().getShares() (List<>) list of company shares
+     * @throws JAXBException 
+     */
+    @WebMethod(operationName = "getCompanyShares")
+    public List<ShareType> getCompanyShares() throws JAXBException {
+        return listShares().getShares();
+    }
+    
+    /**
      * Web service operation that adds a new company to an XML file containing
-     * a list of company share information
+     * a list of company share information.
      * 
      * @param symbol
      * @param company
