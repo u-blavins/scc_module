@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/../SharesBroker/src/sharesbroker/Shares.xsd" uri="src/conf/xml-resources/jaxb/SharesOrder/Shares.xsd"/>
+    <system systemId="file:/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Shares.xsd" uri="src/conf/xml-resources/jaxb/SharesRequest/Shares.xsd"/>
+</catalog>
