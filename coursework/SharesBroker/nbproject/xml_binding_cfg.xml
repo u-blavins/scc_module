@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <schemas xmlns='http://xml.netbeans.org/schema/JAXBWizConfig' destdir='build/generated-sources/jaxb' projectName='SharesBroker' version='1.0'>
-	<schema type='-xmlschema' package='shareOrder' name='ShareRequest'>
+	<schema type='-xmlschema' package='sharesbroker' name='ShareRequest'>
 		<xjc-options>
 		</xjc-options>
 		<schema-sources>
