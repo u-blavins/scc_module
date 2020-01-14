@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Users xmlns="http://xml.netbeans.org/schema/Shares">
+    <users>
+        <Username>ublavins</Username>
+        <Password>testpassword</Password>
+        <IsAdmin>1</IsAdmin>
+        <UserShares>
+            <CompanySymbol>LLOY</CompanySymbol>
+            <CompanyShares>100</CompanyShares>
+        </UserShares>
+    </users>
+</Users>

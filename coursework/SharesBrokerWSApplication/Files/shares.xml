@@ -6,7 +6,7 @@
         <AvailableShares>214869640</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>61.48</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -17,7 +17,7 @@
         <AvailableShares>60712110</AvailableShares>
         <CompanyFTSESector>Telecommunications Service Providers</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>142.74</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -28,7 +28,7 @@
         <AvailableShares>1529816</AvailableShares>
         <CompanyFTSESector>Industrial Support Services</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>2454.0</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -39,7 +39,7 @@
         <AvailableShares>28922431</AvailableShares>
         <CompanyFTSESector>Oil, Gas and Coal</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>469.3</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -50,7 +50,7 @@
         <AvailableShares>24348195</AvailableShares>
         <CompanyFTSESector>Telecommunications Service Providers</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>188.7</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -61,7 +61,7 @@
         <AvailableShares>918477</AvailableShares>
         <CompanyFTSESector>Telecommunications Service Providers</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>104.7</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -72,7 +72,7 @@
         <AvailableShares>253747</AvailableShares>
         <CompanyFTSESector>Retailers</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>2956.0</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -83,7 +83,7 @@
         <AvailableShares>6350925</AvailableShares>
         <CompanyFTSESector>Retailers</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>266.7</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -94,7 +94,7 @@
         <AvailableShares>17496969</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>229.3</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -105,7 +105,7 @@
         <AvailableShares>49665292</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>170.14</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -116,7 +116,7 @@
         <AvailableShares>2581928</AvailableShares>
         <CompanyFTSESector>Industrial Support Services</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>206.9</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -127,7 +127,7 @@
         <AvailableShares>3015864</AvailableShares>
         <CompanyFTSESector>Electricity</CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>1310.0</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
@@ -138,7 +138,7 @@
         <AvailableShares>1</AvailableShares>
         <CompanyFTSESector></CompanyFTSESector>
         <share_price>
-            <Currency>GBX</Currency>
+            <Currency>GBP</Currency>
             <Value>0.0</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>

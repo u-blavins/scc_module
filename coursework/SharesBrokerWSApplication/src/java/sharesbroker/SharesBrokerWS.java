@@ -5,6 +5,7 @@
  */
 package sharesbroker;
 
+import docwebservices.CurrencyConversionWSService;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -19,6 +20,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.ws.WebServiceRef;
 
 /**
  *
@@ -28,6 +30,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @Stateless()
 public class SharesBrokerWS {
     
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/CurrencyConvertor/CurrencyConversionWSService.wsdl")
+    private CurrencyConversionWSService currencyConversionService;
     
     /**
      * Method that returns the current date and time in a format that is set 
@@ -457,6 +461,31 @@ public class SharesBrokerWS {
                 shares.add(share);
         }
         return shares;
+    }
+    
+    // RESTful Web Service Methods
+    
+    private double getConversionRate(java.lang.String arg0, java.lang.String arg1) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        docwebservices.CurrencyConversionWS port = currencyConversionService.getCurrencyConversionWSPort();
+        return port.getConversionRate(arg0, arg1);
+    }
+
+    private java.util.List<java.lang.String> getCurrencyCodes() {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        docwebservices.CurrencyConversionWS port = currencyConversionService.getCurrencyConversionWSPort();
+        return port.getCurrencyCodes();
+    }
+
+    @WebMethod(operationName="getPriceByCurrency")
+    public float getPriceByCurrency(
+            @WebParam(name="currentCurrencyCode")String currentCurrencyCode,
+            @WebParam(name="newCurrencyCode")String newCurrencyCode,
+            @WebParam(name="price")float price) {
+        double rate = getConversionRate(currentCurrencyCode, newCurrencyCode);
+        return (float) (rate * price);
     }
     
 }
