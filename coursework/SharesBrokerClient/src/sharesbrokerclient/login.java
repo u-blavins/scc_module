@@ -47,6 +47,7 @@ public class login extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         regConPassword = new javax.swing.JTextField();
+        notificationText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +59,12 @@ public class login extends javax.swing.JFrame {
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Password");
+
+        logUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logUsernameActionPerformed(evt);
+            }
+        });
 
         logPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +145,7 @@ public class login extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(regPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(regUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2))
@@ -148,8 +155,13 @@ public class login extends javax.swing.JFrame {
                                     .addComponent(logPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(127, 127, 127))))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(305, 305, 305)
-                .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(305, 305, 305)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(372, 372, 372)
+                        .addComponent(notificationText)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -178,13 +190,15 @@ public class login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addContainerGap(233, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(registerButton)
                             .addComponent(loginButton))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                        .addComponent(notificationText)
+                        .addGap(99, 99, 99))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -192,8 +206,8 @@ public class login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,10 +230,14 @@ public class login extends javax.swing.JFrame {
             String password = logPassword.getText();
             boolean login = loginUser(username, password);
             if (login) {
-                messageLabel.setText("Successful Login");
+                notificationText.setText("Successful Login");
+                shares sharesFrame = new shares();
+                sharesFrame.setVisible(true);
             } else {
-                messageLabel.setText("Unsuccessful Login");
+                notificationText.setText("Unsuccessful Login");
             }
+            logUsername.setText("");
+            logPassword.setText("");
         } catch(Exception ex) {
             
         }
@@ -228,7 +246,25 @@ public class login extends javax.swing.JFrame {
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         // To Do
         try {
+           String username = regUsername.getText();
+           String password = regPassword.getText();
+           String conpassword = regConPassword.getText();
+           boolean newUser = false;
            
+           if (!username.equals("") && !password.equals("") && 
+                   !conpassword.equals("")) {
+               newUser = registerUser(username, password, conpassword);
+           }
+           
+           if (newUser) {
+               notificationText.setText("Successfully registered account");
+           } else {
+               notificationText.setText("Account not registered");
+           }
+           
+           regUsername.setText("");
+           regPassword.setText("");
+           regConPassword.setText("");
         } catch(Exception ex) {
             
         }
@@ -241,6 +277,10 @@ public class login extends javax.swing.JFrame {
     private void regConPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regConPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_regConPasswordActionPerformed
+
+    private void logUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logUsernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,6 +330,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JTextField logUsername;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel messageLabel;
+    private javax.swing.JLabel notificationText;
     private javax.swing.JTextField regConPassword;
     private javax.swing.JTextField regPassword;
     private javax.swing.JTextField regUsername;
@@ -300,5 +341,11 @@ public class login extends javax.swing.JFrame {
         sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
         sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
         return port.loginUser(username, password);
+    }
+
+    private static boolean registerUser(java.lang.String username, java.lang.String password, java.lang.String conpassword) throws FileNotFoundException_Exception, JAXBException_Exception {
+        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.registerUser(username, password, conpassword);
     }
 }

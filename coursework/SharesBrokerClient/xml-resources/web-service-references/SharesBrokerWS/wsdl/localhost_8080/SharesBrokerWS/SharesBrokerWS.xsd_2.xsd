@@ -348,13 +348,13 @@
 <xs:sequence>
 <xs:element name="currentCurrencyCode" type="xs:string" minOccurs="0"/>
 <xs:element name="newCurrencyCode" type="xs:string" minOccurs="0"/>
-<xs:element name="price" type="xs:float"/>
+<xs:element name="shares" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="getPriceByCurrencyResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:float"/>
+<xs:element name="return" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 

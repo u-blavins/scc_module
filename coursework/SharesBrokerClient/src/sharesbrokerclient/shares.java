@@ -5,19 +5,54 @@
  */
 package sharesbrokerclient;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.netbeans.xml.schema.shares.ShareType;
+import sharesbroker.JAXBException_Exception;
+
 /**
  *
  * @author UBlavins
  */
 public class shares extends javax.swing.JFrame {
-
+    
+    private List<ShareType> companyShares;
+    
     /**
      * Creates new form shares
      */
-    public shares() {
+    public shares() throws JAXBException_Exception {
         initComponents();
+        loadShares();
+        loadTable(companyShares);
     }
-
+    
+    public void loadShares() throws JAXBException_Exception{
+        companyShares = getCompanyShares();
+    }
+    
+    public void loadTable(List<ShareType> shares) {
+        DefaultTableModel model = (DefaultTableModel)sharesTable.getModel();
+        try {
+           shares = getPriceByCurrency("GBP", "MYR", shares);
+        } catch (Exception ex)  {
+                
+        }
+        Object[] row = new Object[7];
+        for (ShareType share : shares) {
+            row[0] = share.getCompanySymbol();
+            row[1] = share.getCompanyName();
+            row[2] = share.getAvailableShares();
+            row[3] = share.getCompanyFTSESector();
+            row[4] = share.getSharePrice().getCurrency();
+            row[5] = share.getSharePrice().getValue();
+            row[6] = share.getSharePrice().getLastUpdated();
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,6 +66,8 @@ public class shares extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         messageLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        sharesTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,16 +78,28 @@ public class shares extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Shares Broker Client");
 
+        sharesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Symbol", "Company", "Available Shares", "FTSE Sector", "Currency", "Price", "Last Updated"
+            }
+        ));
+        jScrollPane1.setViewportView(sharesTable);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(390, 390, 390)
+                .addGap(82, 82, 82)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(45, 45, 45)
+                .addGap(466, 466, 466)
                 .addComponent(messageLabel)
-                .addContainerGap(359, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(305, 305, 305)
                 .addComponent(jLabel3)
@@ -61,26 +110,30 @@ public class shares extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jLabel3)
-                .addGap(284, 284, 284)
-                .addComponent(messageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(284, 284, 284)
+                        .addComponent(messageLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(216, 216, 216))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,7 +169,11 @@ public class shares extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new shares().setVisible(true);
+                try {
+                    new shares().setVisible(true);
+                } catch (JAXBException_Exception ex) {
+                    Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -125,6 +182,20 @@ public class shares extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel messageLabel;
+    private javax.swing.JTable sharesTable;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<org.netbeans.xml.schema.shares.ShareType> getCompanyShares() throws JAXBException_Exception {
+        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.getCompanyShares();
+    }
+
+    private static java.util.List<org.netbeans.xml.schema.shares.ShareType> getPriceByCurrency(java.lang.String currentCurrencyCode, java.lang.String newCurrencyCode, java.util.List<org.netbeans.xml.schema.shares.ShareType> shares) {
+        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.getPriceByCurrency(currentCurrencyCode, newCurrencyCode, shares);
+    }
 }
