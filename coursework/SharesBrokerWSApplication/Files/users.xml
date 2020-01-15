@@ -9,4 +9,13 @@
             <CompanyShares>100</CompanyShares>
         </UserShares>
     </users>
+    <users>
+        <Username>test</Username>
+        <Password>test</Password>
+        <IsAdmin>0</IsAdmin>
+        <UserShares>
+            <CompanySymbol>LLOY</CompanySymbol>
+            <CompanyShares>100</CompanyShares>
+        </UserShares>
+    </users>
 </Users>
