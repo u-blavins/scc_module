@@ -25,6 +25,7 @@ import javax.xml.ws.WebServiceRef;
 /**
  *
  * @author UBlavins
+ * @pi Z1A0W46XUK1WTUMY
  */
 @WebService(serviceName = "SharesBrokerWS")
 @Stateless()
@@ -46,6 +47,7 @@ public class SharesBrokerWS {
         DatatypeFactory dataTypeFactory = DatatypeFactory.newInstance();
         return dataTypeFactory.newXMLGregorianCalendar(gregCalendar);
     }
+    
     
     /**
      * Web service operation that lists share information on all companies
@@ -573,15 +575,14 @@ public class SharesBrokerWS {
             return shares;
     }
     
-    // RESTful Web Service Methods
-    
+    // Currency Conversion Methods
     private double getConversionRate(java.lang.String arg0, java.lang.String arg1) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
         docwebservices.CurrencyConversionWS port = currencyConversionService.getCurrencyConversionWSPort();
         return port.getConversionRate(arg0, arg1);
     }
-
+    
     private java.util.List<java.lang.String> getCurrencyCodes() {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
@@ -590,10 +591,11 @@ public class SharesBrokerWS {
     }
 
     @WebMethod(operationName="getPriceByCurrency")
-    public float getPriceByCurrency(
+    public float getPriceByCurrency (
             @WebParam(name="currentCurrencyCode")String currentCurrencyCode,
             @WebParam(name="newCurrencyCode")String newCurrencyCode,
             @WebParam(name="price")float price) {
+
         double rate = getConversionRate(currentCurrencyCode, newCurrencyCode);
         return (float) (rate * price);
     }

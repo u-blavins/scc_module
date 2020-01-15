@@ -136,10 +136,10 @@
         <CompanyName>Dixons Carphone PLC</CompanyName>
         <CompanyLogo></CompanyLogo>
         <AvailableShares>1</AvailableShares>
-        <CompanyFTSESector></CompanyFTSESector>
+        <CompanyFTSESector>Retailers</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
-            <Value>0.0</Value>
+            <Value>260.0</Value>
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
     </shares>

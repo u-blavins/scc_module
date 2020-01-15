@@ -4,6 +4,7 @@
     Author     : UBlavins
 --%>
 
+<%@page import="org.netbeans.xml.schema.shares.ShareType"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,36 @@
         <h1>Shares Broker</h1>
         <h2>Hello, <%=session.getAttribute("username")%></h2>
         <a href="logout.jsp">Logout</a>
+        <form method="post" action="shares.jsp">
+            <table>
+                  <tr>
+                    <th>Company Symbol</th>
+                    <th>Company Name</th>
+                    <th>FTSE Sector</th>
+                    <th>Filter Price</th>
+                    <th>Price Range</th>
+                    <th></th>
+                  </tr>
+              <tr>
+                  <td><input name="symbol" type="text"></td>
+                  <td><input name="name" type="text"></td>
+                  <td><input name="sector" type="text"></td>
+                  <td>
+                      <select name="filterPrice">
+                          <option value="none">None</option>
+                          <option value="lowest">Lowest</option>
+                          <option value="highest">Highest</option>
+                      </select>
+                  </td>
+                  <td>
+                      Min: <input name="min" type="number">
+                      Max: <input name="max" type="number">
+                  </td>
+                  <td><input type="submit" value="filter"></td>
+              </tr>
+            </table>
+            <br>
+        </form> 
         <table>
             <tr>
                 <th>Symbol</th>
@@ -27,39 +58,47 @@
                 <th></th>
             </tr>
         <%
-            String symbol = request.getParameter("symbols");
-            if (symbol==null || symbol.length()==0) {
-                
+            String symbol = request.getParameter("symbol");
+            String name = request.getParameter("name");
+            String sector = request.getParameter("sector");
+            String filterPrice = request.getParameter("filterPrice");
+            String min = request.getParameter("min");
+            String max = request.getParameter("max");
+            
+            out.print(request.getParameter("symbol"));
+            
+            java.util.List<ShareType> shares;
+            
+            if (symbol==null && name==null && sector==null && 
+                    filterPrice.equals("none") && min==null && max==null) {
                 try {
                     sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
                     sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
                     // TODO process result here
-                    java.util.List<sharesbroker.ShareType> result = port.getCompanyShares();
+                    shares = port.getCompanyShares();
                     
-                    for (sharesbroker.ShareType share : result) {
+                    for (ShareType share : shares) {
                         out.print("<tr>");
                         out.print("<td>"+share.getCompanySymbol()+"</td>");
                         out.print("<td>"+share.getCompanyName()+"</td>");
                         out.print("<td>"+share.getAvailableShares()+"</td>");
                         out.print("<td>"+share.getCompanyFTSESector()+"</td>");
-                        out.print("<td>"+
-                                share.getSharePrice().getCurrency()+"</td>");
+                        out.print("<td>"+share.getSharePrice().getCurrency()+"</td>");
                         out.print("<td>"+share.getSharePrice().getValue()+"</td>");
-                        out.print("<td>"+
-                                share.getSharePrice().getLastUpdated()+"</td>");
-                        out.print("<td>"
-                                + "<form name='shareForm' method='post' action='share.jsp'>"
-                                + "<input type='hidden' name='company' value='"+ share.getCompanySymbol()
-                                +"''><input type='submit' value='View'></form>"
-                                + "</td>");
+                        out.print("<td><form method='post' action='share.jsp'>"
+                                + "<input type='hidden' name='companySymbol' value='"
+                                + share.getCompanySymbol()+ "'><input type='submit'"
+                                + " value='View'></form></td>");
                         out.print("</tr>");
-                    }
-
-
+                    }   
                 } catch (Exception ex) {
                     // TODO handle custom exceptions here
                 }
+            } else {
+                
             }
+            
+            
         %>
         </table>
     </body>
