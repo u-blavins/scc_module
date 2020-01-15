@@ -433,85 +433,144 @@ public class SharesBrokerWS {
     
     @WebMethod(operationName = "searchBySymbol")
     public List<ShareType> searchBySymbol(
-            @WebParam(name = "symbol") String symbol) throws JAXBException {
-        List<ShareType> symbols = new ArrayList<>();
-        for (ShareType share : listShares().getShares()) {
-            if (share.getCompanySymbol().contains(symbol)) symbols.add(share);
-        }
-        return symbols;
+        @WebParam(name="symbol")String symbol,
+        @WebParam(name="shares")List<ShareType> shares) {
+            List<ShareType> symbols = new ArrayList<>();
+            for (ShareType share : shares) {
+                if (share.getCompanySymbol().contains(symbol))
+                    symbols.add(share);
+            }
+            if (symbols.isEmpty())
+                return shares;
+            else
+                return symbols;
     }
-    
+
     @WebMethod(operationName = "searchByName")
     public List<ShareType> searchByName(
-            @WebParam(name = "name") String name) throws JAXBException {
-        List<ShareType> names = new ArrayList<>();
-        for (ShareType share : listShares().getShares()) {
-            if (share.getCompanyName().contains(name)) names.add(share);
-        }
-        return names;
+        @WebParam(name="name")String name,
+        @WebParam(name="shares")List<ShareType> shares) {
+            List<ShareType> company = new ArrayList<>();
+            for (ShareType share : shares) {
+                if (share.getCompanyName().contains(name))
+                    company.add(share);
+            }
+            if (company.isEmpty())
+                return shares;
+            else
+                return company;
     }
-    
+
     @WebMethod(operationName = "searchByFTSESector")
-    public List<ShareType> searchByFTSESector(@WebParam(name = "ftseSector") 
-            String ftseSector) throws JAXBException {
-        List<ShareType> sectors = new ArrayList<>();
-        for (ShareType share : listShares().getShares()) {
-            if (ftseSector.equals(share.getCompanyFTSESector()))
-                sectors.add(share);
-        }
-        return sectors;
+    public List<ShareType> searchByFTSESector(
+        @WebParam(name="sector")String sector,
+        @WebParam(name="shares")List<ShareType> shares) {
+            List<ShareType> sectors = new ArrayList<>();
+            for (ShareType share : shares) {
+                if (share.getCompanyFTSESector().contains(sector))
+                    sectors.add(share);
+            }
+            if (sectors.isEmpty())
+                return shares;
+            else
+                return sectors;
     }
-    
-    @WebMethod(operationName = "searchByLowestSharePrice")
-    public List<ShareType> searchByLowestSharePrice() throws JAXBException {
-        ShareType share;
-        List<ShareType> sharesLower = listShares().getShares();
-        int shares = sharesLower.size();
-        // Bubble sort
-        for (int i = 0; i < shares; i++) {
-            for (int j = 1; j < (shares - i); j++) {
-                if (sharesLower.get(j-1).getSharePrice().getValue() > 
-                    sharesLower.get(j).getSharePrice().getValue()) {
-                    share = sharesLower.get(j-1);
-                    sharesLower.set(j-1, sharesLower.get(j));
-                    sharesLower.set(j, share);
+
+    @WebMethod(operationName = "searchByRange")
+    public List<ShareType> searchByRange(
+        @WebParam(name="min")float min,
+        @WebParam(name="max")float max,
+        @WebParam(name="shares")List<ShareType> shares){
+            List<ShareType> ranged = new ArrayList<>();
+            for (ShareType share : shares) {
+                if (share.getSharePrice().getValue() > min &&
+                        share.getSharePrice().getValue() < max)
+                    ranged.add(share);
+            }
+            if (ranged.isEmpty())
+                return shares;
+            else
+                return ranged;
+    }
+
+    @WebMethod(operationName = "searchByLowest")
+    public List<ShareType> searchByLowest(
+        @WebParam(name="shares")List<ShareType> shares){
+            ShareType share;
+            List<ShareType> lowest = new ArrayList<>();
+            int numShares = shares.size();
+            // Bubble sort algorithm https://www.geeksforgeeks.org/bubble-sort/
+            for (int i = 0; i < numShares; i++) {
+                for (int j = 1; j < (numShares - i); j++) {
+                    if (lowest.get(j-1).getSharePrice().getValue() > 
+                        lowest.get(j).getSharePrice().getValue()) {
+                        share = lowest.get(j-1);
+                        lowest.set(j-1, lowest.get(j));
+                        lowest.set(j, share);
+                    }
                 }
             }
-        }
-        return sharesLower;
+            if (lowest.isEmpty())
+                return shares;
+            else
+                return lowest;
     }
-    
-    @WebMethod(operationName = "searchByHighestSharePrice")
-    public List<ShareType> searchByHighestSharePrice() throws JAXBException {
-        ShareType share;
-        List<ShareType> sharesLower = listShares().getShares();
-        int shares = sharesLower.size();
-        // Bubble sort
-        for (int i = 0; i < shares; i++) {
-            for (int j = 1; j < (shares - i); j++) {
-                if (sharesLower.get(j-1).getSharePrice().getValue() < 
-                    sharesLower.get(j).getSharePrice().getValue()) {
-                    share = sharesLower.get(j-1);
-                    sharesLower.set(j-1, sharesLower.get(j));
-                    sharesLower.set(j, share);
+
+    @WebMethod(operationName = "searchByHighest")
+    public List<ShareType> searchByHighest(
+        @WebParam(name="shares")List<ShareType> shares){
+            ShareType share;
+            List<ShareType> highest = new ArrayList<>();
+            int numShares = shares.size();
+            // Bubble sort algorithm https://www.geeksforgeeks.org/bubble-sort/
+            for (int i = 0; i < numShares; i++) {
+                for (int j = 1; j < (numShares - i); j++) {
+                    if (highest.get(j-1).getSharePrice().getValue() < 
+                        highest.get(j).getSharePrice().getValue()) {
+                        share = highest.get(j-1);
+                        highest.set(j-1, highest.get(j));
+                        highest.set(j, share);
+                    }
                 }
             }
-        }
-        return sharesLower;
+            if (highest.size() == 0)
+                return shares;
+            else
+                return highest;
     }
-    
-    @WebMethod(operationName = "searchBySharePriceRange")
-    public List<ShareType> searchBySharePriceRange(
-            @WebParam(name = "lowerBound") float lowerBound,
-            @WebParam(name = "higherBound") float higherBound) 
-            throws JAXBException {
-        List<ShareType> shares = new ArrayList<>();
-        for (ShareType share : listShares().getShares()) {
-            if (share.getSharePrice().getValue() > lowerBound &&
-                    share.getSharePrice().getValue() < higherBound)
-                shares.add(share);
-        }
-        return shares;
+
+    @WebMethod(operationName = "filterQuery")
+    public List<ShareType> filterQuery(
+        @WebParam(name="symbol")String symbol,
+        @WebParam(name="name")String name,
+        @WebParam(name="sector")String sector,
+        @WebParam(name="filterPrice")String filterPrice,
+        @WebParam(name="min")float min,
+        @WebParam(name="max")float max) throws JAXBException {
+            List<ShareType> shares = getCompanyShares();
+            if(!symbol.equals("")) {
+                shares = searchBySymbol(symbol, shares);
+            }
+            if(!name.equals("")) {
+                shares = searchByName(name, shares);
+            }
+            if(!sector.equals("")) {
+                shares = searchByFTSESector(sector, shares);
+            }
+            if(min!=0 && max!=0) {
+                shares = searchByRange(min, max, shares);
+            } 
+            if(!filterPrice.equals("none")){
+                switch (filterPrice) {
+                    case "highest":
+                        shares = searchByLowest(shares);
+                        break;
+                    case "lowest":
+                        shares = searchByHighest(shares);
+                        break;
+                }
+            }
+            return shares;
     }
     
     // RESTful Web Service Methods
