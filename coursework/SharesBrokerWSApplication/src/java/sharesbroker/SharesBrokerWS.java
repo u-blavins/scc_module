@@ -308,6 +308,18 @@ public class SharesBrokerWS {
         return listShares().getShares();
     }
     
+    @WebMethod(operationName = "getShare")
+    public ShareType getShare(
+            @WebParam(name="symbol")String symbol) throws JAXBException {
+        ShareType companyShare = new ShareType();
+        for (ShareType share : listShares().getShares()) {
+            if (symbol.equals(share.getCompanySymbol())) {
+                companyShare = share;
+            }
+        }
+        return companyShare;
+    }
+    
     /**
      * Web service operation that adds a new company to an XML file containing
      * a list of company share information.

@@ -18,4 +18,9 @@
             <CompanyShares>100</CompanyShares>
         </UserShares>
     </users>
+    <users>
+        <Username>testuser</Username>
+        <Password>test</Password>
+        <IsAdmin>0</IsAdmin>
+    </users>
 </Users>
