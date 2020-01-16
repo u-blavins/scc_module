@@ -20,20 +20,14 @@ import sharesbroker.JAXBException_Exception;
  */
 public class shares extends javax.swing.JFrame {
     
-    private List<ShareType> companyShares;
-    
+    private String currentCurrency = "GBP";
     /**
      * Creates new form shares
      */
     public shares() throws JAXBException_Exception {
         initComponents();
-        loadShares();
-        loadTable(companyShares);
+        loadTable(getCompanyShares());
         loadSectors();
-    }
-    
-    public void loadShares() throws JAXBException_Exception{
-        companyShares = getCompanyShares();
     }
     
     public void loadSectors() throws JAXBException_Exception {
@@ -58,11 +52,7 @@ public class shares extends javax.swing.JFrame {
     }
     
     public void removeData() {
-        DefaultTableModel model = (DefaultTableModel)sharesTable.getModel();
-        int rows = model.getRowCount();
-        for (int i = 0; i < rows; i++) {
-            model.removeRow(rows);
-        }
+        ((DefaultTableModel)sharesTable.getModel()).setRowCount(0);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -287,7 +277,12 @@ public class shares extends javax.swing.JFrame {
         
         if (symbol.equals("") && company.equals("") && sector.equals("None") 
                 && filterPrice.equals("None") && maxStr.equals("") && minStr.equals("")) {
-            loadTable(companyShares);
+            removeData();
+            try {
+                loadTable(getCompanyShares());
+            } catch (JAXBException_Exception ex) {
+                Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             float min = 0;
             float max = 0;
@@ -302,6 +297,7 @@ public class shares extends javax.swing.JFrame {
             try {
                 List<ShareType> filterShares = filterQuery(symbol, company, sector,
                         filterPrice, min, max);
+                removeData();
                 loadTable(filterShares);
             } catch (JAXBException_Exception ex) {
                 Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);

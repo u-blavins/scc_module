@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import static java.util.Collections.sort;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -30,9 +31,10 @@ import javax.xml.ws.WebServiceRef;
 @WebService(serviceName = "SharesBrokerWS")
 @Stateless()
 public class SharesBrokerWS {
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/CurrencyConversionWSService/CurrencyConversionWS.wsdl")
+    private CurrencyConversionWSService service;
     
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/CurrencyConvertor/CurrencyConversionWSService.wsdl")
-    private CurrencyConversionWSService currencyConversionService;
+
     
     /**
      * Method that returns the current date and time in a format that is set 
@@ -497,48 +499,18 @@ public class SharesBrokerWS {
 
     @WebMethod(operationName = "searchByLowest")
     public List<ShareType> searchByLowest(
-        @WebParam(name="shares")List<ShareType> shares){
-            ShareType share;
-            List<ShareType> lowest = new ArrayList<>();
-            int numShares = shares.size();
-            // Bubble sort algorithm https://www.geeksforgeeks.org/bubble-sort/
-            for (int i = 0; i < numShares; i++) {
-                for (int j = 1; j < (numShares - i); j++) {
-                    if (lowest.get(j-1).getSharePrice().getValue() > 
-                        lowest.get(j).getSharePrice().getValue()) {
-                        share = lowest.get(j-1);
-                        lowest.set(j-1, lowest.get(j));
-                        lowest.set(j, share);
-                    }
-                }
-            }
-            if (lowest.isEmpty())
-                return shares;
-            else
-                return lowest;
+        @WebParam(name="shares")List<ShareType> shares) throws JAXBException{
+            shares.sort(
+                    (a,b) -> (int)(a.getSharePrice().getValue() - b.getSharePrice().getValue()));
+            return shares;
     }
 
     @WebMethod(operationName = "searchByHighest")
     public List<ShareType> searchByHighest(
-        @WebParam(name="shares")List<ShareType> shares){
-            ShareType share;
-            List<ShareType> highest = new ArrayList<>();
-            int numShares = shares.size();
-            // Bubble sort algorithm https://www.geeksforgeeks.org/bubble-sort/
-            for (int i = 0; i < numShares; i++) {
-                for (int j = 1; j < (numShares - i); j++) {
-                    if (highest.get(j-1).getSharePrice().getValue() < 
-                        highest.get(j).getSharePrice().getValue()) {
-                        share = highest.get(j-1);
-                        highest.set(j-1, highest.get(j));
-                        highest.set(j, share);
-                    }
-                }
-            }
-            if (highest.size() == 0)
-                return shares;
-            else
-                return highest;
+        @WebParam(name="shares")List<ShareType> shares) throws JAXBException{
+            shares.sort(
+                    (a,b) -> (int)(b.getSharePrice().getValue() - a.getSharePrice().getValue()));
+            return shares;
     }
 
     @WebMethod(operationName = "filterQuery")
@@ -562,12 +534,12 @@ public class SharesBrokerWS {
             if(min!=0 && max!=0) {
                 shares = searchByRange(min, max, shares);
             } 
-            if(!filterPrice.equals("none")){
+            if(!filterPrice.equals("None")){
                 switch (filterPrice) {
-                    case "highest":
+                    case "Lowest":
                         shares = searchByLowest(shares);
                         break;
-                    case "lowest":
+                    case "Highest":
                         shares = searchByHighest(shares);
                         break;
                 }
@@ -576,28 +548,37 @@ public class SharesBrokerWS {
     }
     
     // Currency Conversion Methods
+    
     private double getConversionRate(java.lang.String arg0, java.lang.String arg1) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
-        docwebservices.CurrencyConversionWS port = currencyConversionService.getCurrencyConversionWSPort();
+        docwebservices.CurrencyConversionWS port = service.getCurrencyConversionWSPort();
         return port.getConversionRate(arg0, arg1);
     }
     
-    private java.util.List<java.lang.String> getCurrencyCodes() {
+    @WebMethod(operationName = "getCurrencyCodes")
+    public java.util.List<java.lang.String> getCurrencyCodes() {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
-        docwebservices.CurrencyConversionWS port = currencyConversionService.getCurrencyConversionWSPort();
-        return port.getCurrencyCodes();
+        docwebservices.CurrencyConversionWS port = service.getCurrencyConversionWSPort();
+        List<String> currencys = port.getCurrencyCodes();
+        List<String> codes = new ArrayList<>();        
+        for (String currency : currencys ) {
+            codes.add(currency.substring(0, 3));
+        }
+        return codes;
     }
 
     @WebMethod(operationName="getPriceByCurrency")
-    public float getPriceByCurrency (
+    public List<ShareType> getPriceByCurrency (
             @WebParam(name="currentCurrencyCode")String currentCurrencyCode,
             @WebParam(name="newCurrencyCode")String newCurrencyCode,
-            @WebParam(name="price")float price) {
-
+            @WebParam(name="shares")List<ShareType> shares) {
         double rate = getConversionRate(currentCurrencyCode, newCurrencyCode);
-        return (float) (rate * price);
+        for (ShareType share : shares) {
+            share.getSharePrice().setValue((float)(rate*share.getSharePrice().getValue()));
+        }
+        return shares;
     }
     
     // User management
@@ -780,5 +761,7 @@ public class SharesBrokerWS {
         
         return currentUsers;
     }
+    
+    // RESTful API
     
 }

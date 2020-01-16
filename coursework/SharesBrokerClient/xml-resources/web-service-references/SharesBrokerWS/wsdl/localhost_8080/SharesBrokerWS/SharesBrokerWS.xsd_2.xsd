@@ -48,6 +48,10 @@
 
 <xs:element name="getCompanySymbolsResponse" type="tns:getCompanySymbolsResponse"/>
 
+<xs:element name="getCurrencyCodes" type="tns:getCurrencyCodes"/>
+
+<xs:element name="getCurrencyCodesResponse" type="tns:getCurrencyCodesResponse"/>
+
 <xs:element name="getFTSESectors" type="tns:getFTSESectors"/>
 
 <xs:element name="getFTSESectorsResponse" type="tns:getFTSESectorsResponse"/>
@@ -209,6 +213,16 @@
 <xs:complexType name="DatatypeConfigurationException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCurrencyCodes">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getCurrencyCodesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 

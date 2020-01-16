@@ -48,6 +48,10 @@
 
 <xs:element name="getCompanySymbolsResponse" type="tns:getCompanySymbolsResponse"/>
 
+<xs:element name="getCurrencyCodes" type="tns:getCurrencyCodes"/>
+
+<xs:element name="getCurrencyCodesResponse" type="tns:getCurrencyCodesResponse"/>
+
 <xs:element name="getFTSESectors" type="tns:getFTSESectors"/>
 
 <xs:element name="getFTSESectorsResponse" type="tns:getFTSESectorsResponse"/>
@@ -212,6 +216,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getCurrencyCodes">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getCurrencyCodesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="removeCompany">
 <xs:sequence>
 <xs:element name="companySymbol" type="xs:string" minOccurs="0"/>
@@ -348,13 +362,13 @@
 <xs:sequence>
 <xs:element name="currentCurrencyCode" type="xs:string" minOccurs="0"/>
 <xs:element name="newCurrencyCode" type="xs:string" minOccurs="0"/>
-<xs:element name="price" type="xs:float"/>
+<xs:element name="shares" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="getPriceByCurrencyResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:float"/>
+<xs:element name="return" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 

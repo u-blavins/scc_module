@@ -6,9 +6,9 @@
     </service>
   </services>
   <clients>
-    <client name="CurrencyConversionWSService">
-      <wsdl-url>http://localhost:8080/CurrencyConvertor/CurrencyConversionWSService?WSDL</wsdl-url>
-      <local-wsdl-file>localhost_8080/CurrencyConvertor/CurrencyConversionWSService.wsdl</local-wsdl-file>
+    <client name="CurrencyConversionWS">
+      <wsdl-url>http://localhost:8080/CurrencyConversionWSService/CurrencyConversionWS?WSDL</wsdl-url>
+      <local-wsdl-file>localhost_8080/CurrencyConversionWSService/CurrencyConversionWS.wsdl</local-wsdl-file>
       <package-name>docwebservices</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -26,7 +26,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/CurrencyConvertor/CurrencyConversionWSService?WSDL</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/CurrencyConversionWSService/CurrencyConversionWS?WSDL</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

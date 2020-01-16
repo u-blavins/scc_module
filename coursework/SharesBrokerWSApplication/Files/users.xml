@@ -23,4 +23,14 @@
         <Password>test</Password>
         <IsAdmin>0</IsAdmin>
     </users>
+    <users>
+        <Username>newUser</Username>
+        <Password>test</Password>
+        <IsAdmin>0</IsAdmin>
+    </users>
+    <users>
+        <Username>William</Username>
+        <Password>password</Password>
+        <IsAdmin>0</IsAdmin>
+    </users>
 </Users>
