@@ -8,6 +8,7 @@ package sharesbrokerclient;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import org.netbeans.xml.schema.shares.ShareType;
@@ -36,7 +37,7 @@ public class shares extends javax.swing.JFrame {
     }
     
     public void loadSectors() throws JAXBException_Exception {
-        for (String symbol : getCompanySymbols()) {
+        for (String symbol : getFTSESectors()) {
             sectorText.addItem(symbol);
         }
     }
@@ -170,36 +171,40 @@ public class shares extends javax.swing.JFrame {
                         .addGap(466, 466, 466)
                         .addComponent(messageLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jLabel1)
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel2)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel5)
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabel6)
-                        .addGap(112, 112, 112)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(305, 305, 305)
-                        .addComponent(jLabel3)))
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(symbolText, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(companyText, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(sectorText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel2)
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel5)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jLabel6)
+                                .addGap(112, 112, 112)
+                                .addComponent(jLabel7))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(minText, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(maxText, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(priceFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(filterButton)
+                                .addGap(531, 531, 531)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(symbolText, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(companyText, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(sectorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(minText, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(maxText, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(priceFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(filterButton)
-                .addGap(537, 537, 537))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,14 +282,30 @@ public class shares extends javax.swing.JFrame {
         String company = companyText.getText();
         String sector = sectorText.getSelectedItem().toString();
         String filterPrice = priceFilter.getSelectedItem().toString();
-        float min = Float.parseFloat(minText.getText());
-        float max = Float.parseFloat(maxText.getText());
+        String minStr = minText.getText();
+        String maxStr = maxText.getText();
         
         if (symbol.equals("") && company.equals("") && sector.equals("None") 
-                && filterPrice.equals("None") ) {
-            
+                && filterPrice.equals("None") && maxStr.equals("") && minStr.equals("")) {
+            loadTable(companyShares);
         } else {
-
+            float min = 0;
+            float max = 0;
+            
+            try {
+                min = Float.parseFloat(minStr);
+                max = Float.parseFloat(maxStr);
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+            
+            try {
+                List<ShareType> filterShares = filterQuery(symbol, company, sector,
+                        filterPrice, min, max);
+                loadTable(filterShares);
+            } catch (JAXBException_Exception ex) {
+                Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_filterButtonActionPerformed
 
@@ -360,16 +381,16 @@ public class shares extends javax.swing.JFrame {
         sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
         return port.getPriceByCurrency(currentCurrencyCode, newCurrencyCode, shares);
     }
-
-    private static java.util.List<java.lang.String> getCompanySymbols() throws JAXBException_Exception {
-        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
-        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
-        return port.getCompanySymbols();
-    }
     
     private static java.util.List<org.netbeans.xml.schema.shares.ShareType> filterQuery(java.lang.String symbol, java.lang.String name, java.lang.String sector, java.lang.String filterPrice, float min, float max) throws JAXBException_Exception {
         sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
         sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
         return port.filterQuery(symbol, name, sector, filterPrice, min, max);
+    }
+
+    private static java.util.List<java.lang.String> getFTSESectors() throws JAXBException_Exception {
+        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.getFTSESectors();
     }
 }
