@@ -360,7 +360,6 @@
 
 <xs:complexType name="getPriceByCurrency">
 <xs:sequence>
-<xs:element name="currentCurrencyCode" type="xs:string" minOccurs="0"/>
 <xs:element name="newCurrencyCode" type="xs:string" minOccurs="0"/>
 <xs:element name="shares" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
