@@ -233,6 +233,7 @@ public class login extends javax.swing.JFrame {
                 notificationText.setText("Successful Login");
                 shares sharesFrame = new shares();
                 sharesFrame.setVisible(true);
+                this.dispose();
             } else {
                 notificationText.setText("Unsuccessful Login");
             }
