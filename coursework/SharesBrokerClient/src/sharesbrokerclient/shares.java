@@ -55,6 +55,14 @@ public class shares extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
+    
+    public void removeData() {
+        DefaultTableModel model = (DefaultTableModel)sharesTable.getModel();
+        int rows = model.getRowCount();
+        for (int i = 0; i < rows; i++) {
+            model.removeRow(rows);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -264,8 +272,17 @@ public class shares extends javax.swing.JFrame {
 
     private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonActionPerformed
         // TODO add your handling code here:
-        if () {
-
+        
+        String symbol = symbolText.getText();
+        String company = companyText.getText();
+        String sector = sectorText.getSelectedItem().toString();
+        String filterPrice = priceFilter.getSelectedItem().toString();
+        float min = Float.parseFloat(minText.getText());
+        float max = Float.parseFloat(maxText.getText());
+        
+        if (symbol.equals("") && company.equals("") && sector.equals("None") 
+                && filterPrice.equals("None") ) {
+            
         } else {
 
         }
