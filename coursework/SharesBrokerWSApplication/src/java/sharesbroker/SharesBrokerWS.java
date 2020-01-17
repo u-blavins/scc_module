@@ -6,12 +6,9 @@
 package sharesbroker;
 
 import docwebservices.CurrencyConversionWSService;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
@@ -34,6 +31,7 @@ import javax.xml.ws.WebServiceRef;
  *
  * @author UBlavins
  * @pi Z1A0W46XUK1WTUMY
+ * @pi 440e71ff10cd41fa92ed3f5e68aac448
  */
 @WebService(serviceName = "SharesBrokerWS")
 @Stateless()
@@ -119,7 +117,7 @@ public class SharesBrokerWS {
             }
         }
         String filePath = 
-                "/Users/UBlavins/Desktop/output.xml";
+                "/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/shares.xml";
         FileOutputStream outFile = new FileOutputStream(filePath);
         try {
             javax.xml.bind.JAXBContext jaxbCtx = 
@@ -187,95 +185,6 @@ public class SharesBrokerWS {
     }
     
     /**
-     * Web service operation that returns the FTSE sector of a company
-     * 
-     * Iterate through a list of company shares within 'share.xml'. Return the 
-     * FTSE sector of a company based on the company 'symbol' provided as it 
-     * acts as a UID.
-     * 
-     * @param symbol (String) the symbol for a company
-     * @return companyFTSESector (String) the name of the FTSE Sector
-     * @throws JAXBException
-     */
-    @WebMethod(operationName = "getCompanyFTSESector")
-    public String getCompanyFTSESector(
-            @WebParam(name = "symbol") String symbol) throws JAXBException {
-        String companyFTSESector = new String();
-        for (ShareType share : listShares().getShares()) {
-            if (symbol.equals(share.getCompanySymbol())) 
-                companyFTSESector = share.getCompanyFTSESector();
-        }
-        return companyFTSESector;
-    }
-    
-    /**
-     * Web service operation that returns a URL string for the logo of a company
-     * 
-     * Iterate through a list of company shares within 'share.xml'. Return the 
-     * logo URL of a company based on the company 'symbol' provided as it 
-     * acts as a UID.
-     * 
-     * @param symbol (String) the symbol for a company
-     * @return companyLogo (String) the company logo URL
-     * @throws JAXBException
-     */
-    @WebMethod(operationName = "getCompanyLogo")
-    public String getCompanyLogo(
-            @WebParam(name = "symbol") String symbol) throws JAXBException {
-        String companyLogo = new String();
-        for (ShareType share : listShares().getShares()) {
-            if (symbol.equals(share.getCompanySymbol()))
-                companyLogo = share.getCompanyLogo();
-        }
-        return companyLogo;
-    }
-    
-    /**
-     * Web service operation that returns the currency format for the shares of
-     * a company.
-     * 
-     * Iterate through a list of company shares within 'share.xml'. Return the 
-     * currency format of a company's shares based on the company 'symbol' 
-     * provided as it acts as a UID.
-     * 
-     * @param symbol (String) the symbol for a company
-     * @return currencyFormat (String) format of currency of a company share
-     * @throws JAXBException
-     */
-    @WebMethod(operationName = "getCompanyShareCurrencyFormat")
-    public String getCompanyShareCurrencyFormat(
-            @WebParam(name = "symbol") String symbol) throws JAXBException {
-        String currencyFormat = new String();
-        for (ShareType share : listShares().getShares()) {
-            if (symbol.equals(share.getCompanySymbol()))
-                currencyFormat = share.getSharePrice().getCurrency();
-        }
-        return currencyFormat;
-    }
-    
-    /**
-     * Web service operation that returns the value of a company share.
-     * 
-     * Iterate through a list of company shares within 'share.xml'. Return the 
-     * share value of a company based on the company 'symbol' provided as it 
-     * acts as a UID.
-     * 
-     * @param symbol (String) the symbol for a company
-     * @return shareValue (float) the value of a share for a company
-     * @throws JAXBException
-     */
-    @WebMethod(operationName = "getCompanyShareValue")
-    public float getCompanyShareValue(
-            @WebParam(name = "symbol") String symbol) throws JAXBException {
-        float shareValue = 0;
-        for (ShareType share : listShares().getShares()) {
-            if (symbol.equals(share.getCompanySymbol()))
-                shareValue = share.getSharePrice().getValue();
-        }
-        return shareValue;
-    }
-    
-    /**
      * Web service operation that returns a list of all the company symbols that
      * are stored within the web service.
      * 
@@ -323,7 +232,7 @@ public class SharesBrokerWS {
     public ShareType getShare(
             @WebParam(name="symbol")String symbol) throws JAXBException {
         ShareType companyShare = new ShareType();
-        for (ShareType share : listShares().getShares()) {
+        for (ShareType share : getCompanyShares()) {
             if (symbol.equals(share.getCompanySymbol())) {
                 companyShare = share;
             }
@@ -780,6 +689,21 @@ public class SharesBrokerWS {
         return currentUsers;
     }
     
+    @WebMethod(operationName = "getUserShares")
+    public List<UserType.UserShares> getUserShares(
+            @WebParam(name="username")String username) throws JAXBException {
+        List<UserType.UserShares> userShares = new ArrayList<>();
+        for (UserType user : listUsers().getUsers()) {
+            if (username.equals(user.getUsername())) {
+                for (UserType.UserShares shares : user.getUserShares()) {
+                    if (shares.getCompanyShares() != 0)
+                        userShares.add(shares);
+                }
+            }
+        } 
+        return userShares;
+    }
+    
     // RESTful API
     
     @WebMethod(operationName="getRealTimeShares")
@@ -815,6 +739,14 @@ public class SharesBrokerWS {
                     java.util.logging.Level.SEVERE, null, ex); //NOI18N
         }
         return temp.substring(2, temp.length() - 2);
+    }
+    
+    @WebMethod(operationName="getStockNews")
+    public List<String> getStockNews(
+            @WebParam(name="symbol")String symbol){
+        String sources = "reuters";
+        List<String> test = new ArrayList<>();
+        return test;
     }
     
 }

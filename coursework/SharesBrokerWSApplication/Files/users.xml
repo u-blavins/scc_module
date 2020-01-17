@@ -17,6 +17,10 @@
             <CompanySymbol>LLOY</CompanySymbol>
             <CompanyShares>100</CompanyShares>
         </UserShares>
+        <UserShares>
+            <CompanySymbol>VOD</CompanySymbol>
+            <CompanyShares>0</CompanyShares>
+        </UserShares>
     </users>
     <users>
         <Username>testuser</Username>
