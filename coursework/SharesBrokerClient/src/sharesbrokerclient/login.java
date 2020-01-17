@@ -231,7 +231,7 @@ public class login extends javax.swing.JFrame {
             boolean login = loginUser(username, password);
             if (login) {
                 notificationText.setText("Successful Login");
-                shares sharesFrame = new shares();
+                shares sharesFrame = new shares(username);
                 sharesFrame.setVisible(true);
                 this.dispose();
             } else {

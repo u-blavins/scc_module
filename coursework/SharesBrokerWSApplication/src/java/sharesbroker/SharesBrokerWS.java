@@ -6,13 +6,20 @@
 package sharesbroker;
 
 import docwebservices.CurrencyConversionWSService;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
-import static java.util.Collections.sort;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -571,12 +578,23 @@ public class SharesBrokerWS {
 
     @WebMethod(operationName="getPriceByCurrency")
     public List<ShareType> getPriceByCurrency (
-            @WebParam(name="currentCurrencyCode")String currentCurrencyCode,
             @WebParam(name="newCurrencyCode")String newCurrencyCode,
             @WebParam(name="shares")List<ShareType> shares) {
-        double rate = getConversionRate(currentCurrencyCode, newCurrencyCode);
+        double rate;
+        Map<String, Object> rates = new HashMap<String, Object>();
         for (ShareType share : shares) {
-            share.getSharePrice().setValue((float)(rate*share.getSharePrice().getValue()));
+            try {
+                rate = getConversionRate(share.getSharePrice().getCurrency(), 
+                        newCurrencyCode);
+                rates.put(share.getSharePrice().getCurrency(), rate);
+                share.getSharePrice().setValue(
+                        (float)(
+                        (double)rates.get(share.getSharePrice().getCurrency())
+                        * share.getSharePrice().getValue()));
+                share.getSharePrice().setCurrency(newCurrencyCode);
+            } catch (Exception ex) {
+                
+            }
         }
         return shares;
     }
@@ -745,7 +763,7 @@ public class SharesBrokerWS {
 
         try {
             javax.xml.bind.JAXBContext jaxbCtx = 
-                    javax.xml.bind.JAXBContext.newInstance(
+                   javax.xml.bind.JAXBContext.newInstance(
                         currentUsers.getClass().getPackage().getName());
             javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
             marshaller.setProperty(
@@ -763,5 +781,40 @@ public class SharesBrokerWS {
     }
     
     // RESTful API
+    
+    @WebMethod(operationName="getRealTimeShares")
+    public String getRealTimeShares(
+            @WebParam(name="symbol")String symbol,
+            @WebParam(name="query")String query) {
+        String API_KEY = "Z1A0W46XUK1WTUMY";
+        String function = "GLOBAL_QUOTE";
+        String temp = "";
+        try {
+            String route = "https://www.alphavantage.co/query?function="+
+                    function+"&symbol=LON:"+symbol+"&apikey="+API_KEY;
+            URL url = new URL(route);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            if (conn.getResponseCode() != 200) {
+                conn.disconnect();
+                throw new RuntimeException("HttpResponseCode: " + 
+                        conn.getResponseCode());
+            } else {
+                String response = "";
+                Scanner sc = new Scanner(url.openStream());
+                while (sc.hasNextLine()) {
+                    response = sc.nextLine();
+                    if (response.contains(query))
+                        temp = response.split(":")[1];
+                }
+                conn.disconnect();
+            }
+        }catch (Exception ex) {
+                        java.util.logging.Logger.getLogger("global").log(
+                    java.util.logging.Level.SEVERE, null, ex); //NOI18N
+        }
+        return temp.substring(2, temp.length() - 2);
+    }
     
 }
