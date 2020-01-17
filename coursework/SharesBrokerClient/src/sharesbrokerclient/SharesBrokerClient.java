@@ -20,11 +20,20 @@ public class SharesBrokerClient {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        String currentCurr = "GBP";
+        String toCurr = "MYR";
+        try {
+            String route = "https://api.exchangeratesapi.io/latest";
+        } catch (Exception ex) {
+            
+        }
+    }
+    
+    public void alphvantageApi() {
         String symbol = "LLOY";
         String API_KEY = "Z1A0W46XUK1WTUMY";
         String function = "GLOBAL_QUOTE";
         String price = "", totShares = "";
-//        Map<String, Object> share = new HashMap<String, Object>();
         String output = "";
         try {
             String route = "https://www.alphavantage.co/query?function="+

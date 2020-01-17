@@ -20,25 +20,9 @@
 
 <xs:element name="getAvailableSharesResponse" type="tns:getAvailableSharesResponse"/>
 
-<xs:element name="getCompanyFTSESector" type="tns:getCompanyFTSESector"/>
-
-<xs:element name="getCompanyFTSESectorResponse" type="tns:getCompanyFTSESectorResponse"/>
-
-<xs:element name="getCompanyLogo" type="tns:getCompanyLogo"/>
-
-<xs:element name="getCompanyLogoResponse" type="tns:getCompanyLogoResponse"/>
-
 <xs:element name="getCompanyName" type="tns:getCompanyName"/>
 
 <xs:element name="getCompanyNameResponse" type="tns:getCompanyNameResponse"/>
-
-<xs:element name="getCompanyShareCurrencyFormat" type="tns:getCompanyShareCurrencyFormat"/>
-
-<xs:element name="getCompanyShareCurrencyFormatResponse" type="tns:getCompanyShareCurrencyFormatResponse"/>
-
-<xs:element name="getCompanyShareValue" type="tns:getCompanyShareValue"/>
-
-<xs:element name="getCompanyShareValueResponse" type="tns:getCompanyShareValueResponse"/>
 
 <xs:element name="getCompanyShares" type="tns:getCompanyShares"/>
 
@@ -60,9 +44,21 @@
 
 <xs:element name="getPriceByCurrencyResponse" type="tns:getPriceByCurrencyResponse"/>
 
+<xs:element name="getRealTimeShares" type="tns:getRealTimeShares"/>
+
+<xs:element name="getRealTimeSharesResponse" type="tns:getRealTimeSharesResponse"/>
+
 <xs:element name="getShare" type="tns:getShare"/>
 
 <xs:element name="getShareResponse" type="tns:getShareResponse"/>
+
+<xs:element name="getStockNews" type="tns:getStockNews"/>
+
+<xs:element name="getStockNewsResponse" type="tns:getStockNewsResponse"/>
+
+<xs:element name="getUserShares" type="tns:getUserShares"/>
+
+<xs:element name="getUserSharesResponse" type="tns:getUserSharesResponse"/>
 
 <xs:element name="listShares" type="tns:listShares"/>
 
@@ -169,6 +165,25 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getUserShares">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUserSharesResponse">
+<xs:sequence>
+<xs:element name="return" minOccurs="0" maxOccurs="unbounded">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="CompanySymbol" type="xs:string" form="qualified"/>
+<xs:element name="CompanyShares" type="xs:int" form="qualified"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="listShares">
 <xs:sequence/>
 </xs:complexType>
@@ -182,6 +197,18 @@
 </xs:sequence>
 </xs:complexType>
 </xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getStockNews">
+<xs:sequence>
+<xs:element name="symbol" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getStockNewsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -371,18 +398,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getCompanyFTSESector">
-<xs:sequence>
-<xs:element name="symbol" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getCompanyFTSESectorResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="getShare">
 <xs:sequence>
 <xs:element name="symbol" type="xs:string" minOccurs="0"/>
@@ -428,6 +443,19 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getRealTimeShares">
+<xs:sequence>
+<xs:element name="symbol" type="xs:string" minOccurs="0"/>
+<xs:element name="query" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getRealTimeSharesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="searchByName">
 <xs:sequence>
 <xs:element name="name" type="xs:string" minOccurs="0"/>
@@ -438,18 +466,6 @@
 <xs:complexType name="searchByNameResponse">
 <xs:sequence>
 <xs:element name="return" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getCompanyLogo">
-<xs:sequence>
-<xs:element name="symbol" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getCompanyLogoResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -477,30 +493,6 @@
 <xs:complexType name="searchBySymbolResponse">
 <xs:sequence>
 <xs:element name="return" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getCompanyShareCurrencyFormat">
-<xs:sequence>
-<xs:element name="symbol" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getCompanyShareCurrencyFormatResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getCompanyShareValue">
-<xs:sequence>
-<xs:element name="symbol" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getCompanyShareValueResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:float"/>
 </xs:sequence>
 </xs:complexType>
 

@@ -5,6 +5,8 @@
  */
 package sharesbrokerclient;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,14 +25,15 @@ public class shares extends javax.swing.JFrame {
     
     /**
      * Creates new form shares
+     * @throws sharesbroker.JAXBException_Exception
      */
     public shares(String username) throws JAXBException_Exception {
         initComponents();
         user = username;
-        usernameLabel.setText(user);
         loadTable(getCompanyShares());
         loadSectors();
         loadCodes();
+        loadSymbols();
     }
 
     private shares() {
@@ -49,6 +52,12 @@ public class shares extends javax.swing.JFrame {
         }
     }
     
+    public void loadSymbols() throws JAXBException_Exception {
+        for (String code : getCompanySymbols()) {
+            symbolsBox.addItem(code);
+        } 
+    }
+    
     public void loadTable(List<ShareType> shares) {
         currShares = shares;
         DefaultTableModel model = (DefaultTableModel)sharesTable.getModel();
@@ -60,9 +69,15 @@ public class shares extends javax.swing.JFrame {
             row[3] = share.getCompanyFTSESector();
             row[4] = share.getSharePrice().getCurrency();
             row[5] = share.getSharePrice().getValue();
-            row[6] = share.getSharePrice().getLastUpdated();
+            row[6] = convertDate(
+                    String.valueOf(share.getSharePrice().getLastUpdated()));
             model.addRow(row);
         }
+        
+    }
+    
+    private String convertDate(String date) {
+        return date.split("T")[0];
     }
     
     public void removeData() {
@@ -78,6 +93,7 @@ public class shares extends javax.swing.JFrame {
     private void initComponents() {
 
         priceFilter1 = new javax.swing.JComboBox();
+        sectorText1 = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -101,9 +117,19 @@ public class shares extends javax.swing.JFrame {
         changeCodeButton = new javax.swing.JButton();
         currencyCodesBox = new javax.swing.JComboBox();
         logoutButton = new javax.swing.JButton();
-        usernameLabel = new javax.swing.JLabel();
+        logoutButton1 = new javax.swing.JButton();
+        logoutButton2 = new javax.swing.JButton();
+        symbolsBox = new javax.swing.JComboBox();
+        buySharesButton = new javax.swing.JButton();
 
         priceFilter1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None", "Lowest", "Highest" }));
+
+        sectorText1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None" }));
+        sectorText1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sectorText1ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,7 +138,7 @@ public class shares extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Shares Broker Client");
+        jLabel3.setText("Shares Broker");
 
         sharesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -191,30 +217,51 @@ public class shares extends javax.swing.JFrame {
             }
         });
 
-        usernameLabel.setForeground(new java.awt.Color(0, 0, 0));
-        usernameLabel.setText("gfesg");
+        logoutButton1.setText("View Profie");
+        logoutButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButton1ActionPerformed(evt);
+            }
+        });
+
+        logoutButton2.setText("Admin Portal");
+        logoutButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButton2ActionPerformed(evt);
+            }
+        });
+
+        symbolsBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None", "Lowest", "Highest" }));
+
+        buySharesButton.setText("Buy Shares");
+        buySharesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buySharesButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(logoutButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logoutButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(logoutButton)
+                .addGap(493, 493, 493))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 961, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(symbolText, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(97, 97, 97)
-                                        .addComponent(jLabel1)
-                                        .addGap(8, 8, 8)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(symbolText, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                                     .addComponent(companyText))
@@ -232,45 +279,52 @@ public class shares extends javax.swing.JFrame {
                                         .addComponent(jLabel7))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(minText, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(maxText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(priceFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(minText, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(maxText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(priceFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(24, 24, 24)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(filterButton)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(jLabel8))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(resetFilterButton)
                                         .addGap(10, 10, 10)
                                         .addComponent(currencyCodesBox, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(changeCodeButton))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(97, 97, 97)
-                                .addComponent(logoutButton)
-                                .addGap(201, 201, 201)
-                                .addComponent(jLabel3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(changeCodeButton))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(filterButton)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jLabel8)))
+                                .addGap(48, 48, 48))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 961, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)))
                         .addComponent(jLabel4)
                         .addGap(466, 466, 466)
                         .addComponent(messageLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(476, 476, 476)
-                        .addComponent(usernameLabel)))
+                        .addGap(467, 467, 467)
+                        .addComponent(symbolsBox, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buySharesButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(logoutButton))
-                .addGap(31, 31, 31)
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logoutButton)
+                    .addComponent(logoutButton1))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logoutButton2)
+                    .addComponent(jLabel3))
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(247, 247, 247)
@@ -281,13 +335,13 @@ public class shares extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel2)
-                                        .addComponent(jLabel8)))
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel1)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(22, 22, 22)
@@ -308,11 +362,13 @@ public class shares extends javax.swing.JFrame {
                                 .addComponent(filterButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(resetFilterButton)))
-                        .addGap(26, 26, 26)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(usernameLabel)
-                .addGap(61, 61, 61))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(symbolsBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buySharesButton))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -406,6 +462,33 @@ public class shares extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    private void logoutButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutButton1ActionPerformed
+
+    private void logoutButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logoutButton2ActionPerformed
+
+    private void sectorText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectorText1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sectorText1ActionPerformed
+
+    private void buySharesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buySharesButtonActionPerformed
+        // TODO add your handling code here:
+        String symbol = symbolsBox.getSelectedItem().toString();
+        if (!symbol.equals("None")) {
+            viewShare viewShareFrame;
+            try {
+                viewShareFrame = new viewShare(user, symbol);
+                viewShareFrame.setVisible(true);
+                this.dispose();
+            } catch (JAXBException_Exception ex) {
+                Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_buySharesButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -442,6 +525,7 @@ public class shares extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buySharesButton;
     private javax.swing.JButton changeCodeButton;
     private javax.swing.JTextField companyText;
     private javax.swing.JComboBox currencyCodesBox;
@@ -457,6 +541,8 @@ public class shares extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logoutButton;
+    private javax.swing.JButton logoutButton1;
+    private javax.swing.JButton logoutButton2;
     private javax.swing.JTextField maxText;
     private javax.swing.JLabel messageLabel;
     private javax.swing.JTextField minText;
@@ -464,9 +550,10 @@ public class shares extends javax.swing.JFrame {
     private javax.swing.JComboBox priceFilter1;
     private javax.swing.JButton resetFilterButton;
     private javax.swing.JComboBox sectorText;
+    private javax.swing.JComboBox sectorText1;
     private javax.swing.JTable sharesTable;
     private javax.swing.JTextField symbolText;
-    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JComboBox symbolsBox;
     // End of variables declaration//GEN-END:variables
 
     private static java.util.List<org.netbeans.xml.schema.shares.ShareType> getCompanyShares() throws JAXBException_Exception {
@@ -497,5 +584,11 @@ public class shares extends javax.swing.JFrame {
         sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
         sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
         return port.getPriceByCurrency(newCurrencyCode, shares);
+    }
+
+    private static java.util.List<java.lang.String> getCompanySymbols() throws JAXBException_Exception {
+        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.getCompanySymbols();
     }
 }
