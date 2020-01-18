@@ -96,8 +96,16 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="companyDataLabel" max="32767" attributes="0"/>
-                                      <Component id="sectorDataLabel" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="companyDataLabel" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="imageLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="sectorDataLabel" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
+                                      </Group>
                                       <Component id="sharesDataLabel" alignment="0" max="32767" attributes="0"/>
                                       <Component id="currencyDataLabel" alignment="0" max="32767" attributes="0"/>
                                       <Component id="priceDataLabel" alignment="0" max="32767" attributes="0"/>
@@ -124,6 +132,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="compLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="companyDataLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="imageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -298,6 +307,8 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="imageLabel">
         </Component>
       </SubComponents>
     </Container>

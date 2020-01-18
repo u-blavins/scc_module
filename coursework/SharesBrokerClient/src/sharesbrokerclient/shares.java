@@ -6,12 +6,12 @@
 package sharesbrokerclient;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import org.netbeans.xml.schema.shares.ShareType;
+import org.netbeans.xml.schema.shares.UserType;
 import sharesbroker.JAXBException_Exception;
 
 /**
@@ -21,7 +21,7 @@ import sharesbroker.JAXBException_Exception;
 public class shares extends javax.swing.JFrame {
     
     private List<ShareType> currShares;
-    private String user = "";
+    private UserType user;
     
     /**
      * Creates new form shares
@@ -29,7 +29,10 @@ public class shares extends javax.swing.JFrame {
      */
     public shares(String username) throws JAXBException_Exception {
         initComponents();
-        user = username;
+        user = getUser(username);
+        if (user.getIsAdmin()==0) {
+            adminButton.setVisible(false);
+        }
         loadTable(getCompanyShares());
         loadSectors();
         loadCodes();
@@ -117,8 +120,8 @@ public class shares extends javax.swing.JFrame {
         changeCodeButton = new javax.swing.JButton();
         currencyCodesBox = new javax.swing.JComboBox();
         logoutButton = new javax.swing.JButton();
-        logoutButton1 = new javax.swing.JButton();
-        logoutButton2 = new javax.swing.JButton();
+        profileButton = new javax.swing.JButton();
+        adminButton = new javax.swing.JButton();
         symbolsBox = new javax.swing.JComboBox();
         buySharesButton = new javax.swing.JButton();
 
@@ -217,17 +220,17 @@ public class shares extends javax.swing.JFrame {
             }
         });
 
-        logoutButton1.setText("View Profie");
-        logoutButton1.addActionListener(new java.awt.event.ActionListener() {
+        profileButton.setText("View Profie");
+        profileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutButton1ActionPerformed(evt);
+                profileButtonActionPerformed(evt);
             }
         });
 
-        logoutButton2.setText("Admin Portal");
-        logoutButton2.addActionListener(new java.awt.event.ActionListener() {
+        adminButton.setText("Admin Portal");
+        adminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutButton2ActionPerformed(evt);
+                adminButtonActionPerformed(evt);
             }
         });
 
@@ -247,8 +250,8 @@ public class shares extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(logoutButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logoutButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(adminButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(profileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(logoutButton)
                 .addGap(493, 493, 493))
@@ -319,10 +322,10 @@ public class shares extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logoutButton)
-                    .addComponent(logoutButton1))
+                    .addComponent(profileButton))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(logoutButton2)
+                    .addComponent(adminButton)
                     .addComponent(jLabel3))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,13 +465,20 @@ public class shares extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void logoutButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_logoutButton1ActionPerformed
+    private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            viewProfile profileFrame = new viewProfile(user.getUsername());
+            profileFrame.setVisible(true);
+            this.dispose();
+        } catch (JAXBException_Exception ex) {
+            Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_profileButtonActionPerformed
 
-    private void logoutButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButton2ActionPerformed
+    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_logoutButton2ActionPerformed
+    }//GEN-LAST:event_adminButtonActionPerformed
 
     private void sectorText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectorText1ActionPerformed
         // TODO add your handling code here:
@@ -480,7 +490,7 @@ public class shares extends javax.swing.JFrame {
         if (!symbol.equals("None")) {
             viewShare viewShareFrame;
             try {
-                viewShareFrame = new viewShare(user, symbol);
+                viewShareFrame = new viewShare(user.getUsername(), symbol);
                 viewShareFrame.setVisible(true);
                 this.dispose();
             } catch (JAXBException_Exception ex) {
@@ -525,6 +535,7 @@ public class shares extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adminButton;
     private javax.swing.JButton buySharesButton;
     private javax.swing.JButton changeCodeButton;
     private javax.swing.JTextField companyText;
@@ -541,13 +552,12 @@ public class shares extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logoutButton;
-    private javax.swing.JButton logoutButton1;
-    private javax.swing.JButton logoutButton2;
     private javax.swing.JTextField maxText;
     private javax.swing.JLabel messageLabel;
     private javax.swing.JTextField minText;
     private javax.swing.JComboBox priceFilter;
     private javax.swing.JComboBox priceFilter1;
+    private javax.swing.JButton profileButton;
     private javax.swing.JButton resetFilterButton;
     private javax.swing.JComboBox sectorText;
     private javax.swing.JComboBox sectorText1;
@@ -590,5 +600,11 @@ public class shares extends javax.swing.JFrame {
         sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
         sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
         return port.getCompanySymbols();
+    }
+
+    private static UserType getUser(java.lang.String username) throws JAXBException_Exception {
+        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.getUser(username);
     }
 }

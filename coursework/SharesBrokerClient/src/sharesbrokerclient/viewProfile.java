@@ -5,17 +5,64 @@
  */
 package sharesbrokerclient;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import org.netbeans.xml.schema.shares.ShareType;
+import org.netbeans.xml.schema.shares.UserType;
+import org.netbeans.xml.schema.shares.Users;
+import sharesbroker.DatatypeConfigurationException_Exception;
+import sharesbroker.FileNotFoundException_Exception;
+import sharesbroker.JAXBException_Exception;
+import sharesbroker.SellSharesResponse;
+
 /**
  *
  * @author UBlavins
  */
 public class viewProfile extends javax.swing.JFrame {
+    private UserType user;
+    private List<UserType.UserShares> userShares= new ArrayList<>();
 
     /**
      * Creates new form viewProfile
      */
-    public viewProfile() {
+    public viewProfile(String username) throws JAXBException_Exception {
         initComponents();
+        user = getUser(username);
+        loadTable(user);
+        loadCompanySymbols();
+    }
+
+    viewProfile() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private void removeData() {
+        ((DefaultTableModel)userSharesTable.getModel()).setRowCount(0);
+    }
+    
+    private void loadTable(UserType userType) {
+        List<UserType.UserShares> shares = new ArrayList<>();
+        DefaultTableModel model = (DefaultTableModel)userSharesTable.getModel();
+        Object[] row = new Object[2];
+        for (UserType.UserShares userShare : userType.getUserShares()) {
+            if (userShare.getCompanyShares() != 0) {
+               row[0] = userShare.getCompanySymbol();
+               row[1] = userShare.getCompanyShares();
+               model.addRow(row);
+               shares.add(userShare);
+            }
+        }
+        userShares = shares;
+    }
+    
+    private void loadCompanySymbols() {
+        for (UserType.UserShares share : userShares) {
+            sellCheckBox.addItem(share.getCompanySymbol());
+        }
     }
 
     /**
@@ -27,21 +74,185 @@ public class viewProfile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame = new javax.swing.JPanel();
+        logoutButton = new javax.swing.JButton();
+        buyShareLabel = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        userSharesTable = new javax.swing.JTable();
+        sellCheckBox = new javax.swing.JComboBox();
+        sellSharesText = new javax.swing.JTextField();
+        sellButton = new javax.swing.JButton();
+        viewSharesButton = new javax.swing.JButton();
+        notificationLabel = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jFrame.setBackground(new java.awt.Color(179, 204, 204));
+
+        logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+
+        buyShareLabel.setForeground(new java.awt.Color(0, 0, 0));
+
+        usernameLabel.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        usernameLabel.setText("USERNAME");
+
+        userSharesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Company Symbol", "Shares"
+            }
+        ));
+        jScrollPane1.setViewportView(userSharesTable);
+
+        sellCheckBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None" }));
+
+        sellButton.setText("Sell Shares");
+        sellButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sellButtonActionPerformed(evt);
+            }
+        });
+
+        viewSharesButton.setText("View Shares");
+        viewSharesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewSharesButtonActionPerformed(evt);
+            }
+        });
+
+        notificationLabel.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jFrameLayout = new javax.swing.GroupLayout(jFrame);
+        jFrame.setLayout(jFrameLayout);
+        jFrameLayout.setHorizontalGroup(
+            jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameLayout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(sellCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jFrameLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buyShareLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54))
+                            .addGroup(jFrameLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sellSharesText, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)))
+                        .addComponent(sellButton)
+                        .addGap(154, 154, 154))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(jFrameLayout.createSequentialGroup()
+                        .addGroup(jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usernameLabel)
+                            .addComponent(imageLabel))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameLayout.createSequentialGroup()
+                        .addComponent(viewSharesButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logoutButton)
+                        .addContainerGap())))
+            .addGroup(jFrameLayout.createSequentialGroup()
+                .addGap(212, 212, 212)
+                .addComponent(notificationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jFrameLayout.setVerticalGroup(
+            jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logoutButton)
+                    .addComponent(viewSharesButton))
+                .addGap(15, 15, 15)
+                .addComponent(usernameLabel)
+                .addGap(25, 25, 25)
+                .addComponent(imageLabel)
+                .addGap(18, 18, 18)
+                .addGroup(jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(buyShareLabel))
+                    .addGroup(jFrameLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sellCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sellSharesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sellButton))))
+                .addGap(18, 18, 18)
+                .addComponent(notificationLabel)
+                .addGap(21, 21, 21))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        // TODO add your handling code here:
+        login loginFrame = new login();
+        loginFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void viewSharesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSharesButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            shares sharesFrame = new shares(user.getUsername());
+            sharesFrame.setVisible(true);
+            this.dispose();
+        } catch (JAXBException_Exception ex) {
+            Logger.getLogger(viewProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_viewSharesButtonActionPerformed
+
+    private void sellButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellButtonActionPerformed
+        // TODO add your handling code here:
+        String shares = sellSharesText.getText().toString();
+        if (!shares.equals("") && !sellCheckBox.equals("None")) {
+            try {
+                int sellShares = Integer.parseInt(shares);
+                sellShares(user.getUsername(),
+                        sellCheckBox.getSelectedItem().toString(),
+                        sellShares);
+                removeData();
+                loadTable(getUser(user.getUsername()));
+            } catch (NumberFormatException ex) {
+                notificationLabel.setText("Number not provided");
+            } catch (JAXBException_Exception | DatatypeConfigurationException_Exception | FileNotFoundException_Exception ex) {
+                Logger.getLogger(viewProfile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            sellSharesText.setText("Amount not given");
+        }
+    }//GEN-LAST:event_sellButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +290,29 @@ public class viewProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel buyShareLabel;
+    private javax.swing.JLabel imageLabel;
+    private javax.swing.JPanel jFrame;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logoutButton;
+    private javax.swing.JLabel notificationLabel;
+    private javax.swing.JButton sellButton;
+    private javax.swing.JComboBox sellCheckBox;
+    private javax.swing.JTextField sellSharesText;
+    private javax.swing.JTable userSharesTable;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JButton viewSharesButton;
     // End of variables declaration//GEN-END:variables
+
+    private static UserType getUser(java.lang.String username) throws JAXBException_Exception {
+        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.getUser(username);
+    }
+
+    private static SellSharesResponse.Return sellShares(java.lang.String username, java.lang.String companySymbol, int shares) throws JAXBException_Exception, DatatypeConfigurationException_Exception, FileNotFoundException_Exception {
+        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.sellShares(username, companySymbol, shares);
+    }
 }

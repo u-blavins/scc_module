@@ -5,9 +5,12 @@
  */
 package sharesbrokerclient;
 
-import java.util.List;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import org.netbeans.xml.schema.shares.ShareType;
 import sharesbroker.DatatypeConfigurationException_Exception;
 import sharesbroker.FileNotFoundException_Exception;
@@ -41,6 +44,12 @@ public class viewShare extends javax.swing.JFrame {
         sharesDataLabel.setText(String.valueOf(share.getAvailableShares()));
         currencyDataLabel.setText(share.getSharePrice().getCurrency());
         priceDataLabel.setText(String.valueOf(share.getSharePrice().getValue()));
+        try {
+            BufferedImage logo = ImageIO.read(new URL(share.getCompanyLogo()));
+            imageLabel.setIcon(new javax.swing.ImageIcon(logo));
+        } catch(IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     viewShare() {
@@ -76,6 +85,7 @@ public class viewShare extends javax.swing.JFrame {
         buySharesButton = new javax.swing.JButton();
         buyTextArea = new javax.swing.JTextField();
         buyShareLabel = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,8 +209,14 @@ public class viewShare extends javax.swing.JFrame {
                                     .addComponent(priceLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(companyDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(sectorDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(companyDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(imageLabel)
+                                        .addGap(180, 180, 180))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(sectorDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(282, 282, 282))
                                     .addComponent(sharesDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(currencyDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(priceDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
@@ -218,7 +234,8 @@ public class viewShare extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(compLabel)
-                    .addComponent(companyDataLabel))
+                    .addComponent(companyDataLabel)
+                    .addComponent(imageLabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sectorLabel)
@@ -373,6 +390,7 @@ public class viewShare extends javax.swing.JFrame {
     private javax.swing.JLabel currencyDataLabel;
     private javax.swing.JLabel currencyLabel;
     private javax.swing.JButton currentPriceButton;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton logoutButton;

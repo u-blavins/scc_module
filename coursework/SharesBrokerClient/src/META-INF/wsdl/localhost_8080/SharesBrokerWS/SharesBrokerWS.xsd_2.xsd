@@ -56,6 +56,10 @@
 
 <xs:element name="getStockNewsResponse" type="tns:getStockNewsResponse"/>
 
+<xs:element name="getUser" type="tns:getUser"/>
+
+<xs:element name="getUserResponse" type="tns:getUserResponse"/>
+
 <xs:element name="getUserShares" type="tns:getUserShares"/>
 
 <xs:element name="getUserSharesResponse" type="tns:getUserSharesResponse"/>
@@ -112,13 +116,22 @@
 
 <xs:element name="updateCompanyShareResponse" type="tns:updateCompanyShareResponse"/>
 
-<xs:complexType name="getFTSESectors">
-<xs:sequence/>
+<xs:complexType name="getUserShares">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getFTSESectorsResponse">
+<xs:complexType name="getUserSharesResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" minOccurs="0" maxOccurs="unbounded">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="CompanySymbol" type="xs:string" form="qualified"/>
+<xs:element name="CompanyShares" type="xs:int" form="qualified"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
 </xs:sequence>
 </xs:complexType>
 
@@ -140,19 +153,6 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="searchByFTSESector">
-<xs:sequence>
-<xs:element name="sector" type="xs:string" minOccurs="0"/>
-<xs:element name="shares" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="searchByFTSESectorResponse">
-<xs:sequence>
-<xs:element name="return" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="searchByLowest">
 <xs:sequence>
 <xs:element name="shares" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
@@ -165,22 +165,26 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getUserShares">
+<xs:complexType name="getFTSESectors">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getFTSESectorsResponse">
 <xs:sequence>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getUserSharesResponse">
+<xs:complexType name="searchByFTSESector">
 <xs:sequence>
-<xs:element name="return" minOccurs="0" maxOccurs="unbounded">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="CompanySymbol" type="xs:string" form="qualified"/>
-<xs:element name="CompanyShares" type="xs:int" form="qualified"/>
+<xs:element name="sector" type="xs:string" minOccurs="0"/>
+<xs:element name="shares" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
-</xs:element>
+
+<xs:complexType name="searchByFTSESectorResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -333,16 +337,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getCompanySymbols">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="getCompanySymbolsResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="sellShares">
 <xs:sequence>
 <xs:element name="username" type="xs:string" minOccurs="0"/>
@@ -363,11 +357,34 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getCompanySymbols">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getCompanySymbolsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="getCompanyShares">
 <xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="getCompanySharesResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getPriceByCurrency">
+<xs:sequence>
+<xs:element name="newCurrencyCode" type="xs:string" minOccurs="0"/>
+<xs:element name="shares" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getPriceByCurrencyResponse">
 <xs:sequence>
 <xs:element name="return" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
@@ -385,16 +402,15 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getPriceByCurrency">
+<xs:complexType name="getUser">
 <xs:sequence>
-<xs:element name="newCurrencyCode" type="xs:string" minOccurs="0"/>
-<xs:element name="shares" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getPriceByCurrencyResponse">
+<xs:complexType name="getUserResponse">
 <xs:sequence>
-<xs:element name="return" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="ns1:userType" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -423,6 +439,19 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getRealTimeShares">
+<xs:sequence>
+<xs:element name="symbol" type="xs:string" minOccurs="0"/>
+<xs:element name="query" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getRealTimeSharesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="purchaseShares">
 <xs:sequence>
 <xs:element name="username" type="xs:string" minOccurs="0"/>
@@ -440,19 +469,6 @@
 </xs:sequence>
 </xs:complexType>
 </xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getRealTimeShares">
-<xs:sequence>
-<xs:element name="symbol" type="xs:string" minOccurs="0"/>
-<xs:element name="query" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getRealTimeSharesResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
