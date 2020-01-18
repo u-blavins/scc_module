@@ -32,6 +32,7 @@ public class viewProfile extends javax.swing.JFrame {
     public viewProfile(String username) throws JAXBException_Exception {
         initComponents();
         user = getUser(username);
+        usernameLabel.setText(user.getUsername());
         loadTable(user);
         loadCompanySymbols();
     }
@@ -158,9 +159,7 @@ public class viewProfile extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35))
                     .addGroup(jFrameLayout.createSequentialGroup()
-                        .addGroup(jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usernameLabel)
-                            .addComponent(imageLabel))
+                        .addComponent(imageLabel)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrameLayout.createSequentialGroup()
                         .addComponent(viewSharesButton)
@@ -168,8 +167,13 @@ public class viewProfile extends javax.swing.JFrame {
                         .addComponent(logoutButton)
                         .addContainerGap())))
             .addGroup(jFrameLayout.createSequentialGroup()
-                .addGap(212, 212, 212)
-                .addComponent(notificationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jFrameLayout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(notificationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jFrameLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(usernameLabel)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jFrameLayout.setVerticalGroup(
@@ -179,9 +183,9 @@ public class viewProfile extends javax.swing.JFrame {
                 .addGroup(jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logoutButton)
                     .addComponent(viewSharesButton))
-                .addGap(15, 15, 15)
+                .addGap(28, 28, 28)
                 .addComponent(usernameLabel)
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(imageLabel)
                 .addGap(18, 18, 18)
                 .addGroup(jFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

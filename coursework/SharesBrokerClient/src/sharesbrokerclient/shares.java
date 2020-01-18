@@ -22,6 +22,7 @@ public class shares extends javax.swing.JFrame {
     
     private List<ShareType> currShares;
     private UserType user;
+    private boolean currencySet = false;
     
     /**
      * Creates new form shares
@@ -416,7 +417,13 @@ public class shares extends javax.swing.JFrame {
                 && filterPrice.equals("None") && maxStr.equals("") && minStr.equals("")) {
             removeData();
             try {
-                loadTable(getCompanyShares());
+                if (currencySet){ 
+                    String code = currencyCodesBox.getSelectedItem().toString();
+                    List<ShareType> shares = getPriceByCurrency(code, getCompanyShares());
+                    loadTable(shares);
+                } else {
+                    loadTable(getCompanyShares());
+                }
             } catch (JAXBException_Exception ex) {
                 Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -434,6 +441,10 @@ public class shares extends javax.swing.JFrame {
             try {
                 List<ShareType> filterShares = filterQuery(symbol, company, sector,
                         filterPrice, min, max);
+                if (currencySet) {
+                    String code = currencyCodesBox.getSelectedItem().toString();
+                    filterShares = getPriceByCurrency(code, filterShares);
+                }
                 removeData();
                 loadTable(filterShares);
             } catch (JAXBException_Exception ex) {
@@ -452,6 +463,7 @@ public class shares extends javax.swing.JFrame {
 
     private void changeCodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeCodeButtonActionPerformed
         // TODO add your handling code here:
+        currencySet = true;
         String code = currencyCodesBox.getSelectedItem().toString();
         List<ShareType> shares = getPriceByCurrency(code, currShares);
         removeData();
@@ -478,6 +490,9 @@ public class shares extends javax.swing.JFrame {
 
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         // TODO add your handling code here:
+        adminView adminFrame = new adminView(user.getUsername());
+        adminFrame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_adminButtonActionPerformed
 
     private void sectorText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectorText1ActionPerformed
