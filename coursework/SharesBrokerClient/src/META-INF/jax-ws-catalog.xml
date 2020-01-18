@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?Tester" uri="xml-resources/web-service-references/SharesBrokerWS_Tester/wsdl/localhost_8080/SharesBrokerWS/SharesBrokerWS.tester"/>
-    <system systemId="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?WSDL" uri="wsdl/localhost_8080/SharesBrokerWS/SharesBrokerWS.wsdl"/>
-    <system systemId="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?xsd=1" uri="wsdl/localhost_8080/SharesBrokerWS/SharesBrokerWS.xsd_1.xsd"/>
-    <system systemId="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?xsd=2" uri="wsdl/localhost_8080/SharesBrokerWS/SharesBrokerWS.xsd_2.xsd"/>
+    <system systemId="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?WSDL" uri="xml-resources/web-service-references/SharesBrokerWS/wsdl/localhost_8080/SharesBrokerWS/SharesBrokerWS.wsdl"/>
+    <system systemId="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?xsd=1" uri="xml-resources/web-service-references/SharesBrokerWS/wsdl/localhost_8080/SharesBrokerWS/SharesBrokerWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?xsd=2" uri="xml-resources/web-service-references/SharesBrokerWS/wsdl/localhost_8080/SharesBrokerWS/SharesBrokerWS.xsd_2.xsd"/>
 </catalog>

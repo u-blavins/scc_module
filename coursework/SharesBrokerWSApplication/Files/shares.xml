@@ -3,12 +3,12 @@
     <shares CompanySymbol="LLOY">
         <CompanyName>LLOYDS GRP.</CompanyName>
         <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/087/0870612.gif</CompanyLogo>
-        <AvailableShares>214868640</AvailableShares>
+        <AvailableShares>214866940</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
             <Value>61.48</Value>
-            <LastUpdated>2020-01-18T01:12:41.157Z</LastUpdated>
+            <LastUpdated>2020-01-18T13:40:45.634Z</LastUpdated>
         </share_price>
     </shares>
     <shares CompanySymbol="VOD">
@@ -102,12 +102,12 @@
     <shares CompanySymbol="BARC">
         <CompanyName>BARCLAYS PLC</CompanyName>
         <CompanyLogo></CompanyLogo>
-        <AvailableShares>49665292</AvailableShares>
+        <AvailableShares>49663292</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
             <Value>170.14</Value>
-            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+            <LastUpdated>2020-01-18T13:29:38.222Z</LastUpdated>
         </share_price>
     </shares>
     <shares CompanySymbol="GFS">

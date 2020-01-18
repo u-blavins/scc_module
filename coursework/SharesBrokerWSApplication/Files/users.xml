@@ -6,7 +6,7 @@
         <IsAdmin>1</IsAdmin>
         <UserShares>
             <CompanySymbol>LLOY</CompanySymbol>
-            <CompanyShares>100</CompanyShares>
+            <CompanyShares>1000</CompanyShares>
         </UserShares>
     </users>
     <users>
@@ -15,11 +15,15 @@
         <IsAdmin>0</IsAdmin>
         <UserShares>
             <CompanySymbol>LLOY</CompanySymbol>
-            <CompanyShares>1100</CompanyShares>
+            <CompanyShares>1900</CompanyShares>
         </UserShares>
         <UserShares>
             <CompanySymbol>VOD</CompanySymbol>
             <CompanyShares>0</CompanyShares>
+        </UserShares>
+        <UserShares>
+            <CompanySymbol>BARC</CompanySymbol>
+            <CompanyShares>2000</CompanyShares>
         </UserShares>
     </users>
     <users>

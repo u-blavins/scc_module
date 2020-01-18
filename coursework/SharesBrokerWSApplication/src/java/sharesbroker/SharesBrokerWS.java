@@ -268,48 +268,63 @@ public class SharesBrokerWS {
             ) throws JAXBException, DatatypeConfigurationException, 
                 FileNotFoundException {
         
+        boolean isNewCompany = false;
         ShareType newCompanyShare;
         CompanyShares currentCompanyShares = listShares();
         List<ShareType> companyShares = currentCompanyShares.getShares();
         
-        for (ShareType share : companyShares) {
-            if (symbol.equals(share.getCompanySymbol()))
-                return currentCompanyShares;
+        if (!symbol.equals("")) {
+            if (!getCompanySymbols().contains(symbol)) {
+                newCompanyShare = new ShareType();
+                ShareType.SharePrice sharePrice = new ShareType.SharePrice();
+                newCompanyShare.setCompanySymbol(symbol);
+                newCompanyShare.setCompanyName(company);
+                newCompanyShare.setCompanyFTSESector(ftseSector);
+                newCompanyShare.setCompanyLogo(logo);
+                try {
+                    String realTimeShare = getRealTimeShares(symbol, "volume");
+                    if (!realTimeShare.equals("")) {
+                        newCompanyShare.setAvailableShares(
+                            Integer.parseInt(realTimeShare));
+                    } else {
+                        newCompanyShare.setAvailableShares(
+                            Integer.parseInt(realTimeShare));
+                    }
+                } catch (Exception ex) {}
+                sharePrice.setCurrency(currency);
+                try {
+                    String realTimePrice = getRealTimeShares(symbol, "price");
+                    if  (!realTimePrice.equals("")) {
+                        sharePrice.setValue(Float.parseFloat(realTimePrice));
+                    } else sharePrice.setValue(shareValue);
+                } catch (Exception ex) {}
+                sharePrice.setLastUpdated(getCurrentGregorianTime());
+                newCompanyShare.setSharePrice(sharePrice);
+                companyShares.add(newCompanyShare);
+                isNewCompany = true;
+            }
         }
         
-        newCompanyShare = new ShareType();
-        newCompanyShare.setCompanySymbol(symbol);
-        newCompanyShare.setCompanyName(company);
-        newCompanyShare.setCompanyFTSESector(ftseSector);
-        newCompanyShare.setCompanyLogo(logo);
-        newCompanyShare.setAvailableShares(availableShares);
-        ShareType.SharePrice sharePrice = new ShareType.SharePrice();
-        sharePrice.setCurrency(currency);
-        sharePrice.setValue(shareValue);
-        sharePrice.setLastUpdated(getCurrentGregorianTime());
-        newCompanyShare.setSharePrice(sharePrice);
-        companyShares.add(newCompanyShare);
-        
-        String filePath = 
-                "/Users/UBlavins/Desktop/output.xml";
-        FileOutputStream outFile = new FileOutputStream(filePath);
-        
-        try {
-            javax.xml.bind.JAXBContext jaxbCtx = 
-                    javax.xml.bind.JAXBContext.newInstance(
-                        currentCompanyShares.getClass().getPackage().getName());
-            javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
-            marshaller.setProperty(
-                    javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
-            marshaller.setProperty(
-                    javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, 
-                    Boolean.TRUE);
-            marshaller.marshal(currentCompanyShares, outFile);
-        } catch (javax.xml.bind.JAXBException ex) {
-            java.util.logging.Logger.getLogger("global").log(
-                    java.util.logging.Level.SEVERE, null, ex); //NOI18N
+        if (isNewCompany) {
+            String filePath = 
+                "/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/shares.xml";
+            FileOutputStream outFile = new FileOutputStream(filePath);
+            try {
+                javax.xml.bind.JAXBContext jaxbCtx = 
+                        javax.xml.bind.JAXBContext.newInstance(
+                            currentCompanyShares.getClass().getPackage().getName());
+                javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
+                marshaller.setProperty(
+                        javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
+                marshaller.setProperty(
+                        javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, 
+                        Boolean.TRUE);
+                marshaller.marshal(currentCompanyShares, outFile);
+            } catch (javax.xml.bind.JAXBException ex) {
+                java.util.logging.Logger.getLogger("global").log(
+                        java.util.logging.Level.SEVERE, null, ex); //NOI18N
         }
-        
+        }   
         return currentCompanyShares;
     }
     
@@ -360,10 +375,7 @@ public class SharesBrokerWS {
                 if (share.getCompanySymbol().contains(symbol))
                     symbols.add(share);
             }
-            if (symbols.isEmpty())
-                return shares;
-            else
-                return symbols;
+            return symbols;
     }
 
     @WebMethod(operationName = "searchByName")
@@ -375,10 +387,7 @@ public class SharesBrokerWS {
                 if (share.getCompanyName().contains(name))
                     company.add(share);
             }
-            if (company.isEmpty())
-                return shares;
-            else
-                return company;
+            return company;
     }
 
     @WebMethod(operationName = "searchByFTSESector")
@@ -390,10 +399,7 @@ public class SharesBrokerWS {
                 if (share.getCompanyFTSESector().contains(sector))
                     sectors.add(share);
             }
-            if (sectors.isEmpty())
-                return shares;
-            else
-                return sectors;
+            return sectors;
     }
 
     @WebMethod(operationName = "searchByRange")
@@ -407,10 +413,7 @@ public class SharesBrokerWS {
                         share.getSharePrice().getValue() < max)
                     ranged.add(share);
             }
-            if (ranged.isEmpty())
-                return shares;
-            else
-                return ranged;
+            return ranged;
     }
 
     @WebMethod(operationName = "searchByLowest")
@@ -444,7 +447,7 @@ public class SharesBrokerWS {
             if(!name.equals("")) {
                 shares = searchByName(name, shares);
             }
-            if(!sector.equals("")) {
+            if(!sector.equals("None")) {
                 shares = searchByFTSESector(sector, shares);
             }
             if(min!=0 && max!=0) {
@@ -527,6 +530,18 @@ public class SharesBrokerWS {
                     java.util.logging.Level.SEVERE, null, ex); //NOI18N
         }
         return newUsers;
+    }
+    
+    @WebMethod(operationName="getUser")
+    public UserType getUser(
+            @WebParam(name="username")String username) throws JAXBException {
+        UserType user = new UserType();
+        for (UserType userType : listUsers().getUsers()) {
+            if (username.equals(userType.getUsername())) {
+                user = userType;
+            }
+        }
+        return user;
     }
     
     @WebMethod(operationName="registerUser")
@@ -732,13 +747,14 @@ public class SharesBrokerWS {
                     if (response.contains(query))
                         temp = response.split(":")[1];
                 }
+                temp = temp.substring(2, temp.length() - 2);
                 conn.disconnect();
             }
         }catch (Exception ex) {
                         java.util.logging.Logger.getLogger("global").log(
                     java.util.logging.Level.SEVERE, null, ex); //NOI18N
         }
-        return temp.substring(2, temp.length() - 2);
+        return temp;
     }
     
     @WebMethod(operationName="getStockNews")
