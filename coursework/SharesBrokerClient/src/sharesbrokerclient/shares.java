@@ -231,7 +231,7 @@ public class shares extends javax.swing.JFrame {
             }
         });
 
-        symbolsBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None", "Lowest", "Highest" }));
+        symbolsBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "None" }));
 
         buySharesButton.setText("Buy Shares");
         buySharesButton.addActionListener(new java.awt.event.ActionListener() {

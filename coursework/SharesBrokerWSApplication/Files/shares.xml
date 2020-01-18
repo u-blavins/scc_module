@@ -3,12 +3,12 @@
     <shares CompanySymbol="LLOY">
         <CompanyName>LLOYDS GRP.</CompanyName>
         <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/087/0870612.gif</CompanyLogo>
-        <AvailableShares>214869640</AvailableShares>
+        <AvailableShares>214868640</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
             <Value>61.48</Value>
-            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+            <LastUpdated>2020-01-18T01:12:41.157Z</LastUpdated>
         </share_price>
     </shares>
     <shares CompanySymbol="VOD">
