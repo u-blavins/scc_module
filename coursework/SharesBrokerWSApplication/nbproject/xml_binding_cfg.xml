@@ -4,7 +4,7 @@
 		<xjc-options>
 		</xjc-options>
 		<schema-sources>
-			<schema-source location='src/conf/xml-resources/jaxb/sharesRequest/Shares.xsd' origLocation='../SharesBroker/src/sharesbroker/Shares.xsd'/>
+			<schema-source location='src/conf/xml-resources/jaxb/sharesRequest/Shares.xsd' origLocation='Shares.xsd'/>
 		</schema-sources>
 		<bindings>
 		</bindings>

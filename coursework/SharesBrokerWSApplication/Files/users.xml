@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Users xmlns="http://xml.netbeans.org/schema/Shares">
+<Users xmlns="http://xml.netbeans.org/schema/Users">
     <users>
         <Username>ublavins</Username>
         <Password>testpassword</Password>
@@ -15,7 +15,7 @@
         <IsAdmin>0</IsAdmin>
         <UserShares>
             <CompanySymbol>LLOY</CompanySymbol>
-            <CompanyShares>1900</CompanyShares>
+            <CompanyShares>200</CompanyShares>
         </UserShares>
         <UserShares>
             <CompanySymbol>VOD</CompanySymbol>
@@ -25,20 +25,14 @@
             <CompanySymbol>BARC</CompanySymbol>
             <CompanyShares>2000</CompanyShares>
         </UserShares>
-    </users>
-    <users>
-        <Username>testuser</Username>
-        <Password>test</Password>
-        <IsAdmin>0</IsAdmin>
-    </users>
-    <users>
-        <Username>newUser</Username>
-        <Password>test</Password>
-        <IsAdmin>0</IsAdmin>
+        <UserShares>
+            <CompanySymbol>0HT4</CompanySymbol>
+            <CompanyShares>0</CompanyShares>
+        </UserShares>
     </users>
     <users>
         <Username>William</Username>
-        <Password>password</Password>
+        <Password>test</Password>
         <IsAdmin>0</IsAdmin>
     </users>
 </Users>

@@ -7,6 +7,12 @@
 <xsd:import namespace="http://convertor/" schemaLocation="http://localhost:8080/CurrConvertor/CurrConvertor?xsd=2"/>
 </xsd:schema>
 </types>
+<message name="getCurrCodes">
+<part name="parameters" element="tns:getCurrCodes"/>
+</message>
+<message name="getCurrCodesResponse">
+<part name="parameters" element="tns:getCurrCodesResponse"/>
+</message>
 <message name="updateRates">
 <part name="parameters" element="tns:updateRates"/>
 </message>
@@ -25,13 +31,11 @@
 <message name="getConversionRateResponse">
 <part name="parameters" element="tns:getConversionRateResponse"/>
 </message>
-<message name="getCurrCodes">
-<part name="parameters" element="tns:getCurrCodes"/>
-</message>
-<message name="getCurrCodesResponse">
-<part name="parameters" element="tns:getCurrCodesResponse"/>
-</message>
 <portType name="CurrConvertor">
+<operation name="getCurrCodes">
+<input wsam:Action="http://convertor/CurrConvertor/getCurrCodesRequest" message="tns:getCurrCodes"/>
+<output wsam:Action="http://convertor/CurrConvertor/getCurrCodesResponse" message="tns:getCurrCodesResponse"/>
+</operation>
 <operation name="updateRates">
 <input wsam:Action="http://convertor/CurrConvertor/updateRatesRequest" message="tns:updateRates"/>
 <output wsam:Action="http://convertor/CurrConvertor/updateRatesResponse" message="tns:updateRatesResponse"/>
@@ -44,13 +48,18 @@
 <input wsam:Action="http://convertor/CurrConvertor/getConversionRateRequest" message="tns:getConversionRate"/>
 <output wsam:Action="http://convertor/CurrConvertor/getConversionRateResponse" message="tns:getConversionRateResponse"/>
 </operation>
-<operation name="getCurrCodes">
-<input wsam:Action="http://convertor/CurrConvertor/getCurrCodesRequest" message="tns:getCurrCodes"/>
-<output wsam:Action="http://convertor/CurrConvertor/getCurrCodesResponse" message="tns:getCurrCodesResponse"/>
-</operation>
 </portType>
 <binding name="CurrConvertorPortBinding" type="tns:CurrConvertor">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="getCurrCodes">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="updateRates">
 <soap:operation soapAction=""/>
 <input>
@@ -70,15 +79,6 @@
 </output>
 </operation>
 <operation name="getConversionRate">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getCurrCodes">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

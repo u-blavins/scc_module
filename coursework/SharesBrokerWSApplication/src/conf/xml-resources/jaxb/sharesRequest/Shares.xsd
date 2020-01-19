@@ -30,31 +30,5 @@
                 <xsd:element name="shares" type="tns:shareType" minOccurs="0" maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
-    </xsd:element>
-    
-    
-    <xsd:complexType name="userType">
-        <xsd:sequence>
-            <xsd:element name="Username" type="xsd:string"/>
-            <xsd:element name="Password" type="xsd:string"/>
-            <xsd:element name="IsAdmin" type="xsd:int"/>
-            <xsd:element name="UserShares" minOccurs="0" maxOccurs="unbounded">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="CompanySymbol" type="xsd:string"/>
-                        <xsd:element name="CompanyShares" type="xsd:int"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-    
-    <xsd:element name="Users">
-        <xsd:complexType>
-            <xsd:sequence>
-                <xsd:element name="users" type="tns:userType" minOccurs="0" maxOccurs="unbounded"/>
-            </xsd:sequence>
-        </xsd:complexType>
-    </xsd:element>
-    
+    </xsd:element>   
 </xsd:schema>
