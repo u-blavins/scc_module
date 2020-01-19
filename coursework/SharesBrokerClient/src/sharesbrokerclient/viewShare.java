@@ -12,10 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import org.netbeans.xml.schema.shares.ShareType;
-import sharesbroker.DatatypeConfigurationException_Exception;
-import sharesbroker.FileNotFoundException_Exception;
 import sharesbroker.JAXBException_Exception;
-import sharesbroker.PurchaseSharesResponse;
+import userws.PurchaseSharesResponse;
 
 /**
  *
@@ -291,6 +289,8 @@ public class viewShare extends javax.swing.JFrame {
             this.dispose();
         } catch (JAXBException_Exception ex) {
             Logger.getLogger(viewShare.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (userws.JAXBException_Exception ex) {
+            Logger.getLogger(viewShare.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_backButtonActionPerformed
 
@@ -334,8 +334,9 @@ public class viewShare extends javax.swing.JFrame {
             } catch (NumberFormatException ex) {
                 buyShareLabel.setText("Number not provided");
             } catch (JAXBException_Exception | 
-                    DatatypeConfigurationException_Exception | 
-                    FileNotFoundException_Exception ex) {
+                    userws.DatatypeConfigurationException_Exception | 
+                    userws.JAXBException_Exception | 
+                    userws.FileNotFoundException_Exception ex) {
                 Logger.getLogger(viewShare.class.getName()).log(
                         Level.SEVERE, null, ex);
             }
@@ -404,21 +405,21 @@ public class viewShare extends javax.swing.JFrame {
     private javax.swing.JButton updateShareButton;
     // End of variables declaration//GEN-END:variables
 
-    private static ShareType getShare(java.lang.String symbol) throws JAXBException_Exception {
-        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
-        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
-        return port.getShare(symbol);
-    }
-
     private static String getRealTimeShares(java.lang.String symbol, java.lang.String query) {
         sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
         sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
         return port.getRealTimeShares(symbol, query);
     }
 
-    private static PurchaseSharesResponse.Return purchaseShares(java.lang.String username, java.lang.String companySymbol, int shares) throws JAXBException_Exception, DatatypeConfigurationException_Exception, FileNotFoundException_Exception {
+    private static ShareType getShare(java.lang.String symbol) throws JAXBException_Exception {
         sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
         sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.getShare(symbol);
+    }
+
+    private static PurchaseSharesResponse.Return purchaseShares(java.lang.String username, java.lang.String companySymbol, int shares) throws userws.DatatypeConfigurationException_Exception, userws.JAXBException_Exception, userws.FileNotFoundException_Exception {
+        userws.UserService_Service service = new userws.UserService_Service();
+        userws.UserService port = service.getUserServicePort();
         return port.purchaseShares(username, companySymbol, shares);
     }
 }

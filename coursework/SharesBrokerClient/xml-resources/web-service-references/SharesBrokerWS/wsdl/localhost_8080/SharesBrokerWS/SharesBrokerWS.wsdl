@@ -7,57 +7,6 @@
 <xsd:import namespace="http://sharesbroker/" schemaLocation="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?xsd=2"/>
 </xsd:schema>
 </types>
-<message name="searchBySymbol">
-<part name="parameters" element="tns:searchBySymbol"/>
-</message>
-<message name="searchBySymbolResponse">
-<part name="parameters" element="tns:searchBySymbolResponse"/>
-</message>
-<message name="searchByName">
-<part name="parameters" element="tns:searchByName"/>
-</message>
-<message name="searchByNameResponse">
-<part name="parameters" element="tns:searchByNameResponse"/>
-</message>
-<message name="updateCompanyShare">
-<part name="parameters" element="tns:updateCompanyShare"/>
-</message>
-<message name="updateCompanyShareResponse">
-<part name="parameters" element="tns:updateCompanyShareResponse"/>
-</message>
-<message name="JAXBException">
-<part name="fault" element="tns:JAXBException"/>
-</message>
-<message name="FileNotFoundException">
-<part name="fault" element="tns:FileNotFoundException"/>
-</message>
-<message name="DatatypeConfigurationException">
-<part name="fault" element="tns:DatatypeConfigurationException"/>
-</message>
-<message name="getUser">
-<part name="parameters" element="tns:getUser"/>
-</message>
-<message name="getUserResponse">
-<part name="parameters" element="tns:getUserResponse"/>
-</message>
-<message name="addNewCompany">
-<part name="parameters" element="tns:addNewCompany"/>
-</message>
-<message name="addNewCompanyResponse">
-<part name="parameters" element="tns:addNewCompanyResponse"/>
-</message>
-<message name="getPriceByCurrency">
-<part name="parameters" element="tns:getPriceByCurrency"/>
-</message>
-<message name="getPriceByCurrencyResponse">
-<part name="parameters" element="tns:getPriceByCurrencyResponse"/>
-</message>
-<message name="getUserShares">
-<part name="parameters" element="tns:getUserShares"/>
-</message>
-<message name="getUserSharesResponse">
-<part name="parameters" element="tns:getUserSharesResponse"/>
-</message>
 <message name="getRealTimeShares">
 <part name="parameters" element="tns:getRealTimeShares"/>
 </message>
@@ -70,65 +19,26 @@
 <message name="getStockNewsResponse">
 <part name="parameters" element="tns:getStockNewsResponse"/>
 </message>
-<message name="removeCompany">
-<part name="parameters" element="tns:removeCompany"/>
-</message>
-<message name="removeCompanyResponse">
-<part name="parameters" element="tns:removeCompanyResponse"/>
-</message>
-<message name="searchByLowest">
-<part name="parameters" element="tns:searchByLowest"/>
-</message>
-<message name="searchByLowestResponse">
-<part name="parameters" element="tns:searchByLowestResponse"/>
-</message>
-<message name="searchByHighest">
-<part name="parameters" element="tns:searchByHighest"/>
-</message>
-<message name="searchByHighestResponse">
-<part name="parameters" element="tns:searchByHighestResponse"/>
-</message>
-<message name="filterQuery">
-<part name="parameters" element="tns:filterQuery"/>
-</message>
-<message name="filterQueryResponse">
-<part name="parameters" element="tns:filterQueryResponse"/>
-</message>
-<message name="registerUser">
-<part name="parameters" element="tns:registerUser"/>
-</message>
-<message name="registerUserResponse">
-<part name="parameters" element="tns:registerUserResponse"/>
-</message>
-<message name="loginUser">
-<part name="parameters" element="tns:loginUser"/>
-</message>
-<message name="loginUserResponse">
-<part name="parameters" element="tns:loginUserResponse"/>
-</message>
-<message name="purchaseShares">
-<part name="parameters" element="tns:purchaseShares"/>
-</message>
-<message name="purchaseSharesResponse">
-<part name="parameters" element="tns:purchaseSharesResponse"/>
-</message>
-<message name="sellShares">
-<part name="parameters" element="tns:sellShares"/>
-</message>
-<message name="sellSharesResponse">
-<part name="parameters" element="tns:sellSharesResponse"/>
-</message>
-<message name="getCurrencyCodes">
-<part name="parameters" element="tns:getCurrencyCodes"/>
-</message>
-<message name="getCurrencyCodesResponse">
-<part name="parameters" element="tns:getCurrencyCodesResponse"/>
-</message>
 <message name="getShare">
 <part name="parameters" element="tns:getShare"/>
 </message>
 <message name="getShareResponse">
 <part name="parameters" element="tns:getShareResponse"/>
+</message>
+<message name="JAXBException">
+<part name="fault" element="tns:JAXBException"/>
+</message>
+<message name="updateCompanyShare">
+<part name="parameters" element="tns:updateCompanyShare"/>
+</message>
+<message name="updateCompanyShareResponse">
+<part name="parameters" element="tns:updateCompanyShareResponse"/>
+</message>
+<message name="FileNotFoundException">
+<part name="fault" element="tns:FileNotFoundException"/>
+</message>
+<message name="DatatypeConfigurationException">
+<part name="fault" element="tns:DatatypeConfigurationException"/>
 </message>
 <message name="getCompanySymbols">
 <part name="parameters" element="tns:getCompanySymbols"/>
@@ -166,6 +76,30 @@
 <message name="getCompanySharesResponse">
 <part name="parameters" element="tns:getCompanySharesResponse"/>
 </message>
+<message name="addNewCompany">
+<part name="parameters" element="tns:addNewCompany"/>
+</message>
+<message name="addNewCompanyResponse">
+<part name="parameters" element="tns:addNewCompanyResponse"/>
+</message>
+<message name="removeCompany">
+<part name="parameters" element="tns:removeCompany"/>
+</message>
+<message name="removeCompanyResponse">
+<part name="parameters" element="tns:removeCompanyResponse"/>
+</message>
+<message name="searchBySymbol">
+<part name="parameters" element="tns:searchBySymbol"/>
+</message>
+<message name="searchBySymbolResponse">
+<part name="parameters" element="tns:searchBySymbolResponse"/>
+</message>
+<message name="searchByName">
+<part name="parameters" element="tns:searchByName"/>
+</message>
+<message name="searchByNameResponse">
+<part name="parameters" element="tns:searchByNameResponse"/>
+</message>
 <message name="searchByFTSESector">
 <part name="parameters" element="tns:searchByFTSESector"/>
 </message>
@@ -178,43 +112,37 @@
 <message name="searchByRangeResponse">
 <part name="parameters" element="tns:searchByRangeResponse"/>
 </message>
+<message name="searchByLowest">
+<part name="parameters" element="tns:searchByLowest"/>
+</message>
+<message name="searchByLowestResponse">
+<part name="parameters" element="tns:searchByLowestResponse"/>
+</message>
+<message name="searchByHighest">
+<part name="parameters" element="tns:searchByHighest"/>
+</message>
+<message name="searchByHighestResponse">
+<part name="parameters" element="tns:searchByHighestResponse"/>
+</message>
+<message name="filterQuery">
+<part name="parameters" element="tns:filterQuery"/>
+</message>
+<message name="filterQueryResponse">
+<part name="parameters" element="tns:filterQueryResponse"/>
+</message>
+<message name="getPriceByCurrency">
+<part name="parameters" element="tns:getPriceByCurrency"/>
+</message>
+<message name="getPriceByCurrencyResponse">
+<part name="parameters" element="tns:getPriceByCurrencyResponse"/>
+</message>
+<message name="getCurrencyCodes">
+<part name="parameters" element="tns:getCurrencyCodes"/>
+</message>
+<message name="getCurrencyCodesResponse">
+<part name="parameters" element="tns:getCurrencyCodesResponse"/>
+</message>
 <portType name="SharesBrokerWS">
-<operation name="searchBySymbol">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchBySymbolRequest" message="tns:searchBySymbol"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchBySymbolResponse" message="tns:searchBySymbolResponse"/>
-</operation>
-<operation name="searchByName">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByNameRequest" message="tns:searchByName"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByNameResponse" message="tns:searchByNameResponse"/>
-</operation>
-<operation name="updateCompanyShare">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareRequest" message="tns:updateCompanyShare"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareResponse" message="tns:updateCompanyShareResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/JAXBException"/>
-<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/FileNotFoundException"/>
-<fault message="tns:DatatypeConfigurationException" name="DatatypeConfigurationException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/DatatypeConfigurationException"/>
-</operation>
-<operation name="getUser">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/getUserRequest" message="tns:getUser"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/getUserResponse" message="tns:getUserResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/getUser/Fault/JAXBException"/>
-</operation>
-<operation name="addNewCompany">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/addNewCompanyRequest" message="tns:addNewCompany"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/addNewCompanyResponse" message="tns:addNewCompanyResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/addNewCompany/Fault/JAXBException"/>
-<fault message="tns:DatatypeConfigurationException" name="DatatypeConfigurationException" wsam:Action="http://sharesbroker/SharesBrokerWS/addNewCompany/Fault/DatatypeConfigurationException"/>
-<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://sharesbroker/SharesBrokerWS/addNewCompany/Fault/FileNotFoundException"/>
-</operation>
-<operation name="getPriceByCurrency">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/getPriceByCurrencyRequest" message="tns:getPriceByCurrency"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/getPriceByCurrencyResponse" message="tns:getPriceByCurrencyResponse"/>
-</operation>
-<operation name="getUserShares">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/getUserSharesRequest" message="tns:getUserShares"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/getUserSharesResponse" message="tns:getUserSharesResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/getUserShares/Fault/JAXBException"/>
-</operation>
 <operation name="getRealTimeShares">
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/getRealTimeSharesRequest" message="tns:getRealTimeShares"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/getRealTimeSharesResponse" message="tns:getRealTimeSharesResponse"/>
@@ -223,60 +151,17 @@
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/getStockNewsRequest" message="tns:getStockNews"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/getStockNewsResponse" message="tns:getStockNewsResponse"/>
 </operation>
-<operation name="removeCompany">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/removeCompanyRequest" message="tns:removeCompany"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/removeCompanyResponse" message="tns:removeCompanyResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/removeCompany/Fault/JAXBException"/>
-<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://sharesbroker/SharesBrokerWS/removeCompany/Fault/FileNotFoundException"/>
-</operation>
-<operation name="searchByLowest">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowestRequest" message="tns:searchByLowest"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowestResponse" message="tns:searchByLowestResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowest/Fault/JAXBException"/>
-</operation>
-<operation name="searchByHighest">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighestRequest" message="tns:searchByHighest"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighestResponse" message="tns:searchByHighestResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighest/Fault/JAXBException"/>
-</operation>
-<operation name="filterQuery">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/filterQueryRequest" message="tns:filterQuery"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/filterQueryResponse" message="tns:filterQueryResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/filterQuery/Fault/JAXBException"/>
-</operation>
-<operation name="registerUser">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/registerUserRequest" message="tns:registerUser"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/registerUserResponse" message="tns:registerUserResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/registerUser/Fault/JAXBException"/>
-<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://sharesbroker/SharesBrokerWS/registerUser/Fault/FileNotFoundException"/>
-</operation>
-<operation name="loginUser">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/loginUserRequest" message="tns:loginUser"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/loginUserResponse" message="tns:loginUserResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/loginUser/Fault/JAXBException"/>
-</operation>
-<operation name="purchaseShares">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/purchaseSharesRequest" message="tns:purchaseShares"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/purchaseSharesResponse" message="tns:purchaseSharesResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/purchaseShares/Fault/JAXBException"/>
-<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://sharesbroker/SharesBrokerWS/purchaseShares/Fault/FileNotFoundException"/>
-<fault message="tns:DatatypeConfigurationException" name="DatatypeConfigurationException" wsam:Action="http://sharesbroker/SharesBrokerWS/purchaseShares/Fault/DatatypeConfigurationException"/>
-</operation>
-<operation name="sellShares">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/sellSharesRequest" message="tns:sellShares"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/sellSharesResponse" message="tns:sellSharesResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/sellShares/Fault/JAXBException"/>
-<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://sharesbroker/SharesBrokerWS/sellShares/Fault/FileNotFoundException"/>
-<fault message="tns:DatatypeConfigurationException" name="DatatypeConfigurationException" wsam:Action="http://sharesbroker/SharesBrokerWS/sellShares/Fault/DatatypeConfigurationException"/>
-</operation>
-<operation name="getCurrencyCodes">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/getCurrencyCodesRequest" message="tns:getCurrencyCodes"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/getCurrencyCodesResponse" message="tns:getCurrencyCodesResponse"/>
-</operation>
 <operation name="getShare">
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/getShareRequest" message="tns:getShare"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/getShareResponse" message="tns:getShareResponse"/>
 <fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/getShare/Fault/JAXBException"/>
+</operation>
+<operation name="updateCompanyShare">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareRequest" message="tns:updateCompanyShare"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareResponse" message="tns:updateCompanyShareResponse"/>
+<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/JAXBException"/>
+<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/FileNotFoundException"/>
+<fault message="tns:DatatypeConfigurationException" name="DatatypeConfigurationException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/DatatypeConfigurationException"/>
 </operation>
 <operation name="getCompanySymbols">
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanySymbolsRequest" message="tns:getCompanySymbols"/>
@@ -308,6 +193,27 @@
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanySharesResponse" message="tns:getCompanySharesResponse"/>
 <fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanyShares/Fault/JAXBException"/>
 </operation>
+<operation name="addNewCompany">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/addNewCompanyRequest" message="tns:addNewCompany"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/addNewCompanyResponse" message="tns:addNewCompanyResponse"/>
+<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/addNewCompany/Fault/JAXBException"/>
+<fault message="tns:DatatypeConfigurationException" name="DatatypeConfigurationException" wsam:Action="http://sharesbroker/SharesBrokerWS/addNewCompany/Fault/DatatypeConfigurationException"/>
+<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://sharesbroker/SharesBrokerWS/addNewCompany/Fault/FileNotFoundException"/>
+</operation>
+<operation name="removeCompany">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/removeCompanyRequest" message="tns:removeCompany"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/removeCompanyResponse" message="tns:removeCompanyResponse"/>
+<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/removeCompany/Fault/JAXBException"/>
+<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://sharesbroker/SharesBrokerWS/removeCompany/Fault/FileNotFoundException"/>
+</operation>
+<operation name="searchBySymbol">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchBySymbolRequest" message="tns:searchBySymbol"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchBySymbolResponse" message="tns:searchBySymbolResponse"/>
+</operation>
+<operation name="searchByName">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByNameRequest" message="tns:searchByName"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByNameResponse" message="tns:searchByNameResponse"/>
+</operation>
 <operation name="searchByFTSESector">
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByFTSESectorRequest" message="tns:searchByFTSESector"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByFTSESectorResponse" message="tns:searchByFTSESectorResponse"/>
@@ -316,96 +222,32 @@
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByRangeRequest" message="tns:searchByRange"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByRangeResponse" message="tns:searchByRangeResponse"/>
 </operation>
+<operation name="searchByLowest">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowestRequest" message="tns:searchByLowest"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowestResponse" message="tns:searchByLowestResponse"/>
+<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowest/Fault/JAXBException"/>
+</operation>
+<operation name="searchByHighest">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighestRequest" message="tns:searchByHighest"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighestResponse" message="tns:searchByHighestResponse"/>
+<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighest/Fault/JAXBException"/>
+</operation>
+<operation name="filterQuery">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/filterQueryRequest" message="tns:filterQuery"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/filterQueryResponse" message="tns:filterQueryResponse"/>
+<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/filterQuery/Fault/JAXBException"/>
+</operation>
+<operation name="getPriceByCurrency">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/getPriceByCurrencyRequest" message="tns:getPriceByCurrency"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/getPriceByCurrencyResponse" message="tns:getPriceByCurrencyResponse"/>
+</operation>
+<operation name="getCurrencyCodes">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/getCurrencyCodesRequest" message="tns:getCurrencyCodes"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/getCurrencyCodesResponse" message="tns:getCurrencyCodesResponse"/>
+</operation>
 </portType>
 <binding name="SharesBrokerWSPortBinding" type="tns:SharesBrokerWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="searchBySymbol">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="searchByName">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="updateCompanyShare">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-<fault name="FileNotFoundException">
-<soap:fault name="FileNotFoundException" use="literal"/>
-</fault>
-<fault name="DatatypeConfigurationException">
-<soap:fault name="DatatypeConfigurationException" use="literal"/>
-</fault>
-</operation>
-<operation name="getUser">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-</operation>
-<operation name="addNewCompany">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-<fault name="DatatypeConfigurationException">
-<soap:fault name="DatatypeConfigurationException" use="literal"/>
-</fault>
-<fault name="FileNotFoundException">
-<soap:fault name="FileNotFoundException" use="literal"/>
-</fault>
-</operation>
-<operation name="getPriceByCurrency">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getUserShares">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-</operation>
 <operation name="getRealTimeShares">
 <soap:operation soapAction=""/>
 <input>
@@ -424,129 +266,6 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="removeCompany">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-<fault name="FileNotFoundException">
-<soap:fault name="FileNotFoundException" use="literal"/>
-</fault>
-</operation>
-<operation name="searchByLowest">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-</operation>
-<operation name="searchByHighest">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-</operation>
-<operation name="filterQuery">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-</operation>
-<operation name="registerUser">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-<fault name="FileNotFoundException">
-<soap:fault name="FileNotFoundException" use="literal"/>
-</fault>
-</operation>
-<operation name="loginUser">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-</operation>
-<operation name="purchaseShares">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-<fault name="FileNotFoundException">
-<soap:fault name="FileNotFoundException" use="literal"/>
-</fault>
-<fault name="DatatypeConfigurationException">
-<soap:fault name="DatatypeConfigurationException" use="literal"/>
-</fault>
-</operation>
-<operation name="sellShares">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-<fault name="FileNotFoundException">
-<soap:fault name="FileNotFoundException" use="literal"/>
-</fault>
-<fault name="DatatypeConfigurationException">
-<soap:fault name="DatatypeConfigurationException" use="literal"/>
-</fault>
-</operation>
-<operation name="getCurrencyCodes">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="getShare">
 <soap:operation soapAction=""/>
 <input>
@@ -557,6 +276,24 @@
 </output>
 <fault name="JAXBException">
 <soap:fault name="JAXBException" use="literal"/>
+</fault>
+</operation>
+<operation name="updateCompanyShare">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="JAXBException">
+<soap:fault name="JAXBException" use="literal"/>
+</fault>
+<fault name="FileNotFoundException">
+<soap:fault name="FileNotFoundException" use="literal"/>
+</fault>
+<fault name="DatatypeConfigurationException">
+<soap:fault name="DatatypeConfigurationException" use="literal"/>
 </fault>
 </operation>
 <operation name="getCompanySymbols">
@@ -631,6 +368,57 @@
 <soap:fault name="JAXBException" use="literal"/>
 </fault>
 </operation>
+<operation name="addNewCompany">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="JAXBException">
+<soap:fault name="JAXBException" use="literal"/>
+</fault>
+<fault name="DatatypeConfigurationException">
+<soap:fault name="DatatypeConfigurationException" use="literal"/>
+</fault>
+<fault name="FileNotFoundException">
+<soap:fault name="FileNotFoundException" use="literal"/>
+</fault>
+</operation>
+<operation name="removeCompany">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="JAXBException">
+<soap:fault name="JAXBException" use="literal"/>
+</fault>
+<fault name="FileNotFoundException">
+<soap:fault name="FileNotFoundException" use="literal"/>
+</fault>
+</operation>
+<operation name="searchBySymbol">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="searchByName">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="searchByFTSESector">
 <soap:operation soapAction=""/>
 <input>
@@ -641,6 +429,60 @@
 </output>
 </operation>
 <operation name="searchByRange">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="searchByLowest">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="JAXBException">
+<soap:fault name="JAXBException" use="literal"/>
+</fault>
+</operation>
+<operation name="searchByHighest">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="JAXBException">
+<soap:fault name="JAXBException" use="literal"/>
+</fault>
+</operation>
+<operation name="filterQuery">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="JAXBException">
+<soap:fault name="JAXBException" use="literal"/>
+</fault>
+</operation>
+<operation name="getPriceByCurrency">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getCurrencyCodes">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

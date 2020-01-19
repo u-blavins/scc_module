@@ -28,10 +28,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -57,37 +54,35 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                  <Component id="compLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="compLabel3" max="32767" attributes="0"/>
-                                          <Component id="compLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="compLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="compLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="compLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="compLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="compLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="nameText" max="32767" attributes="0"/>
-                                          <Component id="currencyText" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="sharesText" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="logoText" max="32767" attributes="0"/>
-                                          <Component id="sectorText" max="32767" attributes="0"/>
-                                          <Component id="symbolText" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="priceText" alignment="1" min="-2" pref="81" max="-2" attributes="0"/>
-                                      </Group>
+                              <Component id="compLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                  <Component id="usernameLabel" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="compLabel3" max="32767" attributes="0"/>
+                                      <Component id="compLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="compLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="compLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="compLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="compLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="compLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="nameText" max="32767" attributes="0"/>
+                                      <Component id="currencyText" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="sharesText" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="logoText" max="32767" attributes="0"/>
+                                      <Component id="sectorText" max="32767" attributes="0"/>
+                                      <Component id="symbolText" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="priceText" alignment="1" min="-2" pref="81" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Component id="addCompanyButton" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                  <Component id="usernameLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -99,8 +94,12 @@
                                   <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="compLabel8" min="-2" max="-2" attributes="0"/>
-                                      <Component id="symbolCheckBox" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                          <Component id="symbolCheckBox" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="removeCompanyButton" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -125,49 +124,56 @@
                       <Component id="compLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="compLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="compLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="symbolText" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="symbolCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nameText" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="compLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="compLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="sectorText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="compLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="logoText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="compLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="sharesText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="compLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="currencyText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="symbolCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="removeCompanyButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
+                          <Component id="notificationLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="compLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="symbolText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="nameText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="compLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="compLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="sectorText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="compLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="logoText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="compLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="sharesText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="compLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="currencyText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="compLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="priceText" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="addCompanyButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="compLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="priceText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="addCompanyButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="notificationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -310,10 +316,13 @@
             <Property name="text" type="java.lang.String" value="Update Company"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="removeCompanyButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Remove"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeCompanyButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

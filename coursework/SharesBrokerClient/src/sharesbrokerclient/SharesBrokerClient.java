@@ -20,10 +20,25 @@ public class SharesBrokerClient {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String currentCurr = "GBP";
-        String toCurr = "MYR";
         try {
             String route = "https://api.exchangeratesapi.io/latest";
+            URL url = new URL(route);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            if (conn.getResponseCode() != 200) {
+                conn.disconnect();
+                throw new RuntimeException("HttpResponseCode: "+
+                        conn.getResponseCode());
+            } else {
+                String response = "";
+                Scanner sc = new Scanner(url.openStream());
+                while (sc.hasNextLine()) {
+                    response = sc.nextLine();
+                    System.out.println(response);
+                }
+                conn.disconnect();
+            }
         } catch (Exception ex) {
             
         }

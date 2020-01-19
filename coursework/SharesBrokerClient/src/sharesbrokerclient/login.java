@@ -1,7 +1,8 @@
 package sharesbrokerclient;
 
-import sharesbroker.*;
-import sharesbroker.JAXBException_Exception;
+import userws.FileNotFoundException_Exception;
+import userws.JAXBException_Exception;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -339,14 +340,16 @@ public class login extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static boolean loginUser(java.lang.String username, java.lang.String password) throws JAXBException_Exception {
-        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
-        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        userws.UserService_Service service = new userws.UserService_Service();
+        userws.UserService port = service.getUserServicePort();
         return port.loginUser(username, password);
     }
 
     private static boolean registerUser(java.lang.String username, java.lang.String password, java.lang.String conpassword) throws FileNotFoundException_Exception, JAXBException_Exception {
-        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
-        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        userws.UserService_Service service = new userws.UserService_Service();
+        userws.UserService port = service.getUserServicePort();
         return port.registerUser(username, password, conpassword);
     }
+
+
 }

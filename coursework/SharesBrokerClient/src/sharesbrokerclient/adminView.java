@@ -7,10 +7,12 @@ package sharesbrokerclient;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import sharesbroker.AddNewCompanyResponse;
 import sharesbroker.DatatypeConfigurationException_Exception;
 import sharesbroker.FileNotFoundException_Exception;
 import sharesbroker.JAXBException_Exception;
+import sharesbroker.RemoveCompanyResponse;
 
 /**
  *
@@ -23,13 +25,20 @@ public class adminView extends javax.swing.JFrame {
     /**
      * Creates new form adminView
      */
-    public adminView(String username) {
+    public adminView(String username) throws JAXBException_Exception {
         initComponents();
         user = username;
+        loadCompanies();
     }
 
     adminView() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private void loadCompanies() throws JAXBException_Exception {
+        for (String symbol : getCompanySymbols()) {
+            symbolCheckBox.addItem(symbol);
+        }
     }
 
     /**
@@ -64,7 +73,7 @@ public class adminView extends javax.swing.JFrame {
         notificationLabel = new javax.swing.JLabel();
         symbolCheckBox = new javax.swing.JComboBox();
         compLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        removeCompanyButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,7 +135,12 @@ public class adminView extends javax.swing.JFrame {
         compLabel8.setForeground(new java.awt.Color(0, 0, 0));
         compLabel8.setText("Update Company");
 
-        jButton1.setText("Remove");
+        removeCompanyButton.setText("Remove");
+        removeCompanyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeCompanyButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,9 +156,12 @@ public class adminView extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(compLabel)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(compLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(usernameLabel))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(compLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(compLabel6)
@@ -161,13 +178,10 @@ public class adminView extends javax.swing.JFrame {
                                         .addComponent(logoText)
                                         .addComponent(sectorText)
                                         .addComponent(symbolText)
-                                        .addComponent(priceText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(addCompanyButton))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(usernameLabel)))
+                                        .addComponent(priceText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addGap(36, 36, 36)
+                                    .addComponent(addCompanyButton))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
@@ -176,8 +190,11 @@ public class adminView extends javax.swing.JFrame {
                                 .addGap(89, 89, 89)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(compLabel8)
-                                    .addComponent(symbolCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(symbolCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(removeCompanyButton)))))
                         .addGap(0, 200, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -193,41 +210,45 @@ public class adminView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(compLabel)
                     .addComponent(compLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(compLabel1)
-                    .addComponent(symbolText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(symbolCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(compLabel2)
-                    .addComponent(jButton1))
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(compLabel7)
-                    .addComponent(sectorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(compLabel3)
-                    .addComponent(logoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(compLabel4)
-                    .addComponent(sharesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(compLabel5)
-                    .addComponent(currencyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(compLabel6)
-                    .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addCompanyButton)
-                    .addComponent(notificationLabel))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(symbolCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(removeCompanyButton))
+                        .addGap(228, 228, 228)
+                        .addComponent(notificationLabel))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(compLabel1)
+                            .addComponent(symbolText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(compLabel2))
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(compLabel7)
+                            .addComponent(sectorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(compLabel3)
+                            .addComponent(logoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(compLabel4)
+                            .addComponent(sharesText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(compLabel5)
+                            .addComponent(currencyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(compLabel6)
+                            .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addCompanyButton)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,9 +259,7 @@ public class adminView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -259,6 +278,8 @@ public class adminView extends javax.swing.JFrame {
             shares sharesFrame = new shares(user);
             sharesFrame.setVisible(true);
             this.dispose();
+        } catch (userws.JAXBException_Exception ex) {
+            Logger.getLogger(adminView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JAXBException_Exception ex) {
             Logger.getLogger(adminView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -300,6 +321,25 @@ public class adminView extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_addCompanyButtonActionPerformed
+
+    private void removeCompanyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCompanyButtonActionPerformed
+        // TODO add your handling code here:
+        String symbol = symbolCheckBox.getSelectedItem().toString();
+        if (!symbol.equals("None") && !symbol.equals("")) {
+            int response = JOptionPane.showConfirmDialog(this,
+                    "Do you want to remove " + symbol + "?");
+            if (response==0) {
+                try {
+                    removeCompany(symbol);
+                    loadCompanies();
+                } catch (JAXBException_Exception ex) {
+                    Logger.getLogger(adminView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException_Exception ex) {
+                    Logger.getLogger(adminView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_removeCompanyButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,13 +388,13 @@ public class adminView extends javax.swing.JFrame {
     private javax.swing.JLabel compLabel7;
     private javax.swing.JLabel compLabel8;
     private javax.swing.JTextField currencyText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField logoText;
     private javax.swing.JButton logoutButton;
     private javax.swing.JTextField nameText;
     private javax.swing.JLabel notificationLabel;
     private javax.swing.JTextField priceText;
+    private javax.swing.JButton removeCompanyButton;
     private javax.swing.JTextField sectorText;
     private javax.swing.JTextField sharesText;
     private javax.swing.JComboBox symbolCheckBox;
@@ -363,9 +403,21 @@ public class adminView extends javax.swing.JFrame {
     private javax.swing.JButton viewSharesButton;
     // End of variables declaration//GEN-END:variables
 
-    private static AddNewCompanyResponse.Return addNewCompany(java.lang.String symbol, java.lang.String company, java.lang.String ftseSector, java.lang.String logo, int availableShares, java.lang.String currency, float shareValue) throws FileNotFoundException_Exception, JAXBException_Exception, DatatypeConfigurationException_Exception {
+    private static AddNewCompanyResponse.Return addNewCompany(java.lang.String symbol, java.lang.String company, java.lang.String ftseSector, java.lang.String logo, int availableShares, java.lang.String currency, float shareValue) throws FileNotFoundException_Exception, DatatypeConfigurationException_Exception, JAXBException_Exception {
         sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
         sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
         return port.addNewCompany(symbol, company, ftseSector, logo, availableShares, currency, shareValue);
+    }
+
+    private static java.util.List<java.lang.String> getCompanySymbols() throws JAXBException_Exception {
+        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.getCompanySymbols();
+    }
+
+    private static RemoveCompanyResponse.Return removeCompany(java.lang.String companySymbol) throws JAXBException_Exception, FileNotFoundException_Exception {
+        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.removeCompany(companySymbol);
     }
 }

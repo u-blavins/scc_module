@@ -16,6 +16,23 @@
             <classpath path="${libs.jaxws21.classpath}"/>
         </taskdef>
     </target>
+    <target name="wsimport-client-UserService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/UserService"/>
+        <property name="wsdl-UserService" location="xml-resources/web-service-references/UserService/wsdl/localhost_8080/UserService/UserService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/UserService" destdir="${build.generated.dir}/jax-wsCache/UserService" wsdl="${wsdl-UserService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/UserService/UserService?WSDL" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-UserService}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/UserService"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/UserService">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-UserService" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/UserService"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/userws"/>
+    </target>
     <target name="wsimport-client-SharesBrokerWS" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/SharesBrokerWS"/>
         <property name="wsdl-SharesBrokerWS" location="xml-resources/web-service-references/SharesBrokerWS/wsdl/localhost_8080/SharesBrokerWS/SharesBrokerWS.wsdl"/>
@@ -33,5 +50,5 @@
         <delete dir="${build.generated.dir}/jax-wsCache/SharesBrokerWS"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/sharesbroker"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-SharesBrokerWS"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-UserService, wsimport-client-SharesBrokerWS"/>
 </project>

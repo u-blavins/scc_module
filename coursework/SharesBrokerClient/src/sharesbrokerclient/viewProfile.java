@@ -10,13 +10,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import org.netbeans.xml.schema.shares.ShareType;
-import org.netbeans.xml.schema.shares.UserType;
-import org.netbeans.xml.schema.shares.Users;
-import sharesbroker.DatatypeConfigurationException_Exception;
-import sharesbroker.FileNotFoundException_Exception;
+import org.netbeans.xml.schema.users.UserType;
 import sharesbroker.JAXBException_Exception;
-import sharesbroker.SellSharesResponse;
+import userws.SellSharesResponse;
 
 /**
  *
@@ -31,7 +27,11 @@ public class viewProfile extends javax.swing.JFrame {
      */
     public viewProfile(String username) throws JAXBException_Exception {
         initComponents();
-        user = getUser(username);
+        try {
+            user = getUser(username);
+        } catch (userws.JAXBException_Exception ex) {
+            Logger.getLogger(viewProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
         usernameLabel.setText(user.getUsername());
         loadTable(user);
         loadCompanySymbols();
@@ -233,6 +233,8 @@ public class viewProfile extends javax.swing.JFrame {
             this.dispose();
         } catch (JAXBException_Exception ex) {
             Logger.getLogger(viewProfile.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (userws.JAXBException_Exception ex) {
+            Logger.getLogger(viewProfile.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_viewSharesButtonActionPerformed
@@ -250,7 +252,11 @@ public class viewProfile extends javax.swing.JFrame {
                 loadTable(getUser(user.getUsername()));
             } catch (NumberFormatException ex) {
                 notificationLabel.setText("Number not provided");
-            } catch (JAXBException_Exception | DatatypeConfigurationException_Exception | FileNotFoundException_Exception ex) {
+            } catch (userws.JAXBException_Exception ex) {
+                Logger.getLogger(viewProfile.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (userws.DatatypeConfigurationException_Exception ex) {
+                Logger.getLogger(viewProfile.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (userws.FileNotFoundException_Exception ex) {
                 Logger.getLogger(viewProfile.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
@@ -308,15 +314,15 @@ public class viewProfile extends javax.swing.JFrame {
     private javax.swing.JButton viewSharesButton;
     // End of variables declaration//GEN-END:variables
 
-    private static UserType getUser(java.lang.String username) throws JAXBException_Exception {
-        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
-        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+    private static UserType getUser(java.lang.String username) throws userws.JAXBException_Exception {
+        userws.UserService_Service service = new userws.UserService_Service();
+        userws.UserService port = service.getUserServicePort();
         return port.getUser(username);
     }
 
-    private static SellSharesResponse.Return sellShares(java.lang.String username, java.lang.String companySymbol, int shares) throws JAXBException_Exception, DatatypeConfigurationException_Exception, FileNotFoundException_Exception {
-        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
-        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+    private static SellSharesResponse.Return sellShares(java.lang.String username, java.lang.String companySymbol, int shares) throws userws.JAXBException_Exception, userws.DatatypeConfigurationException_Exception, userws.FileNotFoundException_Exception {
+        userws.UserService_Service service = new userws.UserService_Service();
+        userws.UserService port = service.getUserServicePort();
         return port.sellShares(username, companySymbol, shares);
     }
 }

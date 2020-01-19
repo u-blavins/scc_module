@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import org.netbeans.xml.schema.shares.ShareType;
-import org.netbeans.xml.schema.shares.UserType;
+import org.netbeans.xml.schema.users.UserType;
 import sharesbroker.JAXBException_Exception;
+import org.netbeans.xml.schema.shares.ShareType;
 
 /**
  *
@@ -28,7 +28,7 @@ public class shares extends javax.swing.JFrame {
      * Creates new form shares
      * @throws sharesbroker.JAXBException_Exception
      */
-    public shares(String username) throws JAXBException_Exception {
+    public shares(String username) throws JAXBException_Exception, userws.JAXBException_Exception {
         initComponents();
         user = getUser(username);
         if (user.getIsAdmin()==0) {
@@ -439,12 +439,13 @@ public class shares extends javax.swing.JFrame {
             }
             
             try {
-                List<ShareType> filterShares = filterQuery(symbol, company, sector,
-                        filterPrice, min, max);
+                List<ShareType> shares = getCompanyShares();
                 if (currencySet) {
                     String code = currencyCodesBox.getSelectedItem().toString();
-                    filterShares = getPriceByCurrency(code, filterShares);
+                    shares = getPriceByCurrency(code, shares);
                 }
+                List<ShareType> filterShares = filterQuery(symbol, company, sector,
+                        filterPrice, min, max, shares);
                 removeData();
                 loadTable(filterShares);
             } catch (JAXBException_Exception ex) {
@@ -490,9 +491,14 @@ public class shares extends javax.swing.JFrame {
 
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         // TODO add your handling code here:
-        adminView adminFrame = new adminView(user.getUsername());
-        adminFrame.setVisible(true);
-        this.dispose();
+        adminView adminFrame;
+        try {
+            adminFrame = new adminView(user.getUsername());
+            adminFrame.setVisible(true);
+            this.dispose();
+        } catch (JAXBException_Exception ex) {
+            Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_adminButtonActionPerformed
 
     private void sectorText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectorText1ActionPerformed
@@ -581,16 +587,58 @@ public class shares extends javax.swing.JFrame {
     private javax.swing.JComboBox symbolsBox;
     // End of variables declaration//GEN-END:variables
 
+//    private static java.util.List<org.netbeans.xml.schema.shares.ShareType> getCompanyShares() throws JAXBException_Exception {
+//        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+//        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+//        return port.getCompanyShares();
+//    }
+//
+//    private static java.util.List<java.lang.String> getFTSESectors() throws JAXBException_Exception {
+//        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+//        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+//        return port.getFTSESectors();
+//    }
+//
+//    private static java.util.List<java.lang.String> getCurrencyCodes() {
+//        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+//        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+//        return port.getCurrencyCodes();
+//    }
+//
+//    private static java.util.List<org.netbeans.xml.schema.shares.ShareType> getPriceByCurrency(java.lang.String newCurrencyCode, java.util.List<org.netbeans.xml.schema.shares.ShareType> shares) {
+//        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+//        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+//        return port.getPriceByCurrency(newCurrencyCode, shares);
+//    }
+//
+//    private static java.util.List<java.lang.String> getCompanySymbols() throws JAXBException_Exception {
+//        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+//        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+//        return port.getCompanySymbols();
+//    }
+//
+//    private static UserType getUser(java.lang.String username) throws JAXBException_Exception {
+//        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+//        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+//        return port.getUser(username);
+//    }
+//
+//    private static java.util.List<org.netbeans.xml.schema.shares.ShareType> filterQuery(java.lang.String symbol, java.lang.String name, java.lang.String sector, java.lang.String filterPrice, float min, float max, java.util.List<org.netbeans.xml.schema.shares.ShareType> shares) throws JAXBException_Exception {
+//        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+//        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+//        return port.filterQuery(symbol, name, sector, filterPrice, min, max, shares);
+//    }
+
+    private static UserType getUser(java.lang.String username) throws userws.JAXBException_Exception {
+        userws.UserService_Service service = new userws.UserService_Service();
+        userws.UserService port = service.getUserServicePort();
+        return port.getUser(username);
+    }
+
     private static java.util.List<org.netbeans.xml.schema.shares.ShareType> getCompanyShares() throws JAXBException_Exception {
         sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
         sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
         return port.getCompanyShares();
-    }
-    
-    private static java.util.List<org.netbeans.xml.schema.shares.ShareType> filterQuery(java.lang.String symbol, java.lang.String name, java.lang.String sector, java.lang.String filterPrice, float min, float max) throws JAXBException_Exception {
-        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
-        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
-        return port.filterQuery(symbol, name, sector, filterPrice, min, max);
     }
 
     private static java.util.List<java.lang.String> getFTSESectors() throws JAXBException_Exception {
@@ -617,9 +665,12 @@ public class shares extends javax.swing.JFrame {
         return port.getCompanySymbols();
     }
 
-    private static UserType getUser(java.lang.String username) throws JAXBException_Exception {
+    private static java.util.List<org.netbeans.xml.schema.shares.ShareType> filterQuery(java.lang.String symbol, java.lang.String name, java.lang.String sector, java.lang.String filterPrice, float min, float max, java.util.List<org.netbeans.xml.schema.shares.ShareType> shares) throws JAXBException_Exception {
         sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
         sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
-        return port.getUser(username);
+        return port.filterQuery(symbol, name, sector, filterPrice, min, max, shares);
     }
+    
+    
+    
 }
