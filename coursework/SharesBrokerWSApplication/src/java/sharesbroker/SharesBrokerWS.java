@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.net.HttpURLConnection;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -26,6 +27,8 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.WebServiceRef;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 /**
  *
@@ -113,7 +116,6 @@ public class SharesBrokerWS {
         for (ShareType share : companyShares) {
             if (symbol.equals(share.getCompanySymbol())) {
                 share.setAvailableShares(shares);
-                share.getSharePrice().setLastUpdated(getCurrentGregorianTime());
             }
         }
         String filePath = 
@@ -755,6 +757,39 @@ public class SharesBrokerWS {
                     java.util.logging.Level.SEVERE, null, ex); //NOI18N
         }
         return temp;
+    }
+    
+    @WebMethod(operationName="getRealTimeConversion")
+    public double getRealTimeConversion(
+            @WebParam(name="arg0")String arg0,
+            @WebParam(name="arg1")String arg1) throws org.json.simple.parser.ParseException {
+        String inline = new String();
+        JSONObject liveResults = new JSONObject();
+        String api_key = "";
+        try {
+            String route = "http://data.fixer.io/api/latest?access_key=" + api_key;
+            URL url = new URL(route);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            if (conn.getResponseCode() != 200) {
+                conn.disconnect();
+                throw new RuntimeException("HttpResponseCode: "+
+                        conn.getResponseCode());
+            } else {
+                Scanner sc = new Scanner(url.openStream());
+                while (sc.hasNextLine()) {
+                    inline += sc.nextLine();
+                }
+                conn.disconnect();
+            }
+        } catch (Exception ex) {
+            
+        }
+        JSONParser parse = new JSONParser();
+        JSONObject jobj = (JSONObject) parse.parse(inline);
+        liveResults = (JSONObject) jobj.get("rates");
+        return (double)liveResults.get(arg1)/(double)liveResults.get(arg0);
     }
     
     @WebMethod(operationName="getStockNews")

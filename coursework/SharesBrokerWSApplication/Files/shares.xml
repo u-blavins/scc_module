@@ -143,4 +143,15 @@
             <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
         </share_price>
     </shares>
+    <shares CompanySymbol="0HT4">
+        <CompanyName>Capital One</CompanyName>
+        <CompanyLogo></CompanyLogo>
+        <AvailableShares>604</AvailableShares>
+        <CompanyFTSESector>Banks</CompanyFTSESector>
+        <share_price>
+            <Currency>USD</Currency>
+            <Value>102.93</Value>
+            <LastUpdated>2020-01-18T19:41:30.715Z</LastUpdated>
+        </share_price>
+    </shares>
 </Company_Shares>
