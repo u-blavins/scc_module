@@ -441,8 +441,8 @@ public class SharesBrokerWS {
         @WebParam(name="sector")String sector,
         @WebParam(name="filterPrice")String filterPrice,
         @WebParam(name="min")float min,
-        @WebParam(name="max")float max) throws JAXBException {
-            List<ShareType> shares = getCompanyShares();
+        @WebParam(name="max")float max,
+        @WebParam(name="shares")List<ShareType> shares) throws JAXBException {
             if(!symbol.equals("")) {
                 shares = searchBySymbol(symbol, shares);
             }
