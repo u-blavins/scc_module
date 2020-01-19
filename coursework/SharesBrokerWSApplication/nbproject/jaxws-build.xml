@@ -59,5 +59,21 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/docwebservices"/>
         <delete dir="${build.generated.dir}/jax-wsCache/CurrencyConversionWS"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-CurrencyConversionWS"/>
+    <target name="wsimport-client-CurrConvertor" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/CurrConvertor"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/CurrConvertor" destdir="${build.generated.dir}/jax-wsCache/CurrConvertor" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/CurrConvertor/wsdl/localhost_8080/CurrConvertor/CurrConvertor.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/CurrConvertor/CurrConvertor?WSDL" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/CurrConvertor/wsdl/localhost_8080/CurrConvertor/CurrConvertor.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/CurrConvertor"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/CurrConvertor">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-CurrConvertor" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/convertor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/CurrConvertor"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-CurrencyConversionWS, wsimport-client-CurrConvertor"/>
 </project>

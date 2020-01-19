@@ -4,4 +4,7 @@
     <system systemId="file:/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Shares.xsd" uri="src/conf/xml-resources/jaxb/SharesRequest/Shares.xsd"/>
     <system systemId="http://localhost:8080/CurrencyConversionWSService/CurrencyConversionWS?WSDL" uri="wsdl/localhost_8080/CurrencyConversionWSService/CurrencyConversionWS.wsdl"/>
     <system systemId="http://localhost:8080/CurrencyConversionWSService/CurrencyConversionWS?xsd=1" uri="wsdl/localhost_8080/CurrencyConversionWSService/CurrencyConversionWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/CurrConvertor/CurrConvertor?WSDL" uri="wsdl/localhost_8080/CurrConvertor/CurrConvertor.wsdl"/>
+    <system systemId="http://localhost:8080/CurrConvertor/CurrConvertor?xsd=1" uri="wsdl/localhost_8080/CurrConvertor/CurrConvertor.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/CurrConvertor/CurrConvertor?xsd=2" uri="wsdl/localhost_8080/CurrConvertor/CurrConvertor.xsd_2.xsd"/>
 </catalog>

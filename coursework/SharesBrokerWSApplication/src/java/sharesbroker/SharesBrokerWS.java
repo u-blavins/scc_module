@@ -5,6 +5,7 @@
  */
 package sharesbroker;
 
+import convertor.CurrConvertor_Service;
 import docwebservices.CurrencyConversionWSService;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,6 +40,8 @@ import org.json.simple.parser.JSONParser;
 @WebService(serviceName = "SharesBrokerWS")
 @Stateless()
 public class SharesBrokerWS {
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/CurrConvertor/CurrConvertor.wsdl")
+    private CurrConvertor_Service service_1;
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/CurrencyConversionWSService/CurrencyConversionWS.wsdl")
     private CurrencyConversionWSService service;
     
@@ -477,18 +480,18 @@ public class SharesBrokerWS {
         return port.getConversionRate(arg0, arg1);
     }
     
-    @WebMethod(operationName = "getCurrencyCodes")
-    public java.util.List<java.lang.String> getCurrencyCodes() {
-        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
-        // If the calling of port operations may lead to race condition some synchronization is required.
-        docwebservices.CurrencyConversionWS port = service.getCurrencyConversionWSPort();
-        List<String> currencys = port.getCurrencyCodes();
-        List<String> codes = new ArrayList<>();        
-        for (String currency : currencys ) {
-            codes.add(currency.substring(0, 3));
-        }
-        return codes;
-    }
+//    @WebMethod(operationName = "getCurrencyCodes")
+//    public java.util.List<java.lang.String> getCurrencyCodes() {
+//        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+//        // If the calling of port operations may lead to race condition some synchronization is required.
+//        docwebservices.CurrencyConversionWS port = service.getCurrencyConversionWSPort();
+//        List<String> currencys = port.getCurrencyCodes();
+//        List<String> codes = new ArrayList<>();        
+//        for (String currency : currencys ) {
+//            codes.add(currency.substring(0, 3));
+//        }
+//        return codes;
+//    }
 
     @WebMethod(operationName="getPriceByCurrency")
     public List<ShareType> getPriceByCurrency (
@@ -498,7 +501,7 @@ public class SharesBrokerWS {
         Map<String, Object> rates = new HashMap<String, Object>();
         for (ShareType share : shares) {
             try {
-                rate = getConversionRate(share.getSharePrice().getCurrency(), 
+                rate = getConversionRate_1(share.getSharePrice().getCurrency(), 
                         newCurrencyCode);
                 rates.put(share.getSharePrice().getCurrency(), rate);
                 share.getSharePrice().setValue(
@@ -798,6 +801,21 @@ public class SharesBrokerWS {
         String sources = "reuters";
         List<String> test = new ArrayList<>();
         return test;
+    }
+
+    @WebMethod(operationName = "getCurrencyCodes")
+    public java.util.List<java.lang.String> getCurrencyCodes() {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        convertor.CurrConvertor port = service_1.getCurrConvertorPort();
+        return port.getCurrCodes();
+    }
+
+    private double getConversionRate_1(java.lang.String arg0, java.lang.String arg1) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        convertor.CurrConvertor port = service_1.getCurrConvertorPort();
+        return port.getConversionRate(arg0, arg1);
     }
     
 }

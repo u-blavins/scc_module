@@ -6,4 +6,7 @@
     <system systemId="http://localhost:8080/CurrencyConversionWSService/CurrencyConversionWS?WSDL" uri="src/conf/xml-resources/web-service-references/CurrencyConversionWS/wsdl/localhost_8080/CurrencyConversionWSService/CurrencyConversionWS.wsdl"/>
     <system systemId="http://localhost:8080/CurrencyConversionWSService/CurrencyConversionWS?xsd=1" uri="src/conf/xml-resources/web-service-references/CurrencyConversionWS/wsdl/localhost_8080/CurrencyConversionWSService/CurrencyConversionWS.xsd_1.xsd"/>
     <system systemId="file:/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/../SharesBroker/src/sharesbroker/Shares.xsd" uri="src/conf/xml-resources/jaxb/sharesRequest/Shares.xsd"/>
+    <system systemId="http://localhost:8080/CurrConvertor/CurrConvertor?WSDL" uri="src/conf/xml-resources/web-service-references/CurrConvertor/wsdl/localhost_8080/CurrConvertor/CurrConvertor.wsdl"/>
+    <system systemId="http://localhost:8080/CurrConvertor/CurrConvertor?xsd=1" uri="src/conf/xml-resources/web-service-references/CurrConvertor/wsdl/localhost_8080/CurrConvertor/CurrConvertor.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/CurrConvertor/CurrConvertor?xsd=2" uri="src/conf/xml-resources/web-service-references/CurrConvertor/wsdl/localhost_8080/CurrConvertor/CurrConvertor.xsd_2.xsd"/>
 </catalog>
