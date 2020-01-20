@@ -37,6 +37,7 @@ public class UserService {
     
     // User management
     
+    // unmarshall data from users storage 'users.xml'
     @WebMethod(operationName="listUsers")
     private Users listUsers() throws JAXBException {
         Users newUsers = new Users();
@@ -47,7 +48,7 @@ public class UserService {
             javax.xml.bind.Unmarshaller unmarshaller = 
                     jaxbContext.createUnmarshaller();
             File file = new File(
-                    "/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/users.xml");
+                    "/Users/UBlavins/ntu_year3/scc_module/coursework/UserWS/Files/users.xml");
             newUsers = (Users) unmarshaller.unmarshal(file);
         } catch (javax.xml.bind.JAXBException ex) {
             java.util.logging.Logger.getLogger("global").log(
@@ -92,7 +93,7 @@ public class UserService {
             newUser.getUserShares();
             users.add(newUser);
             String filePath = 
-                "/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/users.xml";
+                "/Users/UBlavins/ntu_year3/scc_module/coursework/UserWS/Files/users.xml";
             FileOutputStream outFile = new FileOutputStream(filePath);
             
             try {
@@ -167,7 +168,7 @@ public class UserService {
         }
         
         String filePath = 
-                "/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/users.xml";
+                "/Users/UBlavins/ntu_year3/scc_module/coursework/UserWS/Files/users.xml";
         FileOutputStream outFile = new FileOutputStream(filePath);
 
         try {
@@ -224,7 +225,7 @@ public class UserService {
         }
         
         String filePath = 
-                "/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/users.xml";
+                "/Users/UBlavins/ntu_year3/scc_module/coursework/UserWS/Files/users.xml";
         FileOutputStream outFile = new FileOutputStream(filePath);
 
         try {

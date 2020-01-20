@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -109,37 +111,82 @@ public class SharesBrokerWS {
     @WebMethod(operationName = "updateCompanyShare")
     public CompanyShares updateCompanyShare(
             @WebParam(name = "symbol") String symbol,
-            @WebParam(name = "shares")int shares) throws JAXBException, 
-            FileNotFoundException,
-            DatatypeConfigurationException {
+            @WebParam(name = "shares")int shares) throws JAXBException {
+        boolean updated = false;
         CompanyShares updatedCompanyShares = listShares();
         List<ShareType> companyShares = updatedCompanyShares.getShares();
         for (ShareType share : companyShares) {
             if (symbol.equals(share.getCompanySymbol())) {
                 share.setAvailableShares(shares);
+                updated = true;
             }
         }
-        String filePath = 
-                "/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/shares.xml";
-        FileOutputStream outFile = new FileOutputStream(filePath);
-        try {
-            javax.xml.bind.JAXBContext jaxbCtx = 
-                    javax.xml.bind.JAXBContext.newInstance(
-                        updatedCompanyShares.getClass().getPackage().getName());
-            javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
-            marshaller.setProperty(
-                    javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
-            marshaller.setProperty(
-                    javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, 
-                    Boolean.TRUE);
-            marshaller.marshal(updatedCompanyShares, outFile);
-            System.out.println(
-                    "Test - " + symbol + ": has  " + shares + " shares");
-        } catch (javax.xml.bind.JAXBException ex) {
-            java.util.logging.Logger.getLogger("global").log(
-                    java.util.logging.Level.SEVERE, null, ex); //NOI18N
+        if (updated) {
+            try {
+                String filePath = 
+                    "/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/shares.xml";
+                FileOutputStream outFile = new FileOutputStream(filePath);
+                javax.xml.bind.JAXBContext jaxbCtx = 
+                        javax.xml.bind.JAXBContext.newInstance(
+                            updatedCompanyShares.getClass().getPackage().getName());
+                javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
+                marshaller.setProperty(
+                        javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
+                marshaller.setProperty(
+                        javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, 
+                        Boolean.TRUE);
+                marshaller.marshal(updatedCompanyShares, outFile);
+            } catch (javax.xml.bind.JAXBException ex) {
+                java.util.logging.Logger.getLogger("global").log(
+                        java.util.logging.Level.SEVERE, null, ex); //NOI18N
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(SharesBrokerWS.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return updatedCompanyShares;
+    }
+    
+    @WebMethod(operationName="updateSharePrice")
+    public List<ShareType> updateSharePrice(
+            @WebParam(name="symbol")String symbol,
+            @WebParam(name="price")float price) throws JAXBException {
+        boolean updated = false;
+        CompanyShares updatedCompanyShares = listShares();
+        List<ShareType> shares = updatedCompanyShares.getShares();
+        for (ShareType share : updatedCompanyShares.getShares()) {
+            if (symbol.equals(share.getCompanySymbol())) {
+                share.getSharePrice().setValue(price);
+                try {
+                    share.getSharePrice().setLastUpdated(getCurrentGregorianTime());
+                } catch (DatatypeConfigurationException ex) {
+                    Logger.getLogger(SharesBrokerWS.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                updated = true;
+            }
+        }
+        if (updated) {
+            try {
+                String filePath = 
+                    "/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/shares.xml";
+                FileOutputStream outFile = new FileOutputStream(filePath);
+                javax.xml.bind.JAXBContext jaxbCtx = 
+                        javax.xml.bind.JAXBContext.newInstance(
+                            updatedCompanyShares.getClass().getPackage().getName());
+                javax.xml.bind.Marshaller marshaller = jaxbCtx.createMarshaller();
+                marshaller.setProperty(
+                        javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
+                marshaller.setProperty(
+                        javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, 
+                        Boolean.TRUE);
+                marshaller.marshal(updatedCompanyShares, outFile);
+            } catch (javax.xml.bind.JAXBException ex) {
+                java.util.logging.Logger.getLogger("global").log(
+                        java.util.logging.Level.SEVERE, null, ex); //NOI18N
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(SharesBrokerWS.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return shares;
     }
     
     /**
@@ -346,7 +393,7 @@ public class SharesBrokerWS {
         }
         
         String filePath = 
-                "/Users/UBlavins/Desktop/output.xml";
+                "/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerWSApplication/Files/shares.xml";
         FileOutputStream outFile = new FileOutputStream(filePath);
         
         try {

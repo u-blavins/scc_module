@@ -146,12 +146,12 @@
     <shares CompanySymbol="0HT4">
         <CompanyName>Capital One</CompanyName>
         <CompanyLogo></CompanyLogo>
-        <AvailableShares>604</AvailableShares>
+        <AvailableShares>601</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
             <Currency>USD</Currency>
             <Value>102.93</Value>
-            <LastUpdated>2020-01-18T19:41:30.715Z</LastUpdated>
+            <LastUpdated>2020-01-20T01:52:56.639Z</LastUpdated>
         </share_price>
     </shares>
 </Company_Shares>
