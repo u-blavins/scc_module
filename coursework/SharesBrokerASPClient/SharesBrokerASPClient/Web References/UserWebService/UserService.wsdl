@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="http://userws/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="UserService" targetNamespace="http://userws/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/UserService/UserService?xsd=1" namespace="http://xml.netbeans.org/schema/Users" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/UserService/UserService?xsd=2" namespace="http://userws/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+    </xsd:schema>
+  </types>
+  <message name="getUser">
+    <part name="parameters" element="tns:getUser" />
+  </message>
+  <message name="getUserResponse">
+    <part name="parameters" element="tns:getUserResponse" />
+  </message>
+  <message name="JAXBException">
+    <part name="fault" element="tns:JAXBException" />
+  </message>
+  <message name="registerUser">
+    <part name="parameters" element="tns:registerUser" />
+  </message>
+  <message name="registerUserResponse">
+    <part name="parameters" element="tns:registerUserResponse" />
+  </message>
+  <message name="FileNotFoundException">
+    <part name="fault" element="tns:FileNotFoundException" />
+  </message>
+  <message name="loginUser">
+    <part name="parameters" element="tns:loginUser" />
+  </message>
+  <message name="loginUserResponse">
+    <part name="parameters" element="tns:loginUserResponse" />
+  </message>
+  <message name="purchaseShares">
+    <part name="parameters" element="tns:purchaseShares" />
+  </message>
+  <message name="purchaseSharesResponse">
+    <part name="parameters" element="tns:purchaseSharesResponse" />
+  </message>
+  <message name="DatatypeConfigurationException">
+    <part name="fault" element="tns:DatatypeConfigurationException" />
+  </message>
+  <message name="sellShares">
+    <part name="parameters" element="tns:sellShares" />
+  </message>
+  <message name="sellSharesResponse">
+    <part name="parameters" element="tns:sellSharesResponse" />
+  </message>
+  <message name="getUserShares">
+    <part name="parameters" element="tns:getUserShares" />
+  </message>
+  <message name="getUserSharesResponse">
+    <part name="parameters" element="tns:getUserSharesResponse" />
+  </message>
+  <portType name="UserService">
+    <operation name="getUser">
+      <input wsam:Action="http://userws/UserService/getUserRequest" message="tns:getUser" />
+      <output wsam:Action="http://userws/UserService/getUserResponse" message="tns:getUserResponse" />
+      <fault wsam:Action="http://userws/UserService/getUser/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+    </operation>
+    <operation name="registerUser">
+      <input wsam:Action="http://userws/UserService/registerUserRequest" message="tns:registerUser" />
+      <output wsam:Action="http://userws/UserService/registerUserResponse" message="tns:registerUserResponse" />
+      <fault wsam:Action="http://userws/UserService/registerUser/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+      <fault wsam:Action="http://userws/UserService/registerUser/Fault/FileNotFoundException" name="FileNotFoundException" message="tns:FileNotFoundException" />
+    </operation>
+    <operation name="loginUser">
+      <input wsam:Action="http://userws/UserService/loginUserRequest" message="tns:loginUser" />
+      <output wsam:Action="http://userws/UserService/loginUserResponse" message="tns:loginUserResponse" />
+      <fault wsam:Action="http://userws/UserService/loginUser/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+    </operation>
+    <operation name="purchaseShares">
+      <input wsam:Action="http://userws/UserService/purchaseSharesRequest" message="tns:purchaseShares" />
+      <output wsam:Action="http://userws/UserService/purchaseSharesResponse" message="tns:purchaseSharesResponse" />
+      <fault wsam:Action="http://userws/UserService/purchaseShares/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+      <fault wsam:Action="http://userws/UserService/purchaseShares/Fault/FileNotFoundException" name="FileNotFoundException" message="tns:FileNotFoundException" />
+      <fault wsam:Action="http://userws/UserService/purchaseShares/Fault/DatatypeConfigurationException" name="DatatypeConfigurationException" message="tns:DatatypeConfigurationException" />
+    </operation>
+    <operation name="sellShares">
+      <input wsam:Action="http://userws/UserService/sellSharesRequest" message="tns:sellShares" />
+      <output wsam:Action="http://userws/UserService/sellSharesResponse" message="tns:sellSharesResponse" />
+      <fault wsam:Action="http://userws/UserService/sellShares/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+      <fault wsam:Action="http://userws/UserService/sellShares/Fault/FileNotFoundException" name="FileNotFoundException" message="tns:FileNotFoundException" />
+      <fault wsam:Action="http://userws/UserService/sellShares/Fault/DatatypeConfigurationException" name="DatatypeConfigurationException" message="tns:DatatypeConfigurationException" />
+    </operation>
+    <operation name="getUserShares">
+      <input wsam:Action="http://userws/UserService/getUserSharesRequest" message="tns:getUserShares" />
+      <output wsam:Action="http://userws/UserService/getUserSharesResponse" message="tns:getUserSharesResponse" />
+      <fault wsam:Action="http://userws/UserService/getUserShares/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+    </operation>
+  </portType>
+  <binding name="UserServicePortBinding" type="tns:UserService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="getUser">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="JAXBException">
+        <soap:fault use="literal" name="JAXBException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="registerUser">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="JAXBException">
+        <soap:fault use="literal" name="JAXBException" namespace="" />
+      </fault>
+      <fault name="FileNotFoundException">
+        <soap:fault use="literal" name="FileNotFoundException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="loginUser">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="JAXBException">
+        <soap:fault use="literal" name="JAXBException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="purchaseShares">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="JAXBException">
+        <soap:fault use="literal" name="JAXBException" namespace="" />
+      </fault>
+      <fault name="FileNotFoundException">
+        <soap:fault use="literal" name="FileNotFoundException" namespace="" />
+      </fault>
+      <fault name="DatatypeConfigurationException">
+        <soap:fault use="literal" name="DatatypeConfigurationException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="sellShares">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="JAXBException">
+        <soap:fault use="literal" name="JAXBException" namespace="" />
+      </fault>
+      <fault name="FileNotFoundException">
+        <soap:fault use="literal" name="FileNotFoundException" namespace="" />
+      </fault>
+      <fault name="DatatypeConfigurationException">
+        <soap:fault use="literal" name="DatatypeConfigurationException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getUserShares">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="JAXBException">
+        <soap:fault use="literal" name="JAXBException" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="UserService">
+    <port name="UserServicePort" binding="tns:UserServicePortBinding">
+      <soap:address location="http://localhost:8080/UserService/UserService" />
+    </port>
+  </service>
+</definitions>

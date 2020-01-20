@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ns1="http://xml.netbeans.org/schema/Users" xmlns:tns="http://userws/" targetNamespace="http://userws/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/UserService/UserService?xsd=1" namespace="http://xml.netbeans.org/schema/Users" />
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+  <xs:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+  <xs:element name="DatatypeConfigurationException" type="tns:DatatypeConfigurationException" />
+  <xs:element name="FileNotFoundException" type="tns:FileNotFoundException" />
+  <xs:element name="JAXBException" type="tns:JAXBException" />
+  <xs:element name="getUser" type="tns:getUser" />
+  <xs:element name="getUserResponse" type="tns:getUserResponse" />
+  <xs:element name="getUserShares" type="tns:getUserShares" />
+  <xs:element name="getUserSharesResponse" type="tns:getUserSharesResponse" />
+  <xs:element name="loginUser" type="tns:loginUser" />
+  <xs:element name="loginUserResponse" type="tns:loginUserResponse" />
+  <xs:element name="purchaseShares" type="tns:purchaseShares" />
+  <xs:element name="purchaseSharesResponse" type="tns:purchaseSharesResponse" />
+  <xs:element name="registerUser" type="tns:registerUser" />
+  <xs:element name="registerUserResponse" type="tns:registerUserResponse" />
+  <xs:element name="sellShares" type="tns:sellShares" />
+  <xs:element name="sellSharesResponse" type="tns:sellSharesResponse" />
+  <xs:complexType name="registerUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="username" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+      <xs:element minOccurs="0" name="conpassword" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registerUserResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="JAXBException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="errorCode" type="xs:string" />
+      <xs:element minOccurs="0" name="linkedException" type="tns:throwable" />
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="throwable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="stackTrace" nillable="true" type="tns:stackTraceElement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="stackTraceElement" final="extension restriction">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="FileNotFoundException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="username" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:userType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="purchaseShares">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="username" type="xs:string" />
+      <xs:element minOccurs="0" name="companySymbol" type="xs:string" />
+      <xs:element name="shares" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="purchaseSharesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" form="qualified" name="users" nillable="true" type="ns1:userType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DatatypeConfigurationException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="username" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginUserResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sellShares">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="username" type="xs:string" />
+      <xs:element minOccurs="0" name="companySymbol" type="xs:string" />
+      <xs:element name="shares" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sellSharesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" form="qualified" name="users" nillable="true" type="ns1:userType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserShares">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="username" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUserSharesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element form="qualified" name="CompanySymbol" type="xs:string" />
+            <xs:element form="qualified" name="CompanyShares" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
