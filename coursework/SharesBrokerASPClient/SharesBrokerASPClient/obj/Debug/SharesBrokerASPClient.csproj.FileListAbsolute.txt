@@ -7,4 +7,3 @@
 /Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerASPClient/SharesBrokerASPClient/bin/SharesBrokerASPClient.pdb
 /Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerASPClient/SharesBrokerASPClient/obj/Debug/SharesBrokerASPClient.dll
 /Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerASPClient/SharesBrokerASPClient/obj/Debug/SharesBrokerASPClient.pdb
-/Users/UBlavins/ntu_year3/scc_module/coursework/SharesBrokerASPClient/SharesBrokerASPClient/obj/Debug/SharesBrokerASPClient.csprojAssemblyReference.cache

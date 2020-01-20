@@ -40,6 +40,7 @@ namespace SharesBrokerASPClient
 
         public void loadTable(shareType[] companyShares)
         {
+            shares = companyShares;
             int numShares = companyShares.Length;
             for (int i = 0; i < numShares; i++)
             {
@@ -68,9 +69,15 @@ namespace SharesBrokerASPClient
             return data;
         }
 
-        public void resetTable()
+        public void resetTable(object sender, EventArgs args)
         {
-
+            int rows = shares.Length;
+            int i = 1;
+            while (rows > 0)
+            {
+                sharesTable.Rows.Remove(sharesTable.Rows[i]);
+                rows--;
+            }
         }
 
     }

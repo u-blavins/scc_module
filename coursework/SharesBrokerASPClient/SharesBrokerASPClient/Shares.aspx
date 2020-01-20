@@ -37,7 +37,7 @@
                         </asp:DropDownList>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:Button id="resetFilterButton" runat="server" Text="Reset" OnClick="reset"></asp:Button>
+                        <asp:Button id="resetFilterButton" runat="server" Text="Reset" OnClick="resetTable"></asp:Button>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
