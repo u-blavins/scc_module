@@ -36,6 +36,10 @@ public class CurrConvertor {
         currentRates = getLatestExchangeRates();
     }
     
+    /** 
+     * Method that returns CurrencyRates that are from storage. Used for offline
+     * use if API times out.
+     */
     @WebMethod(operationName="getLocalRates")
     public CurrencyRates getLocalRates() {
         CurrencyRates rates = new CurrencyRates();
@@ -55,15 +59,27 @@ public class CurrConvertor {
         return rates;
     }
     
+    /**
+     * Method that updates the conversion rates from an API and stored in XML
+     * for a level of persistence.
+     * @return updated (boolean) if the rates have been updated
+     */
     @WebMethod(operationName="updateRates")
-    public void updateRates() {
+    public boolean updateRates() {
+        boolean updated = false;
+        JSONObject newRates = new JSONObject();
         try {
-            JSONObject newRates = getLatestExchangeRates();
+            newRates = getLatestExchangeRates();
             if (newRates!=null) {
+                updated = true;
                 currentRates = newRates;
             }
             saveToXml(currentRates);
-        } catch (Exception ex) {}
+        } catch (NullPointerException ex) {
+            java.util.logging.Logger.getLogger("global").log(
+                    java.util.logging.Level.INFO, null, ex);
+        }
+        return updated;
     }
     
     private void saveToXml(JSONObject obj) {

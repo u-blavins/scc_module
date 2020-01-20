@@ -13,11 +13,11 @@
 <message name="getCurrCodesResponse">
 <part name="parameters" element="tns:getCurrCodesResponse"/>
 </message>
-<message name="updateRates">
-<part name="parameters" element="tns:updateRates"/>
+<message name="getConversionRate">
+<part name="parameters" element="tns:getConversionRate"/>
 </message>
-<message name="updateRatesResponse">
-<part name="parameters" element="tns:updateRatesResponse"/>
+<message name="getConversionRateResponse">
+<part name="parameters" element="tns:getConversionRateResponse"/>
 </message>
 <message name="getLocalRates">
 <part name="parameters" element="tns:getLocalRates"/>
@@ -25,28 +25,28 @@
 <message name="getLocalRatesResponse">
 <part name="parameters" element="tns:getLocalRatesResponse"/>
 </message>
-<message name="getConversionRate">
-<part name="parameters" element="tns:getConversionRate"/>
+<message name="updateRates">
+<part name="parameters" element="tns:updateRates"/>
 </message>
-<message name="getConversionRateResponse">
-<part name="parameters" element="tns:getConversionRateResponse"/>
+<message name="updateRatesResponse">
+<part name="parameters" element="tns:updateRatesResponse"/>
 </message>
 <portType name="CurrConvertor">
 <operation name="getCurrCodes">
 <input wsam:Action="http://convertor/CurrConvertor/getCurrCodesRequest" message="tns:getCurrCodes"/>
 <output wsam:Action="http://convertor/CurrConvertor/getCurrCodesResponse" message="tns:getCurrCodesResponse"/>
 </operation>
-<operation name="updateRates">
-<input wsam:Action="http://convertor/CurrConvertor/updateRatesRequest" message="tns:updateRates"/>
-<output wsam:Action="http://convertor/CurrConvertor/updateRatesResponse" message="tns:updateRatesResponse"/>
+<operation name="getConversionRate">
+<input wsam:Action="http://convertor/CurrConvertor/getConversionRateRequest" message="tns:getConversionRate"/>
+<output wsam:Action="http://convertor/CurrConvertor/getConversionRateResponse" message="tns:getConversionRateResponse"/>
 </operation>
 <operation name="getLocalRates">
 <input wsam:Action="http://convertor/CurrConvertor/getLocalRatesRequest" message="tns:getLocalRates"/>
 <output wsam:Action="http://convertor/CurrConvertor/getLocalRatesResponse" message="tns:getLocalRatesResponse"/>
 </operation>
-<operation name="getConversionRate">
-<input wsam:Action="http://convertor/CurrConvertor/getConversionRateRequest" message="tns:getConversionRate"/>
-<output wsam:Action="http://convertor/CurrConvertor/getConversionRateResponse" message="tns:getConversionRateResponse"/>
+<operation name="updateRates">
+<input wsam:Action="http://convertor/CurrConvertor/updateRatesRequest" message="tns:updateRates"/>
+<output wsam:Action="http://convertor/CurrConvertor/updateRatesResponse" message="tns:updateRatesResponse"/>
 </operation>
 </portType>
 <binding name="CurrConvertorPortBinding" type="tns:CurrConvertor">
@@ -60,7 +60,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="updateRates">
+<operation name="getConversionRate">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -78,7 +78,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getConversionRate">
+<operation name="updateRates">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

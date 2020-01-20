@@ -13,7 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.net.HttpURLConnection;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -29,8 +28,6 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.WebServiceRef;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 /**
  *
@@ -487,6 +484,14 @@ public class SharesBrokerWS {
         // If the calling of port operations may lead to race condition some synchronization is required.
         convertor.CurrConvertor port = service.getCurrConvertorPort();
         return port.getConversionRate(arg0, arg1);
+    }
+    
+    @WebMethod(operationName="updateRates")
+    public boolean updateRates() {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        convertor.CurrConvertor port = service.getCurrConvertorPort();
+        return port.updateRates();
     }
     
     @WebMethod(operationName="getPriceByCurrency")
