@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-	<title>SharesBrokerClient</title>
+	<title>SharesBroker</title>
 </head>
 <body>
    <h1> Shares Broker Client </h1>
@@ -12,7 +12,7 @@
         <asp:TextBox id="loginUsername" runat="server"/>
         <br>
         <label>Password: </label>
-        <asp:TextBox id="loginPassword" runat="server"/>
+        <asp:TextBox id="loginPassword" runat="server" TextMode="Password"/>
         <br>
         <asp:Button id="loginButton" runat="server" Text="Login" OnClick="login"/>
 	</form>
@@ -23,10 +23,10 @@
         <asp:TextBox id="regUsername" runat="server"/>
         <br>
         <label>Password: </label>
-        <asp:TextBox id="regPassword" runat="server"/>
+        <asp:TextBox id="regPassword" runat="server" TextMode="Password"/>
         <br>
         <label>Confirm Password: </label>
-        <asp:TextBox id="regConPassword" runat="server"/>
+        <asp:TextBox id="regConPassword" runat="server" TextMode="Password"/>
         <br>
         <asp:Button id="registerButton" runat="server" Text="Register" OnClick="register"/>
    </form>

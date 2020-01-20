@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{A7EB24A6-4918-41FC-BD20-325419559641}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SharesBrokerASPClient/Default.aspx.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SharesBrokerASPClient/Web References/SharesBroker/Reference.cs">
     <Files>
-      <File FileName="SharesBrokerASPClient/Default.aspx" Line="26" Column="55" />
-      <File FileName="SharesBrokerASPClient/Shares.aspx" Line="1" Column="1" />
-      <File FileName="SharesBrokerASPClient/Shares.aspx.cs" Line="1" Column="1" />
-      <File FileName="SharesBrokerASPClient/Default.aspx.cs" Line="46" Column="59" />
-      <File FileName="SharesBrokerASPClient/Web References/UserWebService/Reference.cs" Line="1" Column="1" />
+      <File FileName="SharesBrokerASPClient/Default.aspx" Line="6" Column="8" />
+      <File FileName="SharesBrokerASPClient/Default.aspx.cs" Line="7" Column="1" />
+      <File FileName="SharesBrokerASPClient/Shares.aspx" Line="40" Column="102" />
+      <File FileName="SharesBrokerASPClient/Shares.aspx.cs" Line="43" Column="1" />
+      <File FileName="SharesBrokerASPClient/Shares.aspx.designer.cs" Line="16" Column="52" />
+      <File FileName="SharesBrokerASPClient/Web References/SharesBroker/Reference.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,12 +15,12 @@
             <Node name="SharesBrokerASPClient" expanded="True">
               <Node name="WebReferences" expanded="True">
                 <Node name="WebReferenceItem" expanded="True">
-                  <Node name="Reference.map" expanded="True" />
+                  <Node name="Reference.map" expanded="True">
+                    <Node name="Reference.cs" selected="True" />
+                  </Node>
                 </Node>
               </Node>
-              <Node name="Default.aspx" expanded="True">
-                <Node name="Default.aspx.cs" selected="True" />
-              </Node>
+              <Node name="Default.aspx" expanded="True" />
               <Node name="Shares.aspx" expanded="True" />
             </Node>
           </Node>

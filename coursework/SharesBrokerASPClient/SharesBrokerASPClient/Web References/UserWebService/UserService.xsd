@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://xml.netbeans.org/schema/Users" elementFormDefault="qualified" targetNamespace="http://xml.netbeans.org/schema/Users" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
-  <xs:import namespace="http://schemas.xmlsoap.org/wsdl/" />
   <xs:element name="Users">
     <xs:complexType>
       <xs:sequence>

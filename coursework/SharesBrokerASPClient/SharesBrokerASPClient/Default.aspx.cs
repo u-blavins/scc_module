@@ -8,7 +8,7 @@ namespace SharesBrokerASPClient
     public partial class Default : System.Web.UI.Page
     {
 
-        protected void Page_Load()
+        protected void Page_Load(object sender, EventArgs args)
         {
 
         }
@@ -22,6 +22,7 @@ namespace SharesBrokerASPClient
                 isUser = userWsProxy.loginUser(loginUsername.Text, loginPassword.Text);
                 if (isUser)
                 {
+                    Session.Add("username", loginUsername.Text);
                     Response.Redirect("~/Shares.aspx");
                 } else
                 {

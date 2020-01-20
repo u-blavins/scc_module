@@ -3,13 +3,9 @@
   <types>
     <xsd:schema>
       <xsd:import schemaLocation="http://localhost:8080/UserService/UserService?xsd=1" namespace="http://xml.netbeans.org/schema/Users" />
-      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
-      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
     </xsd:schema>
     <xsd:schema>
       <xsd:import schemaLocation="http://localhost:8080/UserService/UserService?xsd=2" namespace="http://userws/" />
-      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
-      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
     </xsd:schema>
   </types>
   <message name="getUser">

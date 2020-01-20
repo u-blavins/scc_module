@@ -18,7 +18,7 @@ namespace SharesBrokerASPClient.UserWebService {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="UserServicePortBinding", Namespace="http://userws/")]
@@ -266,7 +266,7 @@ namespace SharesBrokerASPClient.UserWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -288,7 +288,7 @@ namespace SharesBrokerASPClient.UserWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -303,7 +303,7 @@ namespace SharesBrokerASPClient.UserWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -318,11 +318,11 @@ namespace SharesBrokerASPClient.UserWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     public delegate void getUserCompletedEventHandler(object sender, getUserCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -344,11 +344,11 @@ namespace SharesBrokerASPClient.UserWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     public delegate void registerUserCompletedEventHandler(object sender, registerUserCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class registerUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -370,11 +370,11 @@ namespace SharesBrokerASPClient.UserWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     public delegate void loginUserCompletedEventHandler(object sender, loginUserCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class loginUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -396,11 +396,11 @@ namespace SharesBrokerASPClient.UserWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     public delegate void purchaseSharesCompletedEventHandler(object sender, purchaseSharesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class purchaseSharesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -422,11 +422,11 @@ namespace SharesBrokerASPClient.UserWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     public delegate void sellSharesCompletedEventHandler(object sender, sellSharesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class sellSharesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -448,11 +448,11 @@ namespace SharesBrokerASPClient.UserWebService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     public delegate void getUserSharesCompletedEventHandler(object sender, getUserSharesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.3.11.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getUserSharesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

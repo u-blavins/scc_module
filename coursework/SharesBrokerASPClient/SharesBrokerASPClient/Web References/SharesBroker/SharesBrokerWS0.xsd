@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://xml.netbeans.org/schema/Shares" elementFormDefault="qualified" targetNamespace="http://xml.netbeans.org/schema/Shares" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+  <xs:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+  <xs:element name="Company_Shares">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="shares" nillable="true" type="tns:shareType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="shareType">
+    <xs:sequence>
+      <xs:element name="CompanyName" type="xs:string" />
+      <xs:element name="CompanyLogo" type="xs:string" />
+      <xs:element name="AvailableShares" type="xs:int" />
+      <xs:element name="CompanyFTSESector" type="xs:string" />
+      <xs:element name="share_price">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Currency" type="xs:string" />
+            <xs:element name="Value" type="xs:float" />
+            <xs:element name="LastUpdated" type="xs:dateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="CompanySymbol" type="xs:string" />
+  </xs:complexType>
+</xs:schema>

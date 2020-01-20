@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ns1="http://xml.netbeans.org/schema/Shares" xmlns:tns="http://sharesbroker/" targetNamespace="http://sharesbroker/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?xsd=1" namespace="http://xml.netbeans.org/schema/Shares" />
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+  <xs:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+  <xs:element name="DatatypeConfigurationException" type="tns:DatatypeConfigurationException" />
+  <xs:element name="FileNotFoundException" type="tns:FileNotFoundException" />
+  <xs:element name="JAXBException" type="tns:JAXBException" />
+  <xs:element name="addNewCompany" type="tns:addNewCompany" />
+  <xs:element name="addNewCompanyResponse" type="tns:addNewCompanyResponse" />
+  <xs:element name="filterQuery" type="tns:filterQuery" />
+  <xs:element name="filterQueryResponse" type="tns:filterQueryResponse" />
+  <xs:element name="getAvailableShares" type="tns:getAvailableShares" />
+  <xs:element name="getAvailableSharesResponse" type="tns:getAvailableSharesResponse" />
+  <xs:element name="getCompanyName" type="tns:getCompanyName" />
+  <xs:element name="getCompanyNameResponse" type="tns:getCompanyNameResponse" />
+  <xs:element name="getCompanyShares" type="tns:getCompanyShares" />
+  <xs:element name="getCompanySharesResponse" type="tns:getCompanySharesResponse" />
+  <xs:element name="getCompanySymbols" type="tns:getCompanySymbols" />
+  <xs:element name="getCompanySymbolsResponse" type="tns:getCompanySymbolsResponse" />
+  <xs:element name="getCurrencyCodes" type="tns:getCurrencyCodes" />
+  <xs:element name="getCurrencyCodesResponse" type="tns:getCurrencyCodesResponse" />
+  <xs:element name="getFTSESectors" type="tns:getFTSESectors" />
+  <xs:element name="getFTSESectorsResponse" type="tns:getFTSESectorsResponse" />
+  <xs:element name="getPriceByCurrency" type="tns:getPriceByCurrency" />
+  <xs:element name="getPriceByCurrencyResponse" type="tns:getPriceByCurrencyResponse" />
+  <xs:element name="getRealTimeShares" type="tns:getRealTimeShares" />
+  <xs:element name="getRealTimeSharesResponse" type="tns:getRealTimeSharesResponse" />
+  <xs:element name="getShare" type="tns:getShare" />
+  <xs:element name="getShareResponse" type="tns:getShareResponse" />
+  <xs:element name="getStockNews" type="tns:getStockNews" />
+  <xs:element name="getStockNewsResponse" type="tns:getStockNewsResponse" />
+  <xs:element name="listShares" type="tns:listShares" />
+  <xs:element name="listSharesResponse" type="tns:listSharesResponse" />
+  <xs:element name="removeCompany" type="tns:removeCompany" />
+  <xs:element name="removeCompanyResponse" type="tns:removeCompanyResponse" />
+  <xs:element name="searchByFTSESector" type="tns:searchByFTSESector" />
+  <xs:element name="searchByFTSESectorResponse" type="tns:searchByFTSESectorResponse" />
+  <xs:element name="searchByHighest" type="tns:searchByHighest" />
+  <xs:element name="searchByHighestResponse" type="tns:searchByHighestResponse" />
+  <xs:element name="searchByLowest" type="tns:searchByLowest" />
+  <xs:element name="searchByLowestResponse" type="tns:searchByLowestResponse" />
+  <xs:element name="searchByName" type="tns:searchByName" />
+  <xs:element name="searchByNameResponse" type="tns:searchByNameResponse" />
+  <xs:element name="searchByRange" type="tns:searchByRange" />
+  <xs:element name="searchByRangeResponse" type="tns:searchByRangeResponse" />
+  <xs:element name="searchBySymbol" type="tns:searchBySymbol" />
+  <xs:element name="searchBySymbolResponse" type="tns:searchBySymbolResponse" />
+  <xs:element name="updateCompanyShare" type="tns:updateCompanyShare" />
+  <xs:element name="updateCompanyShareResponse" type="tns:updateCompanyShareResponse" />
+  <xs:element name="updateRates" type="tns:updateRates" />
+  <xs:element name="updateRatesResponse" type="tns:updateRatesResponse" />
+  <xs:element name="updateSharePrice" type="tns:updateSharePrice" />
+  <xs:element name="updateSharePriceResponse" type="tns:updateSharePriceResponse" />
+  <xs:complexType name="getFTSESectors">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getFTSESectorsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="JAXBException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="errorCode" type="xs:string" />
+      <xs:element minOccurs="0" name="linkedException" type="tns:throwable" />
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="throwable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="stackTrace" nillable="true" type="tns:stackTraceElement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="stackTraceElement" final="extension restriction">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="searchByFTSESector">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sector" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="shares" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchByFTSESectorResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchByLowest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="shares" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchByLowestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCompanySymbols">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getCompanySymbolsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listShares">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listSharesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" form="qualified" name="shares" nillable="true" type="ns1:shareType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCompanyShares">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getCompanySharesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAvailableShares">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="symbol" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAvailableSharesResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPriceByCurrency">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="newCurrencyCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="shares" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPriceByCurrencyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateSharePrice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="symbol" type="xs:string" />
+      <xs:element name="price" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateSharePriceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getShare">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="symbol" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getShareResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getStockNews">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="symbol" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getStockNewsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateCompanyShare">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="symbol" type="xs:string" />
+      <xs:element name="shares" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateCompanyShareResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" form="qualified" name="shares" nillable="true" type="ns1:shareType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCurrencyCodes">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getCurrencyCodesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removeCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="companySymbol" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removeCompanyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" form="qualified" name="shares" nillable="true" type="ns1:shareType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FileNotFoundException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchByHighest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="shares" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchByHighestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRealTimeShares">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="symbol" type="xs:string" />
+      <xs:element minOccurs="0" name="query" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRealTimeSharesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addNewCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="symbol" type="xs:string" />
+      <xs:element minOccurs="0" name="company" type="xs:string" />
+      <xs:element minOccurs="0" name="ftseSector" type="xs:string" />
+      <xs:element minOccurs="0" name="logo" type="xs:string" />
+      <xs:element name="availableShares" type="xs:int" />
+      <xs:element minOccurs="0" name="currency" type="xs:string" />
+      <xs:element name="shareValue" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addNewCompanyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" form="qualified" name="shares" nillable="true" type="ns1:shareType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DatatypeConfigurationException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchByName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="shares" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchByNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCompanyName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="symbol" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCompanyNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchByRange">
+    <xs:sequence>
+      <xs:element name="min" type="xs:float" />
+      <xs:element name="max" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="shares" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchByRangeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateRates">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="updateRatesResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchBySymbol">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="symbol" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="shares" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="searchBySymbolResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="filterQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="symbol" type="xs:string" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="sector" type="xs:string" />
+      <xs:element minOccurs="0" name="filterPrice" type="xs:string" />
+      <xs:element name="min" type="xs:float" />
+      <xs:element name="max" type="xs:float" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="shares" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="filterQueryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:shareType" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

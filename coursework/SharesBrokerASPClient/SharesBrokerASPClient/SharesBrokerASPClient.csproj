@@ -47,14 +47,17 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Web References\UserWebService\Reference.cs">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
     <Compile Include="Shares.aspx.cs">
       <DependentUpon>Shares.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shares.aspx.designer.cs">
       <DependentUpon>Shares.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\UserWebService\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\SharesBroker\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -66,12 +69,29 @@
       <RelPath>Web References\UserWebService</RelPath>
       <UpdateFromURL>http://localhost:8080/UserService/UserService?WSDL</UpdateFromURL>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/UserService/UserService?WSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\UserWebService</RelPath>
+      <UpdateFromURL>http://localhost:8080/UserService/UserService?WSDL</UpdateFromURL>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?WSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SharesBroker</RelPath>
+      <UpdateFromURL>http://localhost:8080/SharesBrokerWS/SharesBrokerWS?WSDL</UpdateFromURL>
+    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\UserWebService\UserService.xsd" />
     <None Include="Web References\UserWebService\UserService.wsdl" />
     <None Include="Web References\UserWebService\UserService0.xsd" />
     <None Include="Web References\UserWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SharesBroker\SharesBrokerWS.xsd" />
+    <None Include="Web References\SharesBroker\SharesBrokerWS.wsdl" />
+    <None Include="Web References\SharesBroker\SharesBrokerWS0.xsd" />
+    <None Include="Web References\SharesBroker\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ns1="http://xml.netbeans.org/schema/Users" xmlns:tns="http://userws/" targetNamespace="http://userws/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8080/UserService/UserService?xsd=1" namespace="http://xml.netbeans.org/schema/Users" />
-  <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
-  <xs:import namespace="http://schemas.xmlsoap.org/wsdl/" />
   <xs:element name="DatatypeConfigurationException" type="tns:DatatypeConfigurationException" />
   <xs:element name="FileNotFoundException" type="tns:FileNotFoundException" />
   <xs:element name="JAXBException" type="tns:JAXBException" />
