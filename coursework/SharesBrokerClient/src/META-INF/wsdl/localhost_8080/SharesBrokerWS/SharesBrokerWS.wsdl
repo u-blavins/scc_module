@@ -34,12 +34,6 @@
 <message name="updateCompanyShareResponse">
 <part name="parameters" element="tns:updateCompanyShareResponse"/>
 </message>
-<message name="FileNotFoundException">
-<part name="fault" element="tns:FileNotFoundException"/>
-</message>
-<message name="DatatypeConfigurationException">
-<part name="fault" element="tns:DatatypeConfigurationException"/>
-</message>
 <message name="getCompanySymbols">
 <part name="parameters" element="tns:getCompanySymbols"/>
 </message>
@@ -81,6 +75,12 @@
 </message>
 <message name="addNewCompanyResponse">
 <part name="parameters" element="tns:addNewCompanyResponse"/>
+</message>
+<message name="DatatypeConfigurationException">
+<part name="fault" element="tns:DatatypeConfigurationException"/>
+</message>
+<message name="FileNotFoundException">
+<part name="fault" element="tns:FileNotFoundException"/>
 </message>
 <message name="removeCompany">
 <part name="parameters" element="tns:removeCompany"/>
@@ -148,6 +148,12 @@
 <message name="updateRatesResponse">
 <part name="parameters" element="tns:updateRatesResponse"/>
 </message>
+<message name="updateSharePrice">
+<part name="parameters" element="tns:updateSharePrice"/>
+</message>
+<message name="updateSharePriceResponse">
+<part name="parameters" element="tns:updateSharePriceResponse"/>
+</message>
 <portType name="SharesBrokerWS">
 <operation name="getRealTimeShares">
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/getRealTimeSharesRequest" message="tns:getRealTimeShares"/>
@@ -166,8 +172,6 @@
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareRequest" message="tns:updateCompanyShare"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareResponse" message="tns:updateCompanyShareResponse"/>
 <fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/JAXBException"/>
-<fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/FileNotFoundException"/>
-<fault message="tns:DatatypeConfigurationException" name="DatatypeConfigurationException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/DatatypeConfigurationException"/>
 </operation>
 <operation name="getCompanySymbols">
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanySymbolsRequest" message="tns:getCompanySymbols"/>
@@ -255,6 +259,11 @@
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/updateRatesRequest" message="tns:updateRates"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/updateRatesResponse" message="tns:updateRatesResponse"/>
 </operation>
+<operation name="updateSharePrice">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/updateSharePriceRequest" message="tns:updateSharePrice"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/updateSharePriceResponse" message="tns:updateSharePriceResponse"/>
+<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateSharePrice/Fault/JAXBException"/>
+</operation>
 </portType>
 <binding name="SharesBrokerWSPortBinding" type="tns:SharesBrokerWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
@@ -298,12 +307,6 @@
 </output>
 <fault name="JAXBException">
 <soap:fault name="JAXBException" use="literal"/>
-</fault>
-<fault name="FileNotFoundException">
-<soap:fault name="FileNotFoundException" use="literal"/>
-</fault>
-<fault name="DatatypeConfigurationException">
-<soap:fault name="DatatypeConfigurationException" use="literal"/>
 </fault>
 </operation>
 <operation name="getCompanySymbols">
@@ -509,6 +512,18 @@
 <output>
 <soap:body use="literal"/>
 </output>
+</operation>
+<operation name="updateSharePrice">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="JAXBException">
+<soap:fault name="JAXBException" use="literal"/>
+</fault>
 </operation>
 </binding>
 <service name="SharesBrokerWS">

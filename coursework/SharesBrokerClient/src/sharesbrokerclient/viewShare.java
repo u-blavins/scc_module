@@ -12,7 +12,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import org.netbeans.xml.schema.shares.ShareType;
+import sharesbroker.DatatypeConfigurationException_Exception;
+import sharesbroker.FileNotFoundException_Exception;
 import sharesbroker.JAXBException_Exception;
+import sharesbroker.UpdateCompanyShareResponse;
 import userws.PurchaseSharesResponse;
 
 /**
@@ -78,12 +81,12 @@ public class viewShare extends javax.swing.JFrame {
         sharesDataLabel = new javax.swing.JLabel();
         currencyDataLabel = new javax.swing.JLabel();
         priceDataLabel = new javax.swing.JLabel();
-        updateShareButton = new javax.swing.JButton();
         currentPriceButton = new javax.swing.JButton();
         buySharesButton = new javax.swing.JButton();
         buyTextArea = new javax.swing.JTextField();
         buyShareLabel = new javax.swing.JLabel();
         imageLabel = new javax.swing.JLabel();
+        profileButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,13 +151,6 @@ public class viewShare extends javax.swing.JFrame {
         priceDataLabel.setForeground(new java.awt.Color(0, 0, 0));
         priceDataLabel.setText("price");
 
-        updateShareButton.setText("Get Shares");
-        updateShareButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateShareButtonActionPerformed(evt);
-            }
-        });
-
         currentPriceButton.setText("Get Price");
         currentPriceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +167,13 @@ public class viewShare extends javax.swing.JFrame {
 
         buyShareLabel.setForeground(new java.awt.Color(0, 0, 0));
 
+        profileButton.setText("View Profie");
+        profileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -181,15 +184,15 @@ public class viewShare extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(backButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(logoutButton))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(updateShareButton)
-                                .addGap(18, 18, 18)
                                 .addComponent(currentPriceButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buyShareLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(buyTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,15 +212,15 @@ public class viewShare extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(companyDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(123, 123, 123)
                                         .addComponent(imageLabel)
                                         .addGap(180, 180, 180))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(sectorDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(sectorDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                                         .addGap(282, 282, 282))
-                                    .addComponent(sharesDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(currencyDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(priceDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(priceDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(sharesDataLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -226,7 +229,8 @@ public class viewShare extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logoutButton)
-                    .addComponent(backButton))
+                    .addComponent(backButton)
+                    .addComponent(profileButton))
                 .addGap(22, 22, 22)
                 .addComponent(symbolDataLabel)
                 .addGap(18, 18, 18)
@@ -252,7 +256,6 @@ public class viewShare extends javax.swing.JFrame {
                     .addComponent(priceDataLabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateShareButton)
                     .addComponent(currentPriceButton)
                     .addComponent(buySharesButton)
                     .addComponent(buyTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,26 +297,16 @@ public class viewShare extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void updateShareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateShareButtonActionPerformed
-        // TODO add your handling code here:
-        String newShares = "";
-        try {
-            newShares = getRealTimeShares(share.getCompanySymbol(), "volume");
-        } catch (Exception ex) {
-            System.out.println("(UpdateShare) Exception: " + ex);
-        }
-        if (!newShares.equals("")) {
-            updateVolume = true;
-            sharesDataLabel.setText(newShares);
-        }
-    }//GEN-LAST:event_updateShareButtonActionPerformed
-
     private void currentPriceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentPriceButtonActionPerformed
         // TODO add your handling code here:
         String newPrice = "";
         try {
             newPrice = getRealTimeShares(share.getCompanySymbol(), "price");
-            priceDataLabel.setText(newPrice);
+            if (!newPrice.equals("")) {
+                float sharePrice = Float.parseFloat(newPrice);
+                priceDataLabel.setText(newPrice);
+                updateSharePrice(share.getCompanySymbol(), sharePrice);
+            }
         } catch(Exception ex){
             System.out.println(ex);
         }
@@ -345,6 +338,17 @@ public class viewShare extends javax.swing.JFrame {
             buyShareLabel.setText("Amount not given");
         }
     }//GEN-LAST:event_buySharesButtonActionPerformed
+
+    private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            viewProfile profileFrame = new viewProfile(user);
+            profileFrame.setVisible(true);
+            this.dispose();
+        } catch (JAXBException_Exception ex) {
+            Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_profileButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,12 +401,12 @@ public class viewShare extends javax.swing.JFrame {
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel priceDataLabel;
     private javax.swing.JLabel priceLabel;
+    private javax.swing.JButton profileButton;
     private javax.swing.JLabel sectorDataLabel;
     private javax.swing.JLabel sectorLabel;
     private javax.swing.JLabel shareLabel;
     private javax.swing.JLabel sharesDataLabel;
     private javax.swing.JLabel symbolDataLabel;
-    private javax.swing.JButton updateShareButton;
     // End of variables declaration//GEN-END:variables
 
     private static String getRealTimeShares(java.lang.String symbol, java.lang.String query) {
@@ -421,5 +425,11 @@ public class viewShare extends javax.swing.JFrame {
         userws.UserService_Service service = new userws.UserService_Service();
         userws.UserService port = service.getUserServicePort();
         return port.purchaseShares(username, companySymbol, shares);
+    }
+
+    private static java.util.List<org.netbeans.xml.schema.shares.ShareType> updateSharePrice(java.lang.String symbol, float price) throws JAXBException_Exception {
+        sharesbroker.SharesBrokerWS_Service service = new sharesbroker.SharesBrokerWS_Service();
+        sharesbroker.SharesBrokerWS port = service.getSharesBrokerWSPort();
+        return port.updateSharePrice(symbol, price);
     }
 }

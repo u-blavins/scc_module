@@ -96,6 +96,10 @@
 
 <xs:element name="updateRatesResponse" type="tns:updateRatesResponse"/>
 
+<xs:element name="updateSharePrice" type="tns:updateSharePrice"/>
+
+<xs:element name="updateSharePriceResponse" type="tns:updateSharePriceResponse"/>
+
 <xs:complexType name="getFTSESectors">
 <xs:sequence/>
 </xs:complexType>
@@ -210,6 +214,19 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="updateSharePrice">
+<xs:sequence>
+<xs:element name="symbol" type="xs:string" minOccurs="0"/>
+<xs:element name="price" type="xs:float"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateSharePriceResponse">
+<xs:sequence>
+<xs:element name="return" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="getShare">
 <xs:sequence>
 <xs:element name="symbol" type="xs:string" minOccurs="0"/>
@@ -253,18 +270,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="FileNotFoundException">
-<xs:sequence>
-<xs:element name="message" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="DatatypeConfigurationException">
-<xs:sequence>
-<xs:element name="message" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="getCurrencyCodes">
 <xs:sequence/>
 </xs:complexType>
@@ -290,6 +295,12 @@
 </xs:sequence>
 </xs:complexType>
 </xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FileNotFoundException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -339,6 +350,12 @@
 </xs:sequence>
 </xs:complexType>
 </xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="DatatypeConfigurationException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

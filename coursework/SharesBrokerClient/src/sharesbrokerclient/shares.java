@@ -477,8 +477,12 @@ public class shares extends javax.swing.JFrame {
         // TODO add your handling code here:
         symbolText.setText(null);
         companyText.setText(null);
+        sectorText.setSelectedItem("None");
+        priceFilter.setSelectedItem("None");
         minText.setText(null);
         maxText.setText(null);
+        notificationLabel.setText("");
+        notificationLabel.setVisible(false);
     }//GEN-LAST:event_resetFilterButtonActionPerformed
 
     private void changeCodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeCodeButtonActionPerformed
@@ -504,6 +508,8 @@ public class shares extends javax.swing.JFrame {
             profileFrame.setVisible(true);
             this.dispose();
         } catch (JAXBException_Exception ex) {
+            notificationLabel.setText("Status Code: 500 - Issue with User Web Service");
+            notificationLabel.setVisible(true);
             Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_profileButtonActionPerformed
@@ -516,6 +522,8 @@ public class shares extends javax.swing.JFrame {
             adminFrame.setVisible(true);
             this.dispose();
         } catch (JAXBException_Exception ex) {
+            notificationLabel.setText("Status Code: 500 - Issue with User Web Service");
+            notificationLabel.setVisible(true);
             Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_adminButtonActionPerformed
@@ -534,6 +542,8 @@ public class shares extends javax.swing.JFrame {
                 viewShareFrame.setVisible(true);
                 this.dispose();
             } catch (JAXBException_Exception ex) {
+                notificationLabel.setText("Status Code: 500 - Issue with Shares Broker Web Service");
+                notificationLabel.setVisible(true);
                 Logger.getLogger(shares.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -541,7 +551,19 @@ public class shares extends javax.swing.JFrame {
 
     private void updateRateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateRateButtonActionPerformed
         // TODO add your handling code here:
-        boolean update = updateRates();
+        boolean updated = false;
+        try {
+            updated = updateRates();
+            if (updated) {
+                notificationLabel.setText("Rates have been updated");
+                notificationLabel.setVisible(true);
+            } else {
+                notificationLabel.setText("Rates are up to date");
+                notificationLabel.setVisible(true);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(shares.class.getName()).log(Level.WARNING, null, ex);
+        }
     }//GEN-LAST:event_updateRateButtonActionPerformed
 
     /**
