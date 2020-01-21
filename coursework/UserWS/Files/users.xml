@@ -15,11 +15,11 @@
         <IsAdmin>0</IsAdmin>
         <UserShares>
             <CompanySymbol>LLOY</CompanySymbol>
-            <CompanyShares>200</CompanyShares>
+            <CompanyShares>440</CompanyShares>
         </UserShares>
         <UserShares>
             <CompanySymbol>VOD</CompanySymbol>
-            <CompanyShares>0</CompanyShares>
+            <CompanyShares>34</CompanyShares>
         </UserShares>
         <UserShares>
             <CompanySymbol>BARC</CompanySymbol>
@@ -32,6 +32,10 @@
         <UserShares>
             <CompanySymbol>BP</CompanySymbol>
             <CompanyShares>431</CompanyShares>
+        </UserShares>
+        <UserShares>
+            <CompanySymbol>EXPN</CompanySymbol>
+            <CompanyShares>839</CompanyShares>
         </UserShares>
     </users>
     <users>
