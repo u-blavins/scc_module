@@ -147,6 +147,9 @@ public class CurrConvertor {
                codes.add(String.valueOf(keys));
             }
         } catch (Exception ex) {
+            
+        }
+        if (codes.isEmpty()) {
             for (CurrencyRate rate : getLocalRates().getRates()) {
                 codes.add(rate.getCurrencyCode());
             }

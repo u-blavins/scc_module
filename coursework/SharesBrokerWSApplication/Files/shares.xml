@@ -3,7 +3,7 @@
     <shares CompanySymbol="LLOY">
         <CompanyName>LLOYDS GRP.</CompanyName>
         <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/087/0870612.gif</CompanyLogo>
-        <AvailableShares>214867240</AvailableShares>
+        <AvailableShares>214867000</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
@@ -14,7 +14,7 @@
     <shares CompanySymbol="VOD">
         <CompanyName>VODAFONE GRP.</CompanyName>
         <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/bh4/bh4hks3.gif</CompanyLogo>
-        <AvailableShares>60712110</AvailableShares>
+        <AvailableShares>60712076</AvailableShares>
         <CompanyFTSESector>Telecommunications Service Providers</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
@@ -25,12 +25,12 @@
     <shares CompanySymbol="EXPN">
         <CompanyName>EXPERIAN PLC</CompanyName>
         <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/b19/b19nlv4.gif</CompanyLogo>
-        <AvailableShares>1529816</AvailableShares>
+        <AvailableShares>1528977</AvailableShares>
         <CompanyFTSESector>Industrial Support Services</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
-            <Value>2641.293</Value>
-            <LastUpdated>2020-01-20T16:37:32.793Z</LastUpdated>
+            <Value>2602.0</Value>
+            <LastUpdated>2020-01-21T13:16:28.528Z</LastUpdated>
         </share_price>
     </shares>
     <shares CompanySymbol="BP">
@@ -146,12 +146,12 @@
     <shares CompanySymbol="0HT4">
         <CompanyName>Capital One</CompanyName>
         <CompanyLogo></CompanyLogo>
-        <AvailableShares>604</AvailableShares>
+        <AvailableShares>25254</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
             <Currency>USD</Currency>
-            <Value>102.93</Value>
-            <LastUpdated>2020-01-20T01:52:56.639Z</LastUpdated>
+            <Value>104.13</Value>
+            <LastUpdated>2020-01-21T12:34:09.649Z</LastUpdated>
         </share_price>
     </shares>
 </Company_Shares>

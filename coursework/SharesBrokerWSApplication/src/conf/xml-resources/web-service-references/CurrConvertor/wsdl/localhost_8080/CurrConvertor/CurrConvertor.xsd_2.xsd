@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://convertor/" xmlns:ns1="http://xml.netbeans.org/schema/rates" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://convertor/">
+
+<xs:import namespace="http://xml.netbeans.org/schema/rates" schemaLocation="http://localhost:8080/CurrConvertor/CurrConvertor?xsd=1"/>
+
+<xs:element name="getConversionRate" type="tns:getConversionRate"/>
+
+<xs:element name="getConversionRateResponse" type="tns:getConversionRateResponse"/>
+
+<xs:element name="getCurrCodes" type="tns:getCurrCodes"/>
+
+<xs:element name="getCurrCodesResponse" type="tns:getCurrCodesResponse"/>
+
+<xs:element name="getLocalRates" type="tns:getLocalRates"/>
+
+<xs:element name="getLocalRatesResponse" type="tns:getLocalRatesResponse"/>
+
+<xs:element name="updateRates" type="tns:updateRates"/>
+
+<xs:element name="updateRatesResponse" type="tns:updateRatesResponse"/>
+
+<xs:complexType name="getLocalRates">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getLocalRatesResponse">
+<xs:sequence>
+<xs:element name="return" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="rates" type="ns1:currencyRate" form="qualified" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateRates">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="updateRatesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCurrCodes">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getCurrCodesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getConversionRate">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getConversionRateResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
