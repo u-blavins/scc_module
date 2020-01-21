@@ -29,19 +29,19 @@
         <CompanyFTSESector>Industrial Support Services</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
-            <Value>2454.0</Value>
-            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+            <Value>2641.293</Value>
+            <LastUpdated>2020-01-20T16:37:32.793Z</LastUpdated>
         </share_price>
     </shares>
     <shares CompanySymbol="BP">
         <CompanyName>BP PLC</CompanyName>
         <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/079/0798059.gif</CompanyLogo>
-        <AvailableShares>28922431</AvailableShares>
+        <AvailableShares>28922000</AvailableShares>
         <CompanyFTSESector>Oil, Gas and Coal</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
-            <Value>469.3</Value>
-            <LastUpdated>2019-12-25T13:04:26.638+08:00</LastUpdated>
+            <Value>493.5</Value>
+            <LastUpdated>2020-01-20T22:57:47.331Z</LastUpdated>
         </share_price>
     </shares>
     <shares CompanySymbol="BT.A">
@@ -102,7 +102,7 @@
     <shares CompanySymbol="BARC">
         <CompanyName>BARCLAYS PLC</CompanyName>
         <CompanyLogo></CompanyLogo>
-        <AvailableShares>49663292</AvailableShares>
+        <AvailableShares>49664292</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
@@ -146,7 +146,7 @@
     <shares CompanySymbol="0HT4">
         <CompanyName>Capital One</CompanyName>
         <CompanyLogo></CompanyLogo>
-        <AvailableShares>601</AvailableShares>
+        <AvailableShares>604</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
             <Currency>USD</Currency>

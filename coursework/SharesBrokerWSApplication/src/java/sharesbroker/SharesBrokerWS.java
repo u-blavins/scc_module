@@ -602,12 +602,4 @@ public class SharesBrokerWS {
         return temp;
     }
     
-    @WebMethod(operationName="getStockNews")
-    public List<String> getStockNews(
-            @WebParam(name="symbol")String symbol){
-        String sources = "reuters";
-        List<String> test = new ArrayList<>();
-        return test;
-    }
-    
 }
