@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,6 +19,7 @@ namespace SharesBrokerASPClient
             {
                 loadSectors();
                 loadCodes();
+                loadSymbols();
             }
             loadTable(new SharesBroker.SharesBrokerWS().getCompanyShares());
         }
@@ -30,9 +33,19 @@ namespace SharesBrokerASPClient
             }
         }
 
+        private void loadSymbols()
+        {
+            string[] symbols = new SharesBroker.SharesBrokerWS().getCompanySymbols();
+            for (int i = 0; i < symbols.Length; i++)
+            {
+                companySymbols.Items.Add(new ListItem(symbols[i], symbols[i]));
+            }
+        }
+
         private void loadCodes()
         {
-            string[] codes = new CurrConvertor.CurrConvertor().getCurrCodes();
+            IEnumerable<string> codes = new CurrConvertor.CurrConvertor().getCurrCodes();
+            codes = codes.OrderBy(x => x);
             currencyCodes.DataSource = codes;
             currencyCodes.DataBind();
         }
@@ -167,6 +180,64 @@ namespace SharesBrokerASPClient
             compShares = retConvertedCurrency(compShares);
             resetTable();
             loadTable(compShares);
+        }
+
+        public void buyShares(object sender, EventArgs args)
+        {
+            string company = companySymbols.SelectedValue.ToString();
+            string buySharesText = buyShareText.Text.ToString();
+            if (buySharesText!="")
+            {
+                if (int.TryParse(buySharesText, out int buyShare))
+                {
+                    if (company!="None")
+                    {
+                        UserWebService.UserService userProxy = new UserWebService.UserService();
+                        userProxy.purchaseShares(Session["username"].ToString(), company, buyShare);
+                        companySymbols.SelectedValue = "None";
+                        buyShareText.Text = "";
+                        resetTable();
+                        loadTable(new SharesBrokerWS().getCompanyShares());
+                    } else
+                    {
+                        notificationLabel.Text = "Please select a company";
+                    }
+                    
+                } else
+                {
+                    notificationLabel.Text = "Enter a number for buying shares";
+                }
+            }
+        }
+
+        public void sellShares(object sender, EventArgs args)
+        {
+            string company = companySymbols.SelectedValue.ToString();
+            string sellSharesText = sellShareText.Text.ToString();
+            if (sellSharesText != "")
+            {
+                if (int.TryParse(sellSharesText, out int sellShare))
+                {
+                    if (company != "None")
+                    {
+                        UserWebService.UserService userProxy = new UserWebService.UserService();
+                        userProxy.sellShares(Session["username"].ToString(), company, sellShare);
+                        companySymbols.SelectedValue = "None";
+                        buyShareText.Text = "";
+                        resetTable();
+                        loadTable(new SharesBrokerWS().getCompanyShares());
+                    }
+                    else
+                    {
+                        notificationLabel.Text = "Please select a company";
+                    }
+
+                }
+                else
+                {
+                    notificationLabel.Text = "Enter a number for selling shares";
+                }
+            }
         }
 
     }

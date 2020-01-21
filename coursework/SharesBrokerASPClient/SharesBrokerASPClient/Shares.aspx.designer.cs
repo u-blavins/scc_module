@@ -37,6 +37,14 @@ namespace SharesBrokerASPClient
 
 		protected System.Web.UI.HtmlControls.HtmlForm transactionsForm;
 
-		protected System.Web.UI.WebControls.DropDownList filterSymbols;
+		protected System.Web.UI.WebControls.DropDownList companySymbols;
+
+		protected System.Web.UI.WebControls.TextBox buyShareText;
+
+		protected System.Web.UI.WebControls.Button buyShareButton;
+
+		protected System.Web.UI.WebControls.TextBox sellShareText;
+
+		protected System.Web.UI.WebControls.Button sellShareButton;
 	}
 }

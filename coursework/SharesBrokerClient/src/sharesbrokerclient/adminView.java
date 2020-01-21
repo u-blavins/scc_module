@@ -303,6 +303,7 @@ public class adminView extends javax.swing.JFrame {
                 float sharePrice = Float.parseFloat(price);
                 addNewCompany(symbol, companyName, sector, logo, companyShares,
                         currency, sharePrice);
+                notificationLabel.setText("CompanyL "+ companyName +" Added");
                 symbolText.setText("");
                 nameText.setText("");
                 sectorText.setText("");

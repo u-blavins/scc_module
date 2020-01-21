@@ -14,7 +14,7 @@
                     <asp:TableCell>Company</asp:TableCell>
                     <asp:TableCell>FTSE Sector</asp:TableCell>
                     <asp:TableCell>Price Range</asp:TableCell>
-                    <asp:TableCell>Filter</asp:TableCell>
+                    <asp:TableCell>Filter Price</asp:TableCell>
                     <asp:TableCell><asp:Button id="filterButton" runat="server" Text="Filter" OnClick="filter"></asp:Button></asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -58,9 +58,19 @@
         </form>
         <br>
         <form id="currencyForm" runat="server">
-            <lable>Select Curreny to conver to: </label>
+            <lable>Select Currency to convert to: </label>
             <asp:DropDownList id="currencyCodes" runat="server"></asp:DropDownList>
             <asp:Button id="changeCurrButton" runat="server" Text="Change" OnClick="changeCurr"></asp:Button>
+        </form>
+        <form id="transactionForm" runat="server">
+            <lable>Select Company to buy/sell shares from: </label>
+            <asp:DropDownList id="companySymbols" runat="server">
+                <asp:ListItem value="None">None</asp:ListItem>
+            </asp:DropDownList>
+            <asp:TextBox id="buyShareText" runat="server"/>
+            <asp:Button id="buyShareButton" runat="server" Text="Buy" OnClick="buyShares"></asp:Button>
+            <asp:TextBox id="sellShareText" runat="server"/>
+            <asp:Button id="sellShareButton" runat="server" Text="Sell" OnClick="sellShares"></asp:Button>
         </form>
         <br>
         <form id="notificationForm" runat="server">
