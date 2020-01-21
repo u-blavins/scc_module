@@ -33,7 +33,12 @@ public class CurrConvertor {
     public JSONObject currentRates;
     
     public CurrConvertor() {
-        currentRates = getLatestExchangeRates();
+        try {
+            currentRates = getLatestExchangeRates();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger("global").log(
+                    java.util.logging.Level.SEVERE, null, ex);
+        }
     }
     
     /** 

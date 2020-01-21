@@ -7,12 +7,6 @@
 <xsd:import namespace="http://sharesbroker/" schemaLocation="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?xsd=2"/>
 </xsd:schema>
 </types>
-<message name="getRealTimeShares">
-<part name="parameters" element="tns:getRealTimeShares"/>
-</message>
-<message name="getRealTimeSharesResponse">
-<part name="parameters" element="tns:getRealTimeSharesResponse"/>
-</message>
 <message name="getShare">
 <part name="parameters" element="tns:getShare"/>
 </message>
@@ -21,18 +15,6 @@
 </message>
 <message name="JAXBException">
 <part name="fault" element="tns:JAXBException"/>
-</message>
-<message name="getStockNews">
-<part name="parameters" element="tns:getStockNews"/>
-</message>
-<message name="getStockNewsResponse">
-<part name="parameters" element="tns:getStockNewsResponse"/>
-</message>
-<message name="updateCompanyShare">
-<part name="parameters" element="tns:updateCompanyShare"/>
-</message>
-<message name="updateCompanyShareResponse">
-<part name="parameters" element="tns:updateCompanyShareResponse"/>
 </message>
 <message name="getCompanySymbols">
 <part name="parameters" element="tns:getCompanySymbols"/>
@@ -51,6 +33,24 @@
 </message>
 <message name="getAvailableSharesResponse">
 <part name="parameters" element="tns:getAvailableSharesResponse"/>
+</message>
+<message name="updateCompanyShare">
+<part name="parameters" element="tns:updateCompanyShare"/>
+</message>
+<message name="updateCompanyShareResponse">
+<part name="parameters" element="tns:updateCompanyShareResponse"/>
+</message>
+<message name="getRealTimeShares">
+<part name="parameters" element="tns:getRealTimeShares"/>
+</message>
+<message name="getRealTimeSharesResponse">
+<part name="parameters" element="tns:getRealTimeSharesResponse"/>
+</message>
+<message name="updateRates">
+<part name="parameters" element="tns:updateRates"/>
+</message>
+<message name="updateRatesResponse">
+<part name="parameters" element="tns:updateRatesResponse"/>
 </message>
 <message name="listShares">
 <part name="parameters" element="tns:listShares"/>
@@ -112,18 +112,6 @@
 <message name="searchByRangeResponse">
 <part name="parameters" element="tns:searchByRangeResponse"/>
 </message>
-<message name="searchByLowest">
-<part name="parameters" element="tns:searchByLowest"/>
-</message>
-<message name="searchByLowestResponse">
-<part name="parameters" element="tns:searchByLowestResponse"/>
-</message>
-<message name="searchByHighest">
-<part name="parameters" element="tns:searchByHighest"/>
-</message>
-<message name="searchByHighestResponse">
-<part name="parameters" element="tns:searchByHighestResponse"/>
-</message>
 <message name="filterQuery">
 <part name="parameters" element="tns:filterQuery"/>
 </message>
@@ -142,11 +130,17 @@
 <message name="getPriceByCurrencyResponse">
 <part name="parameters" element="tns:getPriceByCurrencyResponse"/>
 </message>
-<message name="updateRates">
-<part name="parameters" element="tns:updateRates"/>
+<message name="searchByHighest">
+<part name="parameters" element="tns:searchByHighest"/>
 </message>
-<message name="updateRatesResponse">
-<part name="parameters" element="tns:updateRatesResponse"/>
+<message name="searchByHighestResponse">
+<part name="parameters" element="tns:searchByHighestResponse"/>
+</message>
+<message name="searchByLowest">
+<part name="parameters" element="tns:searchByLowest"/>
+</message>
+<message name="searchByLowestResponse">
+<part name="parameters" element="tns:searchByLowestResponse"/>
 </message>
 <message name="updateSharePrice">
 <part name="parameters" element="tns:updateSharePrice"/>
@@ -155,23 +149,10 @@
 <part name="parameters" element="tns:updateSharePriceResponse"/>
 </message>
 <portType name="SharesBrokerWS">
-<operation name="getRealTimeShares">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/getRealTimeSharesRequest" message="tns:getRealTimeShares"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/getRealTimeSharesResponse" message="tns:getRealTimeSharesResponse"/>
-</operation>
 <operation name="getShare">
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/getShareRequest" message="tns:getShare"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/getShareResponse" message="tns:getShareResponse"/>
 <fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/getShare/Fault/JAXBException"/>
-</operation>
-<operation name="getStockNews">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/getStockNewsRequest" message="tns:getStockNews"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/getStockNewsResponse" message="tns:getStockNewsResponse"/>
-</operation>
-<operation name="updateCompanyShare">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareRequest" message="tns:updateCompanyShare"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareResponse" message="tns:updateCompanyShareResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/JAXBException"/>
 </operation>
 <operation name="getCompanySymbols">
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanySymbolsRequest" message="tns:getCompanySymbols"/>
@@ -187,6 +168,19 @@
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/getAvailableSharesRequest" message="tns:getAvailableShares"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/getAvailableSharesResponse" message="tns:getAvailableSharesResponse"/>
 <fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/getAvailableShares/Fault/JAXBException"/>
+</operation>
+<operation name="updateCompanyShare">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareRequest" message="tns:updateCompanyShare"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareResponse" message="tns:updateCompanyShareResponse"/>
+<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/JAXBException"/>
+</operation>
+<operation name="getRealTimeShares">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/getRealTimeSharesRequest" message="tns:getRealTimeShares"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/getRealTimeSharesResponse" message="tns:getRealTimeSharesResponse"/>
+</operation>
+<operation name="updateRates">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/updateRatesRequest" message="tns:updateRates"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/updateRatesResponse" message="tns:updateRatesResponse"/>
 </operation>
 <operation name="listShares">
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/listSharesRequest" message="tns:listShares"/>
@@ -232,16 +226,6 @@
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByRangeRequest" message="tns:searchByRange"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByRangeResponse" message="tns:searchByRangeResponse"/>
 </operation>
-<operation name="searchByLowest">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowestRequest" message="tns:searchByLowest"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowestResponse" message="tns:searchByLowestResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowest/Fault/JAXBException"/>
-</operation>
-<operation name="searchByHighest">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighestRequest" message="tns:searchByHighest"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighestResponse" message="tns:searchByHighestResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighest/Fault/JAXBException"/>
-</operation>
 <operation name="filterQuery">
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/filterQueryRequest" message="tns:filterQuery"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/filterQueryResponse" message="tns:filterQueryResponse"/>
@@ -255,9 +239,15 @@
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/getPriceByCurrencyRequest" message="tns:getPriceByCurrency"/>
 <output wsam:Action="http://sharesbroker/SharesBrokerWS/getPriceByCurrencyResponse" message="tns:getPriceByCurrencyResponse"/>
 </operation>
-<operation name="updateRates">
-<input wsam:Action="http://sharesbroker/SharesBrokerWS/updateRatesRequest" message="tns:updateRates"/>
-<output wsam:Action="http://sharesbroker/SharesBrokerWS/updateRatesResponse" message="tns:updateRatesResponse"/>
+<operation name="searchByHighest">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighestRequest" message="tns:searchByHighest"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighestResponse" message="tns:searchByHighestResponse"/>
+<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/searchByHighest/Fault/JAXBException"/>
+</operation>
+<operation name="searchByLowest">
+<input wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowestRequest" message="tns:searchByLowest"/>
+<output wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowestResponse" message="tns:searchByLowestResponse"/>
+<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://sharesbroker/SharesBrokerWS/searchByLowest/Fault/JAXBException"/>
 </operation>
 <operation name="updateSharePrice">
 <input wsam:Action="http://sharesbroker/SharesBrokerWS/updateSharePriceRequest" message="tns:updateSharePrice"/>
@@ -267,37 +257,7 @@
 </portType>
 <binding name="SharesBrokerWSPortBinding" type="tns:SharesBrokerWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="getRealTimeShares">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="getShare">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-</operation>
-<operation name="getStockNews">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="updateCompanyShare">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -344,6 +304,36 @@
 <fault name="JAXBException">
 <soap:fault name="JAXBException" use="literal"/>
 </fault>
+</operation>
+<operation name="updateCompanyShare">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="JAXBException">
+<soap:fault name="JAXBException" use="literal"/>
+</fault>
+</operation>
+<operation name="getRealTimeShares">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="updateRates">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
 </operation>
 <operation name="listShares">
 <soap:operation soapAction=""/>
@@ -450,30 +440,6 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="searchByLowest">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-</operation>
-<operation name="searchByHighest">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-</operation>
 <operation name="filterQuery">
 <soap:operation soapAction=""/>
 <input>
@@ -504,7 +470,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="updateRates">
+<operation name="searchByHighest">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -512,6 +478,21 @@
 <output>
 <soap:body use="literal"/>
 </output>
+<fault name="JAXBException">
+<soap:fault name="JAXBException" use="literal"/>
+</fault>
+</operation>
+<operation name="searchByLowest">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="JAXBException">
+<soap:fault name="JAXBException" use="literal"/>
+</fault>
 </operation>
 <operation name="updateSharePrice">
 <soap:operation soapAction=""/>
