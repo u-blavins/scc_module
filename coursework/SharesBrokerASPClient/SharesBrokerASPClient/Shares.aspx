@@ -22,7 +22,7 @@
                     <asp:TableCell><asp:TextBox id="filterCompany" runat="server"/></asp:TableCell>
                     <asp:TableCell>
                         <asp:DropDownList id="filterSector" runat="server">
-                            <asp:ListItem value="None">None</asp:ListItem>
+                            <asp:ListItem>None</asp:ListItem>
                         </asp:DropDownList>
                     </asp:TableCell>
                     <asp:TableCell>
@@ -37,14 +37,15 @@
                         </asp:DropDownList>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:Button id="resetFilterButton" runat="server" Text="Reset" OnClick="resetTable"></asp:Button>
+                        <asp:Button id="resetFilterButton" runat="server" Text="Reset" OnClick="reset"></asp:Button>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
 	    </form>
         <br>
-        <asp:Table id="sharesTable" runat="server" width="70%" style="border: 1px solid;">
-                <asp:TableRow>
+        <form id="sharesForm" runat="server">
+            <asp:Table id="sharesTable" runat="server" width="70%" style="border: 1px solid;">
+                <asp:TableHeaderRow>
                     <asp:TableCell>Symbol</asp:TableCell>
                     <asp:TableCell>Company</asp:TableCell>
                     <asp:TableCell>Available Shares</asp:TableCell>
@@ -52,8 +53,19 @@
                     <asp:TableCell>Currency</asp:TableCell>
                     <asp:TableCell>Price</asp:TableCell>
                     <asp:TableCell>Last Updated</asp:TableCell>
-                </asp:TableRow>
+                </asp:TableHeaderRow>
             </asp:Table>
+        </form>
+        <br>
+        <form id="currencyForm" runat="server">
+            <lable>Select Curreny to conver to: </label>
+            <asp:DropDownList id="currencyCodes" runat="server"></asp:DropDownList>
+            <asp:Button id="changeCurrButton" runat="server" Text="Change" OnClick="changeCurr"></asp:Button>
+        </form>
+        <br>
+        <form id="notificationForm" runat="server">
+            <asp:Label id="notificationLabel" runat="server"/>
+        </form>
     </div>
 </body>
 </html>

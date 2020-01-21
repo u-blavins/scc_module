@@ -24,21 +24,19 @@ namespace SharesBrokerASPClient.SharesBroker {
     [System.Web.Services.WebServiceBindingAttribute(Name="SharesBrokerWSPortBinding", Namespace="http://sharesbroker/")]
     public partial class SharesBrokerWS : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback getRealTimeSharesOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback getShareOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback getStockNewsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback updateCompanyShareOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback getCompanySymbolsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback getCompanyNameOperationCompleted;
+        private System.Threading.SendOrPostCallback updateSharePriceOperationCompleted;
         
         private System.Threading.SendOrPostCallback getAvailableSharesOperationCompleted;
         
         private System.Threading.SendOrPostCallback listSharesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getShareOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback updateCompanyShareOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getCompanyNameOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getCompanySymbolsOperationCompleted;
         
         private System.Threading.SendOrPostCallback getFTSESectorsOperationCompleted;
         
@@ -64,11 +62,13 @@ namespace SharesBrokerASPClient.SharesBroker {
         
         private System.Threading.SendOrPostCallback getCurrencyCodesOperationCompleted;
         
-        private System.Threading.SendOrPostCallback getPriceByCurrencyOperationCompleted;
-        
         private System.Threading.SendOrPostCallback updateRatesOperationCompleted;
         
-        private System.Threading.SendOrPostCallback updateSharePriceOperationCompleted;
+        private System.Threading.SendOrPostCallback getPriceByCurrencyOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getRealTimeSharesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getStockNewsOperationCompleted;
         
         /// <remarks/>
         public SharesBrokerWS() {
@@ -80,28 +80,25 @@ namespace SharesBrokerASPClient.SharesBroker {
         }
         
         /// <remarks/>
-        public event getRealTimeSharesCompletedEventHandler getRealTimeSharesCompleted;
-        
-        /// <remarks/>
-        public event getShareCompletedEventHandler getShareCompleted;
-        
-        /// <remarks/>
-        public event getStockNewsCompletedEventHandler getStockNewsCompleted;
-        
-        /// <remarks/>
-        public event updateCompanyShareCompletedEventHandler updateCompanyShareCompleted;
-        
-        /// <remarks/>
-        public event getCompanySymbolsCompletedEventHandler getCompanySymbolsCompleted;
-        
-        /// <remarks/>
-        public event getCompanyNameCompletedEventHandler getCompanyNameCompleted;
+        public event updateSharePriceCompletedEventHandler updateSharePriceCompleted;
         
         /// <remarks/>
         public event getAvailableSharesCompletedEventHandler getAvailableSharesCompleted;
         
         /// <remarks/>
         public event listSharesCompletedEventHandler listSharesCompleted;
+        
+        /// <remarks/>
+        public event getShareCompletedEventHandler getShareCompleted;
+        
+        /// <remarks/>
+        public event updateCompanyShareCompletedEventHandler updateCompanyShareCompleted;
+        
+        /// <remarks/>
+        public event getCompanyNameCompletedEventHandler getCompanyNameCompleted;
+        
+        /// <remarks/>
+        public event getCompanySymbolsCompletedEventHandler getCompanySymbolsCompleted;
         
         /// <remarks/>
         public event getFTSESectorsCompletedEventHandler getFTSESectorsCompleted;
@@ -140,194 +137,46 @@ namespace SharesBrokerASPClient.SharesBroker {
         public event getCurrencyCodesCompletedEventHandler getCurrencyCodesCompleted;
         
         /// <remarks/>
-        public event getPriceByCurrencyCompletedEventHandler getPriceByCurrencyCompleted;
-        
-        /// <remarks/>
         public event updateRatesCompletedEventHandler updateRatesCompleted;
         
         /// <remarks/>
-        public event updateSharePriceCompletedEventHandler updateSharePriceCompleted;
+        public event getPriceByCurrencyCompletedEventHandler getPriceByCurrencyCompleted;
+        
+        /// <remarks/>
+        public event getRealTimeSharesCompletedEventHandler getRealTimeSharesCompleted;
+        
+        /// <remarks/>
+        public event getStockNewsCompletedEventHandler getStockNewsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string getRealTimeShares([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string query) {
-            object[] results = this.Invoke("getRealTimeShares", new object[] {
+        public shareType[] updateSharePrice([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] float price) {
+            object[] results = this.Invoke("updateSharePrice", new object[] {
                         symbol,
-                        query});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getRealTimeSharesAsync(string symbol, string query) {
-            this.getRealTimeSharesAsync(symbol, query, null);
-        }
-        
-        /// <remarks/>
-        public void getRealTimeSharesAsync(string symbol, string query, object userState) {
-            if ((this.getRealTimeSharesOperationCompleted == null)) {
-                this.getRealTimeSharesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetRealTimeSharesOperationCompleted);
-            }
-            this.InvokeAsync("getRealTimeShares", new object[] {
-                        symbol,
-                        query}, this.getRealTimeSharesOperationCompleted, userState);
-        }
-        
-        private void OngetRealTimeSharesOperationCompleted(object arg) {
-            if ((this.getRealTimeSharesCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getRealTimeSharesCompleted(this, new getRealTimeSharesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public shareType getShare([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol) {
-            object[] results = this.Invoke("getShare", new object[] {
-                        symbol});
-            return ((shareType)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getShareAsync(string symbol) {
-            this.getShareAsync(symbol, null);
-        }
-        
-        /// <remarks/>
-        public void getShareAsync(string symbol, object userState) {
-            if ((this.getShareOperationCompleted == null)) {
-                this.getShareOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetShareOperationCompleted);
-            }
-            this.InvokeAsync("getShare", new object[] {
-                        symbol}, this.getShareOperationCompleted, userState);
-        }
-        
-        private void OngetShareOperationCompleted(object arg) {
-            if ((this.getShareCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getShareCompleted(this, new getShareCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string[] getStockNews([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol) {
-            object[] results = this.Invoke("getStockNews", new object[] {
-                        symbol});
-            return ((string[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getStockNewsAsync(string symbol) {
-            this.getStockNewsAsync(symbol, null);
-        }
-        
-        /// <remarks/>
-        public void getStockNewsAsync(string symbol, object userState) {
-            if ((this.getStockNewsOperationCompleted == null)) {
-                this.getStockNewsOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetStockNewsOperationCompleted);
-            }
-            this.InvokeAsync("getStockNews", new object[] {
-                        symbol}, this.getStockNewsOperationCompleted, userState);
-        }
-        
-        private void OngetStockNewsOperationCompleted(object arg) {
-            if ((this.getStockNewsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getStockNewsCompleted(this, new getStockNewsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlArrayAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [return: System.Xml.Serialization.XmlArrayItemAttribute("shares")]
-        public shareType[] updateCompanyShare([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] int shares) {
-            object[] results = this.Invoke("updateCompanyShare", new object[] {
-                        symbol,
-                        shares});
+                        price});
             return ((shareType[])(results[0]));
         }
         
         /// <remarks/>
-        public void updateCompanyShareAsync(string symbol, int shares) {
-            this.updateCompanyShareAsync(symbol, shares, null);
+        public void updateSharePriceAsync(string symbol, float price) {
+            this.updateSharePriceAsync(symbol, price, null);
         }
         
         /// <remarks/>
-        public void updateCompanyShareAsync(string symbol, int shares, object userState) {
-            if ((this.updateCompanyShareOperationCompleted == null)) {
-                this.updateCompanyShareOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateCompanyShareOperationCompleted);
+        public void updateSharePriceAsync(string symbol, float price, object userState) {
+            if ((this.updateSharePriceOperationCompleted == null)) {
+                this.updateSharePriceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateSharePriceOperationCompleted);
             }
-            this.InvokeAsync("updateCompanyShare", new object[] {
+            this.InvokeAsync("updateSharePrice", new object[] {
                         symbol,
-                        shares}, this.updateCompanyShareOperationCompleted, userState);
+                        price}, this.updateSharePriceOperationCompleted, userState);
         }
         
-        private void OnupdateCompanyShareOperationCompleted(object arg) {
-            if ((this.updateCompanyShareCompleted != null)) {
+        private void OnupdateSharePriceOperationCompleted(object arg) {
+            if ((this.updateSharePriceCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.updateCompanyShareCompleted(this, new updateCompanyShareCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string[] getCompanySymbols() {
-            object[] results = this.Invoke("getCompanySymbols", new object[0]);
-            return ((string[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getCompanySymbolsAsync() {
-            this.getCompanySymbolsAsync(null);
-        }
-        
-        /// <remarks/>
-        public void getCompanySymbolsAsync(object userState) {
-            if ((this.getCompanySymbolsOperationCompleted == null)) {
-                this.getCompanySymbolsOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetCompanySymbolsOperationCompleted);
-            }
-            this.InvokeAsync("getCompanySymbols", new object[0], this.getCompanySymbolsOperationCompleted, userState);
-        }
-        
-        private void OngetCompanySymbolsOperationCompleted(object arg) {
-            if ((this.getCompanySymbolsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getCompanySymbolsCompleted(this, new getCompanySymbolsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string getCompanyName([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol) {
-            object[] results = this.Invoke("getCompanyName", new object[] {
-                        symbol});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getCompanyNameAsync(string symbol) {
-            this.getCompanyNameAsync(symbol, null);
-        }
-        
-        /// <remarks/>
-        public void getCompanyNameAsync(string symbol, object userState) {
-            if ((this.getCompanyNameOperationCompleted == null)) {
-                this.getCompanyNameOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetCompanyNameOperationCompleted);
-            }
-            this.InvokeAsync("getCompanyName", new object[] {
-                        symbol}, this.getCompanyNameOperationCompleted, userState);
-        }
-        
-        private void OngetCompanyNameOperationCompleted(object arg) {
-            if ((this.getCompanyNameCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getCompanyNameCompleted(this, new getCompanyNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.updateSharePriceCompleted(this, new updateSharePriceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -387,6 +236,127 @@ namespace SharesBrokerASPClient.SharesBroker {
             if ((this.listSharesCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.listSharesCompleted(this, new listSharesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public shareType getShare([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol) {
+            object[] results = this.Invoke("getShare", new object[] {
+                        symbol});
+            return ((shareType)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getShareAsync(string symbol) {
+            this.getShareAsync(symbol, null);
+        }
+        
+        /// <remarks/>
+        public void getShareAsync(string symbol, object userState) {
+            if ((this.getShareOperationCompleted == null)) {
+                this.getShareOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetShareOperationCompleted);
+            }
+            this.InvokeAsync("getShare", new object[] {
+                        symbol}, this.getShareOperationCompleted, userState);
+        }
+        
+        private void OngetShareOperationCompleted(object arg) {
+            if ((this.getShareCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getShareCompleted(this, new getShareCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlArrayAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute("shares")]
+        public shareType[] updateCompanyShare([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] int shares) {
+            object[] results = this.Invoke("updateCompanyShare", new object[] {
+                        symbol,
+                        shares});
+            return ((shareType[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void updateCompanyShareAsync(string symbol, int shares) {
+            this.updateCompanyShareAsync(symbol, shares, null);
+        }
+        
+        /// <remarks/>
+        public void updateCompanyShareAsync(string symbol, int shares, object userState) {
+            if ((this.updateCompanyShareOperationCompleted == null)) {
+                this.updateCompanyShareOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateCompanyShareOperationCompleted);
+            }
+            this.InvokeAsync("updateCompanyShare", new object[] {
+                        symbol,
+                        shares}, this.updateCompanyShareOperationCompleted, userState);
+        }
+        
+        private void OnupdateCompanyShareOperationCompleted(object arg) {
+            if ((this.updateCompanyShareCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateCompanyShareCompleted(this, new updateCompanyShareCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string getCompanyName([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol) {
+            object[] results = this.Invoke("getCompanyName", new object[] {
+                        symbol});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getCompanyNameAsync(string symbol) {
+            this.getCompanyNameAsync(symbol, null);
+        }
+        
+        /// <remarks/>
+        public void getCompanyNameAsync(string symbol, object userState) {
+            if ((this.getCompanyNameOperationCompleted == null)) {
+                this.getCompanyNameOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetCompanyNameOperationCompleted);
+            }
+            this.InvokeAsync("getCompanyName", new object[] {
+                        symbol}, this.getCompanyNameOperationCompleted, userState);
+        }
+        
+        private void OngetCompanyNameOperationCompleted(object arg) {
+            if ((this.getCompanyNameCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getCompanyNameCompleted(this, new getCompanyNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string[] getCompanySymbols() {
+            object[] results = this.Invoke("getCompanySymbols", new object[0]);
+            return ((string[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getCompanySymbolsAsync() {
+            this.getCompanySymbolsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void getCompanySymbolsAsync(object userState) {
+            if ((this.getCompanySymbolsOperationCompleted == null)) {
+                this.getCompanySymbolsOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetCompanySymbolsOperationCompleted);
+            }
+            this.InvokeAsync("getCompanySymbols", new object[0], this.getCompanySymbolsOperationCompleted, userState);
+        }
+        
+        private void OngetCompanySymbolsOperationCompleted(object arg) {
+            if ((this.getCompanySymbolsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getCompanySymbolsCompleted(this, new getCompanySymbolsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -783,6 +753,34 @@ namespace SharesBrokerASPClient.SharesBroker {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool updateRates() {
+            object[] results = this.Invoke("updateRates", new object[0]);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void updateRatesAsync() {
+            this.updateRatesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void updateRatesAsync(object userState) {
+            if ((this.updateRatesOperationCompleted == null)) {
+                this.updateRatesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateRatesOperationCompleted);
+            }
+            this.InvokeAsync("updateRates", new object[0], this.updateRatesOperationCompleted, userState);
+        }
+        
+        private void OnupdateRatesOperationCompleted(object arg) {
+            if ((this.updateRatesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateRatesCompleted(this, new updateRatesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public shareType[] getPriceByCurrency([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string newCurrencyCode, [System.Xml.Serialization.XmlElementAttribute("shares", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] shareType[] shares) {
             object[] results = this.Invoke("getPriceByCurrency", new object[] {
                         newCurrencyCode,
@@ -815,60 +813,62 @@ namespace SharesBrokerASPClient.SharesBroker {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool updateRates() {
-            object[] results = this.Invoke("updateRates", new object[0]);
-            return ((bool)(results[0]));
+        public string getRealTimeShares([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string query) {
+            object[] results = this.Invoke("getRealTimeShares", new object[] {
+                        symbol,
+                        query});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void updateRatesAsync() {
-            this.updateRatesAsync(null);
+        public void getRealTimeSharesAsync(string symbol, string query) {
+            this.getRealTimeSharesAsync(symbol, query, null);
         }
         
         /// <remarks/>
-        public void updateRatesAsync(object userState) {
-            if ((this.updateRatesOperationCompleted == null)) {
-                this.updateRatesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateRatesOperationCompleted);
+        public void getRealTimeSharesAsync(string symbol, string query, object userState) {
+            if ((this.getRealTimeSharesOperationCompleted == null)) {
+                this.getRealTimeSharesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetRealTimeSharesOperationCompleted);
             }
-            this.InvokeAsync("updateRates", new object[0], this.updateRatesOperationCompleted, userState);
+            this.InvokeAsync("getRealTimeShares", new object[] {
+                        symbol,
+                        query}, this.getRealTimeSharesOperationCompleted, userState);
         }
         
-        private void OnupdateRatesOperationCompleted(object arg) {
-            if ((this.updateRatesCompleted != null)) {
+        private void OngetRealTimeSharesOperationCompleted(object arg) {
+            if ((this.getRealTimeSharesCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.updateRatesCompleted(this, new updateRatesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.getRealTimeSharesCompleted(this, new getRealTimeSharesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://sharesbroker/", ResponseNamespace="http://sharesbroker/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public shareType[] updateSharePrice([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] float price) {
-            object[] results = this.Invoke("updateSharePrice", new object[] {
-                        symbol,
-                        price});
-            return ((shareType[])(results[0]));
+        public string[] getStockNews([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string symbol) {
+            object[] results = this.Invoke("getStockNews", new object[] {
+                        symbol});
+            return ((string[])(results[0]));
         }
         
         /// <remarks/>
-        public void updateSharePriceAsync(string symbol, float price) {
-            this.updateSharePriceAsync(symbol, price, null);
+        public void getStockNewsAsync(string symbol) {
+            this.getStockNewsAsync(symbol, null);
         }
         
         /// <remarks/>
-        public void updateSharePriceAsync(string symbol, float price, object userState) {
-            if ((this.updateSharePriceOperationCompleted == null)) {
-                this.updateSharePriceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateSharePriceOperationCompleted);
+        public void getStockNewsAsync(string symbol, object userState) {
+            if ((this.getStockNewsOperationCompleted == null)) {
+                this.getStockNewsOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetStockNewsOperationCompleted);
             }
-            this.InvokeAsync("updateSharePrice", new object[] {
-                        symbol,
-                        price}, this.updateSharePriceOperationCompleted, userState);
+            this.InvokeAsync("getStockNews", new object[] {
+                        symbol}, this.getStockNewsOperationCompleted, userState);
         }
         
-        private void OnupdateSharePriceOperationCompleted(object arg) {
-            if ((this.updateSharePriceCompleted != null)) {
+        private void OngetStockNewsOperationCompleted(object arg) {
+            if ((this.getStockNewsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.updateSharePriceCompleted(this, new updateSharePriceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.getStockNewsCompleted(this, new getStockNewsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -926,95 +926,17 @@ namespace SharesBrokerASPClient.SharesBroker {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    public delegate void getRealTimeSharesCompletedEventHandler(object sender, getRealTimeSharesCompletedEventArgs e);
+    public delegate void updateSharePriceCompletedEventHandler(object sender, updateSharePriceCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getRealTimeSharesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class updateSharePriceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal getRealTimeSharesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    public delegate void getShareCompletedEventHandler(object sender, getShareCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getShareCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getShareCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public shareType Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((shareType)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    public delegate void getStockNewsCompletedEventHandler(object sender, getStockNewsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getStockNewsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getStockNewsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string[])(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    public delegate void updateCompanyShareCompletedEventHandler(object sender, updateCompanyShareCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class updateCompanyShareCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal updateCompanyShareCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal updateSharePriceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1024,58 +946,6 @@ namespace SharesBrokerASPClient.SharesBroker {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((shareType[])(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    public delegate void getCompanySymbolsCompletedEventHandler(object sender, getCompanySymbolsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getCompanySymbolsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getCompanySymbolsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string[])(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    public delegate void getCompanyNameCompletedEventHandler(object sender, getCompanyNameCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getCompanyNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getCompanyNameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
             }
         }
     }
@@ -1128,6 +998,110 @@ namespace SharesBrokerASPClient.SharesBroker {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((shareType[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    public delegate void getShareCompletedEventHandler(object sender, getShareCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getShareCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getShareCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public shareType Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((shareType)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    public delegate void updateCompanyShareCompletedEventHandler(object sender, updateCompanyShareCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class updateCompanyShareCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal updateCompanyShareCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public shareType[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((shareType[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    public delegate void getCompanyNameCompletedEventHandler(object sender, getCompanyNameCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getCompanyNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getCompanyNameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    public delegate void getCompanySymbolsCompletedEventHandler(object sender, getCompanySymbolsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getCompanySymbolsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getCompanySymbolsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string[])(this.results[0]));
             }
         }
     }
@@ -1446,32 +1420,6 @@ namespace SharesBrokerASPClient.SharesBroker {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    public delegate void getPriceByCurrencyCompletedEventHandler(object sender, getPriceByCurrencyCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getPriceByCurrencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getPriceByCurrencyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public shareType[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((shareType[])(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     public delegate void updateRatesCompletedEventHandler(object sender, updateRatesCompletedEventArgs e);
     
     /// <remarks/>
@@ -1498,17 +1446,17 @@ namespace SharesBrokerASPClient.SharesBroker {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
-    public delegate void updateSharePriceCompletedEventHandler(object sender, updateSharePriceCompletedEventArgs e);
+    public delegate void getPriceByCurrencyCompletedEventHandler(object sender, getPriceByCurrencyCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class updateSharePriceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class getPriceByCurrencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal updateSharePriceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal getPriceByCurrencyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1518,6 +1466,58 @@ namespace SharesBrokerASPClient.SharesBroker {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((shareType[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    public delegate void getRealTimeSharesCompletedEventHandler(object sender, getRealTimeSharesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getRealTimeSharesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getRealTimeSharesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    public delegate void getStockNewsCompletedEventHandler(object sender, getStockNewsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getStockNewsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getStockNewsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string[])(this.results[0]));
             }
         }
     }

@@ -19,10 +19,24 @@ namespace SharesBrokerASPClient
 
 		protected System.Web.UI.WebControls.TextBox filterCompany;
 
+		protected System.Web.UI.WebControls.TextBox filterMin;
+
+		protected System.Web.UI.WebControls.TextBox filterMax;
+
 		protected System.Web.UI.WebControls.DropDownList filterSector;
 
 		protected System.Web.UI.WebControls.DropDownList filterPrice;
 
+		protected System.Web.UI.WebControls.DropDownList currencyCodes;
+
+		protected System.Web.UI.HtmlControls.HtmlForm sharesForm;
+
 		protected System.Web.UI.WebControls.Table sharesTable;
+
+		protected System.Web.UI.WebControls.Label notificationLabel;
+
+		protected System.Web.UI.HtmlControls.HtmlForm transactionsForm;
+
+		protected System.Web.UI.WebControls.DropDownList filterSymbols;
 	}
 }

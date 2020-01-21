@@ -3,53 +3,19 @@
   <types>
     <xsd:schema>
       <xsd:import schemaLocation="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?xsd=1" namespace="http://xml.netbeans.org/schema/Shares" />
-      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
-      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
     </xsd:schema>
     <xsd:schema>
       <xsd:import schemaLocation="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?xsd=2" namespace="http://sharesbroker/" />
-      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
-      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
     </xsd:schema>
   </types>
-  <message name="getRealTimeShares">
-    <part name="parameters" element="tns:getRealTimeShares" />
+  <message name="updateSharePrice">
+    <part name="parameters" element="tns:updateSharePrice" />
   </message>
-  <message name="getRealTimeSharesResponse">
-    <part name="parameters" element="tns:getRealTimeSharesResponse" />
-  </message>
-  <message name="getShare">
-    <part name="parameters" element="tns:getShare" />
-  </message>
-  <message name="getShareResponse">
-    <part name="parameters" element="tns:getShareResponse" />
+  <message name="updateSharePriceResponse">
+    <part name="parameters" element="tns:updateSharePriceResponse" />
   </message>
   <message name="JAXBException">
     <part name="fault" element="tns:JAXBException" />
-  </message>
-  <message name="getStockNews">
-    <part name="parameters" element="tns:getStockNews" />
-  </message>
-  <message name="getStockNewsResponse">
-    <part name="parameters" element="tns:getStockNewsResponse" />
-  </message>
-  <message name="updateCompanyShare">
-    <part name="parameters" element="tns:updateCompanyShare" />
-  </message>
-  <message name="updateCompanyShareResponse">
-    <part name="parameters" element="tns:updateCompanyShareResponse" />
-  </message>
-  <message name="getCompanySymbols">
-    <part name="parameters" element="tns:getCompanySymbols" />
-  </message>
-  <message name="getCompanySymbolsResponse">
-    <part name="parameters" element="tns:getCompanySymbolsResponse" />
-  </message>
-  <message name="getCompanyName">
-    <part name="parameters" element="tns:getCompanyName" />
-  </message>
-  <message name="getCompanyNameResponse">
-    <part name="parameters" element="tns:getCompanyNameResponse" />
   </message>
   <message name="getAvailableShares">
     <part name="parameters" element="tns:getAvailableShares" />
@@ -62,6 +28,30 @@
   </message>
   <message name="listSharesResponse">
     <part name="parameters" element="tns:listSharesResponse" />
+  </message>
+  <message name="getShare">
+    <part name="parameters" element="tns:getShare" />
+  </message>
+  <message name="getShareResponse">
+    <part name="parameters" element="tns:getShareResponse" />
+  </message>
+  <message name="updateCompanyShare">
+    <part name="parameters" element="tns:updateCompanyShare" />
+  </message>
+  <message name="updateCompanyShareResponse">
+    <part name="parameters" element="tns:updateCompanyShareResponse" />
+  </message>
+  <message name="getCompanyName">
+    <part name="parameters" element="tns:getCompanyName" />
+  </message>
+  <message name="getCompanyNameResponse">
+    <part name="parameters" element="tns:getCompanyNameResponse" />
+  </message>
+  <message name="getCompanySymbols">
+    <part name="parameters" element="tns:getCompanySymbols" />
+  </message>
+  <message name="getCompanySymbolsResponse">
+    <part name="parameters" element="tns:getCompanySymbolsResponse" />
   </message>
   <message name="getFTSESectors">
     <part name="parameters" element="tns:getFTSESectors" />
@@ -141,52 +131,35 @@
   <message name="getCurrencyCodesResponse">
     <part name="parameters" element="tns:getCurrencyCodesResponse" />
   </message>
-  <message name="getPriceByCurrency">
-    <part name="parameters" element="tns:getPriceByCurrency" />
-  </message>
-  <message name="getPriceByCurrencyResponse">
-    <part name="parameters" element="tns:getPriceByCurrencyResponse" />
-  </message>
   <message name="updateRates">
     <part name="parameters" element="tns:updateRates" />
   </message>
   <message name="updateRatesResponse">
     <part name="parameters" element="tns:updateRatesResponse" />
   </message>
-  <message name="updateSharePrice">
-    <part name="parameters" element="tns:updateSharePrice" />
+  <message name="getPriceByCurrency">
+    <part name="parameters" element="tns:getPriceByCurrency" />
   </message>
-  <message name="updateSharePriceResponse">
-    <part name="parameters" element="tns:updateSharePriceResponse" />
+  <message name="getPriceByCurrencyResponse">
+    <part name="parameters" element="tns:getPriceByCurrencyResponse" />
+  </message>
+  <message name="getRealTimeShares">
+    <part name="parameters" element="tns:getRealTimeShares" />
+  </message>
+  <message name="getRealTimeSharesResponse">
+    <part name="parameters" element="tns:getRealTimeSharesResponse" />
+  </message>
+  <message name="getStockNews">
+    <part name="parameters" element="tns:getStockNews" />
+  </message>
+  <message name="getStockNewsResponse">
+    <part name="parameters" element="tns:getStockNewsResponse" />
   </message>
   <portType name="SharesBrokerWS">
-    <operation name="getRealTimeShares">
-      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getRealTimeSharesRequest" message="tns:getRealTimeShares" />
-      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getRealTimeSharesResponse" message="tns:getRealTimeSharesResponse" />
-    </operation>
-    <operation name="getShare">
-      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getShareRequest" message="tns:getShare" />
-      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getShareResponse" message="tns:getShareResponse" />
-      <fault wsam:Action="http://sharesbroker/SharesBrokerWS/getShare/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
-    </operation>
-    <operation name="getStockNews">
-      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getStockNewsRequest" message="tns:getStockNews" />
-      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getStockNewsResponse" message="tns:getStockNewsResponse" />
-    </operation>
-    <operation name="updateCompanyShare">
-      <input wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareRequest" message="tns:updateCompanyShare" />
-      <output wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareResponse" message="tns:updateCompanyShareResponse" />
-      <fault wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
-    </operation>
-    <operation name="getCompanySymbols">
-      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanySymbolsRequest" message="tns:getCompanySymbols" />
-      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanySymbolsResponse" message="tns:getCompanySymbolsResponse" />
-      <fault wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanySymbols/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
-    </operation>
-    <operation name="getCompanyName">
-      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanyNameRequest" message="tns:getCompanyName" />
-      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanyNameResponse" message="tns:getCompanyNameResponse" />
-      <fault wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanyName/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+    <operation name="updateSharePrice">
+      <input wsam:Action="http://sharesbroker/SharesBrokerWS/updateSharePriceRequest" message="tns:updateSharePrice" />
+      <output wsam:Action="http://sharesbroker/SharesBrokerWS/updateSharePriceResponse" message="tns:updateSharePriceResponse" />
+      <fault wsam:Action="http://sharesbroker/SharesBrokerWS/updateSharePrice/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
     </operation>
     <operation name="getAvailableShares">
       <input wsam:Action="http://sharesbroker/SharesBrokerWS/getAvailableSharesRequest" message="tns:getAvailableShares" />
@@ -197,6 +170,26 @@
       <input wsam:Action="http://sharesbroker/SharesBrokerWS/listSharesRequest" message="tns:listShares" />
       <output wsam:Action="http://sharesbroker/SharesBrokerWS/listSharesResponse" message="tns:listSharesResponse" />
       <fault wsam:Action="http://sharesbroker/SharesBrokerWS/listShares/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+    </operation>
+    <operation name="getShare">
+      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getShareRequest" message="tns:getShare" />
+      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getShareResponse" message="tns:getShareResponse" />
+      <fault wsam:Action="http://sharesbroker/SharesBrokerWS/getShare/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+    </operation>
+    <operation name="updateCompanyShare">
+      <input wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareRequest" message="tns:updateCompanyShare" />
+      <output wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShareResponse" message="tns:updateCompanyShareResponse" />
+      <fault wsam:Action="http://sharesbroker/SharesBrokerWS/updateCompanyShare/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+    </operation>
+    <operation name="getCompanyName">
+      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanyNameRequest" message="tns:getCompanyName" />
+      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanyNameResponse" message="tns:getCompanyNameResponse" />
+      <fault wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanyName/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+    </operation>
+    <operation name="getCompanySymbols">
+      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanySymbolsRequest" message="tns:getCompanySymbols" />
+      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanySymbolsResponse" message="tns:getCompanySymbolsResponse" />
+      <fault wsam:Action="http://sharesbroker/SharesBrokerWS/getCompanySymbols/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
     </operation>
     <operation name="getFTSESectors">
       <input wsam:Action="http://sharesbroker/SharesBrokerWS/getFTSESectorsRequest" message="tns:getFTSESectors" />
@@ -256,77 +249,26 @@
       <input wsam:Action="http://sharesbroker/SharesBrokerWS/getCurrencyCodesRequest" message="tns:getCurrencyCodes" />
       <output wsam:Action="http://sharesbroker/SharesBrokerWS/getCurrencyCodesResponse" message="tns:getCurrencyCodesResponse" />
     </operation>
-    <operation name="getPriceByCurrency">
-      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getPriceByCurrencyRequest" message="tns:getPriceByCurrency" />
-      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getPriceByCurrencyResponse" message="tns:getPriceByCurrencyResponse" />
-    </operation>
     <operation name="updateRates">
       <input wsam:Action="http://sharesbroker/SharesBrokerWS/updateRatesRequest" message="tns:updateRates" />
       <output wsam:Action="http://sharesbroker/SharesBrokerWS/updateRatesResponse" message="tns:updateRatesResponse" />
     </operation>
-    <operation name="updateSharePrice">
-      <input wsam:Action="http://sharesbroker/SharesBrokerWS/updateSharePriceRequest" message="tns:updateSharePrice" />
-      <output wsam:Action="http://sharesbroker/SharesBrokerWS/updateSharePriceResponse" message="tns:updateSharePriceResponse" />
-      <fault wsam:Action="http://sharesbroker/SharesBrokerWS/updateSharePrice/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+    <operation name="getPriceByCurrency">
+      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getPriceByCurrencyRequest" message="tns:getPriceByCurrency" />
+      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getPriceByCurrencyResponse" message="tns:getPriceByCurrencyResponse" />
+    </operation>
+    <operation name="getRealTimeShares">
+      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getRealTimeSharesRequest" message="tns:getRealTimeShares" />
+      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getRealTimeSharesResponse" message="tns:getRealTimeSharesResponse" />
+    </operation>
+    <operation name="getStockNews">
+      <input wsam:Action="http://sharesbroker/SharesBrokerWS/getStockNewsRequest" message="tns:getStockNews" />
+      <output wsam:Action="http://sharesbroker/SharesBrokerWS/getStockNewsResponse" message="tns:getStockNewsResponse" />
     </operation>
   </portType>
   <binding name="SharesBrokerWSPortBinding" type="tns:SharesBrokerWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="getRealTimeShares">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="getShare">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-      <fault name="JAXBException">
-        <soap:fault use="literal" name="JAXBException" namespace="" />
-      </fault>
-    </operation>
-    <operation name="getStockNews">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="updateCompanyShare">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-      <fault name="JAXBException">
-        <soap:fault use="literal" name="JAXBException" namespace="" />
-      </fault>
-    </operation>
-    <operation name="getCompanySymbols">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-      <fault name="JAXBException">
-        <soap:fault use="literal" name="JAXBException" namespace="" />
-      </fault>
-    </operation>
-    <operation name="getCompanyName">
+    <operation name="updateSharePrice">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -351,6 +293,54 @@
       </fault>
     </operation>
     <operation name="listShares">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="JAXBException">
+        <soap:fault use="literal" name="JAXBException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getShare">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="JAXBException">
+        <soap:fault use="literal" name="JAXBException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="updateCompanyShare">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="JAXBException">
+        <soap:fault use="literal" name="JAXBException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getCompanyName">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="JAXBException">
+        <soap:fault use="literal" name="JAXBException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getCompanySymbols">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -500,15 +490,6 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="getPriceByCurrency">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
     <operation name="updateRates">
       <soap:operation soapAction="" />
       <input>
@@ -518,7 +499,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="updateSharePrice">
+    <operation name="getPriceByCurrency">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -526,9 +507,24 @@
       <output>
         <soap:body use="literal" />
       </output>
-      <fault name="JAXBException">
-        <soap:fault use="literal" name="JAXBException" namespace="" />
-      </fault>
+    </operation>
+    <operation name="getRealTimeShares">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getStockNews">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
     </operation>
   </binding>
   <service name="SharesBrokerWS">

@@ -36,6 +36,7 @@
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
     <Content Include="Shares.aspx" />
+    <Content Include="Company.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -59,6 +60,9 @@
     <Compile Include="Web References\SharesBroker\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\CurrConvertor\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References" />
@@ -79,6 +83,31 @@
       <RelPath>Web References\SharesBroker</RelPath>
       <UpdateFromURL>http://localhost:8080/SharesBrokerWS/SharesBrokerWS?WSDL</UpdateFromURL>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/UserService/UserService?WSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\UserWebService</RelPath>
+      <UpdateFromURL>http://localhost:8080/UserService/UserService?WSDL</UpdateFromURL>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?WSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SharesBroker</RelPath>
+      <UpdateFromURL>http://localhost:8080/SharesBrokerWS/SharesBrokerWS?WSDL</UpdateFromURL>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?WSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SharesBroker</RelPath>
+      <UpdateFromURL>http://localhost:8080/SharesBrokerWS/SharesBrokerWS?WSDL</UpdateFromURL>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/UserService/UserService?WSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\UserWebService</RelPath>
+      <UpdateFromURL>http://localhost:8080/UserService/UserService?WSDL</UpdateFromURL>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/CurrConvertor/CurrConvertor?WSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\CurrConvertor</RelPath>
+      <UpdateFromURL>http://localhost:8080/CurrConvertor/CurrConvertor?WSDL</UpdateFromURL>
+    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\UserWebService\UserService.xsd" />
@@ -92,6 +121,13 @@
     <None Include="Web References\SharesBroker\SharesBrokerWS.wsdl" />
     <None Include="Web References\SharesBroker\SharesBrokerWS0.xsd" />
     <None Include="Web References\SharesBroker\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\CurrConvertor\CurrConvertor.wsdl" />
+    <None Include="Web References\CurrConvertor\CurrConvertor.xsd" />
+    <None Include="Web References\CurrConvertor\CurrConvertor0.xsd" />
+    <None Include="Web References\CurrConvertor\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -1,27 +1,24 @@
 ﻿<Properties StartupConfiguration="{A7EB24A6-4918-41FC-BD20-325419559641}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SharesBrokerASPClient/Web References/SharesBroker/Reference.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SharesBrokerASPClient/Shares.aspx.designer.cs">
     <Files>
       <File FileName="SharesBrokerASPClient/Default.aspx" Line="6" Column="8" />
-      <File FileName="SharesBrokerASPClient/Default.aspx.cs" Line="7" Column="1" />
-      <File FileName="SharesBrokerASPClient/Shares.aspx" Line="40" Column="102" />
-      <File FileName="SharesBrokerASPClient/Shares.aspx.cs" Line="43" Column="1" />
-      <File FileName="SharesBrokerASPClient/Shares.aspx.designer.cs" Line="16" Column="52" />
-      <File FileName="SharesBrokerASPClient/Web References/SharesBroker/Reference.cs" Line="1" Column="1" />
+      <File FileName="SharesBrokerASPClient/Default.aspx.cs" Line="13" Column="1" />
+      <File FileName="SharesBrokerASPClient/Shares.aspx" Line="61" Column="31" />
+      <File FileName="SharesBrokerASPClient/Web References/SharesBroker/Reference.cs" />
+      <File FileName="SharesBrokerASPClient/Company.aspx" />
+      <File FileName="SharesBrokerASPClient/Shares.aspx.cs" Line="21" Column="10" NotebookId="1" />
+      <File FileName="SharesBrokerASPClient/Shares.aspx.designer.cs" Line="36" Column="62" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="SharesBrokerASPClient" expanded="True">
             <Node name="SharesBrokerASPClient" expanded="True">
-              <Node name="WebReferences" expanded="True">
-                <Node name="WebReferenceItem" expanded="True">
-                  <Node name="Reference.map" expanded="True">
-                    <Node name="Reference.cs" selected="True" />
-                  </Node>
-                </Node>
-              </Node>
+              <Node name="WebReferences" expanded="True" />
               <Node name="Default.aspx" expanded="True" />
-              <Node name="Shares.aspx" expanded="True" />
+              <Node name="Shares.aspx" expanded="True">
+                <Node name="Shares.aspx.designer.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
