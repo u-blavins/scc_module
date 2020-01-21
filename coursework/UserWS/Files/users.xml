@@ -23,11 +23,15 @@
         </UserShares>
         <UserShares>
             <CompanySymbol>BARC</CompanySymbol>
-            <CompanyShares>2000</CompanyShares>
+            <CompanyShares>1000</CompanyShares>
         </UserShares>
         <UserShares>
             <CompanySymbol>0HT4</CompanySymbol>
-            <CompanyShares>3</CompanyShares>
+            <CompanyShares>0</CompanyShares>
+        </UserShares>
+        <UserShares>
+            <CompanySymbol>BP</CompanySymbol>
+            <CompanyShares>431</CompanyShares>
         </UserShares>
     </users>
     <users>

@@ -52,10 +52,6 @@
 
 <xs:element name="getShareResponse" type="tns:getShareResponse"/>
 
-<xs:element name="getStockNews" type="tns:getStockNews"/>
-
-<xs:element name="getStockNewsResponse" type="tns:getStockNewsResponse"/>
-
 <xs:element name="listShares" type="tns:listShares"/>
 
 <xs:element name="listSharesResponse" type="tns:listSharesResponse"/>
@@ -239,18 +235,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getStockNews">
-<xs:sequence>
-<xs:element name="symbol" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getStockNewsResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="updateCompanyShare">
 <xs:sequence>
 <xs:element name="symbol" type="xs:string" minOccurs="0"/>
@@ -384,6 +368,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="updateRates">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="updateRatesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="searchByRange">
 <xs:sequence>
 <xs:element name="min" type="xs:float"/>
@@ -395,16 +389,6 @@
 <xs:complexType name="searchByRangeResponse">
 <xs:sequence>
 <xs:element name="return" type="ns1:shareType" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="updateRates">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="updateRatesResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 
