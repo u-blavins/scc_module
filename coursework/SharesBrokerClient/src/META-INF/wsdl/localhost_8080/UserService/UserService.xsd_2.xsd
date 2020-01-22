@@ -16,6 +16,10 @@
 
 <xs:element name="getUserSharesResponse" type="tns:getUserSharesResponse"/>
 
+<xs:element name="isUserAdmin" type="tns:isUserAdmin"/>
+
+<xs:element name="isUserAdminResponse" type="tns:isUserAdminResponse"/>
+
 <xs:element name="loginUser" type="tns:loginUser"/>
 
 <xs:element name="loginUserResponse" type="tns:loginUserResponse"/>
@@ -79,6 +83,18 @@
 <xs:complexType name="getUserResponse">
 <xs:sequence>
 <xs:element name="return" type="ns1:userType" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isUserAdmin">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="isUserAdminResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 

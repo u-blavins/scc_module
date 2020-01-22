@@ -36,6 +36,8 @@ namespace SharesBrokerASPClient.UserWebService {
         
         private System.Threading.SendOrPostCallback getUserSharesOperationCompleted;
         
+        private System.Threading.SendOrPostCallback isUserAdminOperationCompleted;
+        
         /// <remarks/>
         public UserService() {
             this.Url = "http://localhost:8080/UserService/UserService";
@@ -62,6 +64,9 @@ namespace SharesBrokerASPClient.UserWebService {
         
         /// <remarks/>
         public event getUserSharesCompletedEventHandler getUserSharesCompleted;
+        
+        /// <remarks/>
+        public event isUserAdminCompletedEventHandler isUserAdminCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://userws/", ResponseNamespace="http://userws/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -256,6 +261,36 @@ namespace SharesBrokerASPClient.UserWebService {
             if ((this.getUserSharesCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getUserSharesCompleted(this, new getUserSharesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://userws/", ResponseNamespace="http://userws/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool isUserAdmin([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string username) {
+            object[] results = this.Invoke("isUserAdmin", new object[] {
+                        username});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void isUserAdminAsync(string username) {
+            this.isUserAdminAsync(username, null);
+        }
+        
+        /// <remarks/>
+        public void isUserAdminAsync(string username, object userState) {
+            if ((this.isUserAdminOperationCompleted == null)) {
+                this.isUserAdminOperationCompleted = new System.Threading.SendOrPostCallback(this.OnisUserAdminOperationCompleted);
+            }
+            this.InvokeAsync("isUserAdmin", new object[] {
+                        username}, this.isUserAdminOperationCompleted, userState);
+        }
+        
+        private void OnisUserAdminOperationCompleted(object arg) {
+            if ((this.isUserAdminCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.isUserAdminCompleted(this, new isUserAdminCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -469,6 +504,32 @@ namespace SharesBrokerASPClient.UserWebService {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((getUserSharesResponseReturn[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    public delegate void isUserAdminCompletedEventHandler(object sender, isUserAdminCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("XamarinStudio", "8.4.1.4")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class isUserAdminCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal isUserAdminCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }

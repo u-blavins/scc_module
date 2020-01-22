@@ -7,20 +7,14 @@
 <xsd:import namespace="http://userws/" schemaLocation="http://localhost:8080/UserService/UserService?xsd=2"/>
 </xsd:schema>
 </types>
-<message name="getUserShares">
-<part name="parameters" element="tns:getUserShares"/>
-</message>
-<message name="getUserSharesResponse">
-<part name="parameters" element="tns:getUserSharesResponse"/>
-</message>
-<message name="JAXBException">
-<part name="fault" element="tns:JAXBException"/>
-</message>
 <message name="getUser">
 <part name="parameters" element="tns:getUser"/>
 </message>
 <message name="getUserResponse">
 <part name="parameters" element="tns:getUserResponse"/>
+</message>
+<message name="JAXBException">
+<part name="fault" element="tns:JAXBException"/>
 </message>
 <message name="registerUser">
 <part name="parameters" element="tns:registerUser"/>
@@ -52,12 +46,19 @@
 <message name="sellSharesResponse">
 <part name="parameters" element="tns:sellSharesResponse"/>
 </message>
+<message name="getUserShares">
+<part name="parameters" element="tns:getUserShares"/>
+</message>
+<message name="getUserSharesResponse">
+<part name="parameters" element="tns:getUserSharesResponse"/>
+</message>
+<message name="isUserAdmin">
+<part name="parameters" element="tns:isUserAdmin"/>
+</message>
+<message name="isUserAdminResponse">
+<part name="parameters" element="tns:isUserAdminResponse"/>
+</message>
 <portType name="UserService">
-<operation name="getUserShares">
-<input wsam:Action="http://userws/UserService/getUserSharesRequest" message="tns:getUserShares"/>
-<output wsam:Action="http://userws/UserService/getUserSharesResponse" message="tns:getUserSharesResponse"/>
-<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://userws/UserService/getUserShares/Fault/JAXBException"/>
-</operation>
 <operation name="getUser">
 <input wsam:Action="http://userws/UserService/getUserRequest" message="tns:getUser"/>
 <output wsam:Action="http://userws/UserService/getUserResponse" message="tns:getUserResponse"/>
@@ -88,21 +89,18 @@
 <fault message="tns:FileNotFoundException" name="FileNotFoundException" wsam:Action="http://userws/UserService/sellShares/Fault/FileNotFoundException"/>
 <fault message="tns:DatatypeConfigurationException" name="DatatypeConfigurationException" wsam:Action="http://userws/UserService/sellShares/Fault/DatatypeConfigurationException"/>
 </operation>
+<operation name="getUserShares">
+<input wsam:Action="http://userws/UserService/getUserSharesRequest" message="tns:getUserShares"/>
+<output wsam:Action="http://userws/UserService/getUserSharesResponse" message="tns:getUserSharesResponse"/>
+<fault message="tns:JAXBException" name="JAXBException" wsam:Action="http://userws/UserService/getUserShares/Fault/JAXBException"/>
+</operation>
+<operation name="isUserAdmin">
+<input wsam:Action="http://userws/UserService/isUserAdminRequest" message="tns:isUserAdmin"/>
+<output wsam:Action="http://userws/UserService/isUserAdminResponse" message="tns:isUserAdminResponse"/>
+</operation>
 </portType>
 <binding name="UserServicePortBinding" type="tns:UserService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="getUserShares">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="JAXBException">
-<soap:fault name="JAXBException" use="literal"/>
-</fault>
-</operation>
 <operation name="getUser">
 <soap:operation soapAction=""/>
 <input>
@@ -177,6 +175,27 @@
 <fault name="DatatypeConfigurationException">
 <soap:fault name="DatatypeConfigurationException" use="literal"/>
 </fault>
+</operation>
+<operation name="getUserShares">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="JAXBException">
+<soap:fault name="JAXBException" use="literal"/>
+</fault>
+</operation>
+<operation name="isUserAdmin">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
 </operation>
 </binding>
 <service name="UserService">

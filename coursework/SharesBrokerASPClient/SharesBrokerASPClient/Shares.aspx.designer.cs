@@ -27,7 +27,7 @@ namespace SharesBrokerASPClient
 
 		protected System.Web.UI.WebControls.DropDownList filterPrice;
 
-		protected System.Web.UI.WebControls.DropDownList currencyCodes;
+		protected System.Web.UI.WebControls.DropDownList filterCurrencyCodes;
 
 		protected System.Web.UI.HtmlControls.HtmlForm sharesForm;
 
@@ -46,5 +46,15 @@ namespace SharesBrokerASPClient
 		protected System.Web.UI.WebControls.TextBox sellShareText;
 
 		protected System.Web.UI.WebControls.Button sellShareButton;
+
+        protected System.Web.UI.WebControls.Button updateSharePriceButton;
+
+		protected System.Web.UI.WebControls.Button viewShareButton;
+
+		protected System.Web.UI.WebControls.Button adminButton;
+
+		protected System.Web.UI.WebControls.Button updateCurrButton;
+
+		protected System.Web.UI.WebControls.Button logoutButton;
 	}
 }

@@ -261,6 +261,21 @@ public class UserService {
         } 
         return userShares;
     }
+    
+    @WebMethod(operationName= "isUserAdmin")
+    public boolean isUserAdmin(
+            @WebParam(name="username")String username){
+        boolean admin = false;
+        UserType user;
+        try {
+            user = getUser(username);
+            if (user.getIsAdmin() == 1)
+                admin = true;
+        } catch (JAXBException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return admin;   
+    }
 
     private UpdateCompanyShareResponse.Return updateCompanyShare(java.lang.String symbol, int shares) throws FileNotFoundException_Exception, DatatypeConfigurationException_Exception, JAXBException_Exception {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.

@@ -36,7 +36,9 @@
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
     <Content Include="Shares.aspx" />
-    <Content Include="Company.aspx" />
+    <Content Include="Styles\styles.css" />
+    <Content Include="Admin.aspx" />
+    <Content Include="Profile.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -54,14 +56,23 @@
     <Compile Include="Shares.aspx.designer.cs">
       <DependentUpon>Shares.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Web References\UserWebService\Reference.cs">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
     <Compile Include="Web References\SharesBroker\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\CurrConvertor\Reference.cs">
+    <Compile Include="Web References\UserWebService\Reference.cs">
       <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -108,15 +119,18 @@
       <RelPath>Web References\CurrConvertor</RelPath>
       <UpdateFromURL>http://localhost:8080/CurrConvertor/CurrConvertor?WSDL</UpdateFromURL>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/SharesBrokerWS/SharesBrokerWS?WSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SharesBroker</RelPath>
+      <UpdateFromURL>http://localhost:8080/SharesBrokerWS/SharesBrokerWS?WSDL</UpdateFromURL>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/UserService/UserService?WSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\UserWebService</RelPath>
+      <UpdateFromURL>http://localhost:8080/UserService/UserService?WSDL</UpdateFromURL>
+    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\UserWebService\UserService.xsd" />
-    <None Include="Web References\UserWebService\UserService.wsdl" />
-    <None Include="Web References\UserWebService\UserService0.xsd" />
-    <None Include="Web References\UserWebService\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Web References\SharesBroker\SharesBrokerWS.xsd" />
     <None Include="Web References\SharesBroker\SharesBrokerWS.wsdl" />
     <None Include="Web References\SharesBroker\SharesBrokerWS0.xsd" />
@@ -124,13 +138,16 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\CurrConvertor\CurrConvertor.wsdl" />
-    <None Include="Web References\CurrConvertor\CurrConvertor.xsd" />
-    <None Include="Web References\CurrConvertor\CurrConvertor0.xsd" />
-    <None Include="Web References\CurrConvertor\Reference.map">
+    <None Include="Web References\UserWebService\UserService.xsd" />
+    <None Include="Web References\UserWebService\UserService.wsdl" />
+    <None Include="Web References\UserWebService\UserService0.xsd" />
+    <None Include="Web References\UserWebService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Styles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

@@ -26,7 +26,6 @@ public class viewShare extends javax.swing.JFrame {
     
     private String user = "";
     private ShareType share;
-    private boolean updateVolume = false;
 
     /**
      * Creates new form viewShare
@@ -309,9 +308,6 @@ public class viewShare extends javax.swing.JFrame {
             }
         } catch(Exception ex){
             System.out.println(ex);
-        }
-        if (!newPrice.equals("")) {
-            updateVolume = true;
         }
     }//GEN-LAST:event_currentPriceButtonActionPerformed
 

@@ -12,16 +12,36 @@ namespace SharesBrokerASPClient
     public partial class Shares : System.Web.UI.Page
     {
         private shareType[] shares;
+        private string username;
+        private bool isAdmin;
 
         protected void Page_Load(object sender, EventArgs args)
         {
+            if (Session["username"]!=null)
+            {
+                username = Session["username"].ToString();
+                
+            } else
+            {
+                Response.Redirect("~/Default.aspx");
+            }
             if (!IsPostBack)
             {
+                viewAdminButton();
                 loadSectors();
                 loadCodes();
                 loadSymbols();
             }
             loadTable(new SharesBroker.SharesBrokerWS().getCompanyShares());
+        }
+
+        private void viewAdminButton()
+        {
+            UserWebService.UserService userProxy = new UserWebService.UserService();
+            if (!userProxy.isUserAdmin(Session["username"].ToString()))
+            {
+                adminButton.Attributes.CssStyle.Add("display", "none");
+            }
         }
 
         private void loadSectors()
@@ -44,10 +64,11 @@ namespace SharesBrokerASPClient
 
         private void loadCodes()
         {
-            IEnumerable<string> codes = new CurrConvertor.CurrConvertor().getCurrCodes();
-            codes = codes.OrderBy(x => x);
-            currencyCodes.DataSource = codes;
-            currencyCodes.DataBind();
+            string[] codes = new SharesBroker.SharesBrokerWS().getCurrencyCodes();
+            for (int i = 0; i < codes.Length; i++)
+            {
+                filterCurrencyCodes.Items.Add(new ListItem(codes[i], codes[i]));
+            }
         }
 
         public void filter(object sender, EventArgs args)
@@ -58,31 +79,27 @@ namespace SharesBrokerASPClient
             string minStr = filterMin.Text;
             string maxStr = filterMax.Text;
             string priceFilter = filterPrice.SelectedItem.Text;
+            string currency = filterCurrencyCodes.SelectedItem.Text;
 
             SharesBroker.SharesBrokerWS sharesProxy = new SharesBroker.SharesBrokerWS();
 
-            if (symbol.Equals("") && company.Equals("") && sector.Equals("None") &&
-                minStr.Equals("") && maxStr.Equals("") && priceFilter.Equals("None"))
+            if (symbol.Equals("") && company.Equals("") && sector!="None" &&
+                minStr.Equals("") && maxStr.Equals("") && priceFilter!="None" &&
+                currency.Equals(""))
             {
                 resetTable();
                 shareType[] compShares = sharesProxy.getCompanyShares();
-                try
-                {
-                    if (Session["currency"] != null)
-                    {
-                        compShares = retConvertedCurrency(compShares);
-                    }
-
-                    loadTable(compShares);
-                } catch (Exception ex)
-                {
-                    loadTable(shares);
-                }
+                loadTable(compShares);
 
             } else
             {
                 float min = 0;
                 float max = 0;
+
+                if (currency!="None")
+                {
+                    Session.Add("currency", currency);
+                }
 
                 try
                 {
@@ -95,7 +112,8 @@ namespace SharesBrokerASPClient
                     shareType[] compShares = sharesProxy.getCompanyShares();
                     if (Session["currency"]!=null)
                     {
-                        compShares = retConvertedCurrency(compShares);
+                        compShares = sharesProxy.getPriceByCurrency(
+                            Session["currency"].ToString(), compShares);
                     }
                     compShares = sharesProxy.filterQuery(symbol, company, sector, priceFilter, min, max, compShares);
                     resetTable();
@@ -114,6 +132,8 @@ namespace SharesBrokerASPClient
             filterMin.Text = "";
             filterMax.Text = "";
             filterPrice.SelectedItem.Value = "None";
+            filterCurrencyCodes.SelectedItem.Value = "None";
+            notificationLabel.Text = "";
         }
 
         public void loadTable(shareType[] companyShares)
@@ -147,19 +167,6 @@ namespace SharesBrokerASPClient
             return data;
         }
 
-        private shareType[] retConvertedCurrency(shareType[] shareTypes)
-        {
-            string code = currencyCodes.SelectedItem.Text;
-            for (int i = 0; i < shareTypes.Length; i++)
-            {
-                shareTypes[i].share_price.Value = (float)(shareTypes[i].share_price.Value *
-                    new CurrConvertor.CurrConvertor().getConversionRate(
-                        shareTypes[i].share_price.Currency, code));
-                shareTypes[i].share_price.Currency = code;
-            }
-            return shareTypes;
-        }
-
         private void resetTable()
         {
             int rows = shares.Length;
@@ -169,17 +176,6 @@ namespace SharesBrokerASPClient
                 sharesTable.Rows.Remove(sharesTable.Rows[i]);
                 rows--;
             }
-        }
-
-        public void changeCurr(object sender, EventArgs args)
-        {
-            SharesBroker.SharesBrokerWS sharesWsProxy = new SharesBroker.SharesBrokerWS();
-            string code = currencyCodes.SelectedItem.Text;
-            Session.Add("currency", code);
-            shareType[] compShares = sharesWsProxy.getCompanyShares();
-            compShares = retConvertedCurrency(compShares);
-            resetTable();
-            loadTable(compShares);
         }
 
         public void buyShares(object sender, EventArgs args)
@@ -238,6 +234,63 @@ namespace SharesBrokerASPClient
                     notificationLabel.Text = "Enter a number for selling shares";
                 }
             }
+        }
+
+        public async void updateShare(object sender, EventArgs args)
+        {
+            SharesBroker.SharesBrokerWS shareProxy = new SharesBroker.SharesBrokerWS();
+            string symbol = companySymbols.SelectedValue.ToString();
+            string updatedSharePrice;
+            if (symbol!="None")
+            {
+                try
+                {
+                    updatedSharePrice = shareProxy.getRealTimeShares(symbol, "price");
+                    if (updatedSharePrice != "")
+                    {
+                        shareProxy.updateSharePrice(symbol, float.Parse(updatedSharePrice));
+                        resetTable();
+                        loadTable(shareProxy.getCompanyShares());
+                        notificationLabel.Text = "Share price has been updated";
+                    } else
+                    {
+                        notificationLabel.Text = "Share price has not been updated";
+                    }
+                } catch (Exception ex)
+                {
+                    notificationLabel.Text = "Share not updated";
+                }
+            }
+        }
+
+        public void profile(object sender, EventArgs args)
+        {
+            Response.Redirect("~/Profile.aspx");
+        }
+
+        public void admin(object sender, EventArgs args)
+        {
+            Response.Redirect("~/Admin.aspx");
+        }
+
+        public void logout(object sender, EventArgs args)
+        {
+            Session.Clear();
+            Response.Redirect("~/Default.aspx");
+        }
+
+        public void updateCurrency(object sender, EventArgs args)
+        {
+            bool updated = new SharesBroker.SharesBrokerWS().updateRates();
+            if (updated)
+            {
+                notificationLabel.Text = "Rates have been updated";
+            } else
+            {
+                notificationLabel.Text = "Rates are already up to date";
+            }
+
+
         }
 
     }

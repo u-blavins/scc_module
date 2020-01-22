@@ -53,6 +53,12 @@
   <message name="getUserSharesResponse">
     <part name="parameters" element="tns:getUserSharesResponse" />
   </message>
+  <message name="isUserAdmin">
+    <part name="parameters" element="tns:isUserAdmin" />
+  </message>
+  <message name="isUserAdminResponse">
+    <part name="parameters" element="tns:isUserAdminResponse" />
+  </message>
   <portType name="UserService">
     <operation name="getUser">
       <input wsam:Action="http://userws/UserService/getUserRequest" message="tns:getUser" />
@@ -88,6 +94,10 @@
       <input wsam:Action="http://userws/UserService/getUserSharesRequest" message="tns:getUserShares" />
       <output wsam:Action="http://userws/UserService/getUserSharesResponse" message="tns:getUserSharesResponse" />
       <fault wsam:Action="http://userws/UserService/getUserShares/Fault/JAXBException" name="JAXBException" message="tns:JAXBException" />
+    </operation>
+    <operation name="isUserAdmin">
+      <input wsam:Action="http://userws/UserService/isUserAdminRequest" message="tns:isUserAdmin" />
+      <output wsam:Action="http://userws/UserService/isUserAdminResponse" message="tns:isUserAdminResponse" />
     </operation>
   </portType>
   <binding name="UserServicePortBinding" type="tns:UserService">
@@ -178,6 +188,15 @@
       <fault name="JAXBException">
         <soap:fault use="literal" name="JAXBException" namespace="" />
       </fault>
+    </operation>
+    <operation name="isUserAdmin">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
     </operation>
   </binding>
   <service name="UserService">

@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Company_Shares xmlns="http://xml.netbeans.org/schema/Shares">
-    <shares CompanySymbol="LLOY">
-        <CompanyName>LLOYDS GRP.</CompanyName>
-        <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/087/0870612.gif</CompanyLogo>
-        <AvailableShares>214867000</AvailableShares>
-        <CompanyFTSESector>Banks</CompanyFTSESector>
-        <share_price>
-            <Currency>GBP</Currency>
-            <Value>61.48</Value>
-            <LastUpdated>2020-01-18T13:40:45.634Z</LastUpdated>
-        </share_price>
-    </shares>
     <shares CompanySymbol="VOD">
         <CompanyName>VODAFONE GRP.</CompanyName>
         <CompanyLogo>https://www.londonstockexchange.com/prices-and-markets/stocks/logos-companies/bh4/bh4hks3.gif</CompanyLogo>
-        <AvailableShares>60712076</AvailableShares>
+        <AvailableShares>60712000</AvailableShares>
         <CompanyFTSESector>Telecommunications Service Providers</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
@@ -29,8 +18,8 @@
         <CompanyFTSESector>Industrial Support Services</CompanyFTSESector>
         <share_price>
             <Currency>GBP</Currency>
-            <Value>2602.0</Value>
-            <LastUpdated>2020-01-21T13:16:28.528Z</LastUpdated>
+            <Value>2611.0</Value>
+            <LastUpdated>2020-01-21T22:24:31.213Z</LastUpdated>
         </share_price>
     </shares>
     <shares CompanySymbol="BP">
@@ -149,9 +138,9 @@
         <AvailableShares>25254</AvailableShares>
         <CompanyFTSESector>Banks</CompanyFTSESector>
         <share_price>
-            <Currency>USD</Currency>
+            <Currency>BDT</Currency>
             <Value>104.13</Value>
-            <LastUpdated>2020-01-21T12:34:09.649Z</LastUpdated>
+            <LastUpdated>2020-01-22T01:19:10.938Z</LastUpdated>
         </share_price>
     </shares>
 </Company_Shares>
