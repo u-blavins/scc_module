@@ -85,7 +85,7 @@ namespace SharesBrokerASPClient
 
             if (symbol.Equals("") && company.Equals("") && sector!="None" &&
                 minStr.Equals("") && maxStr.Equals("") && priceFilter!="None" &&
-                currency.Equals(""))
+                currency.Equals("None"))
             {
                 resetTable();
                 shareType[] compShares = sharesProxy.getCompanyShares();
